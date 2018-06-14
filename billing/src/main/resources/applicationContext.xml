@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                         http://www.springframework.org/schema/tx 
+                           http://www.springframework.org/schema/tx/spring-tx.xsd
+                         http://www.springframework.org/schema/context
+                         http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/data/jpa 
+                           http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!--指定连接池配置 -->
+	<!-- dao层 数据库连接部分 -->
+	<!-- 加载配置文件 -->
+	<context:property-placeholder location="classpath:mysql.properties" />
+
+	<!-- 配置service扫描 -->
+	<context:component-scan base-package="com.ppxia.billing">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+
+	<!-- 数据库连接池 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 连接池的最大数据库连接数 -->
+		<property name="maxActive" value="10" />
+		<!-- 最大空闲数 -->
+		<property name="maxIdle" value="5" />
+	</bean>
+	
+	 <!-- 配置数据源1 -->  
+    <bean name="datasource1" class="com.alibaba.druid.pool.DruidDataSource"  
+        init-method="init" destroy-method="close">  
+        <property name="driverClassName" value="${jdbc.driver}" /> 
+        <property name="url" value="${jdbc.url}"></property>  
+        <property name="username" value="${jdbc.username}" />  
+        <property name="password" value="${jdbc.password}" /> 
+        <!-- 连接池的最大数据库连接数 -->
+		<property name="maxActive" value="10" />
+		<!-- 最大空闲数 -->
+		<property name="maxIdle" value="5" /> 
+    </bean>  
+  
+    <bean id="multipleDataSource" class="com.ppxia.billing.utils.MultipleDataSouce">  
+        <property name="defaultTargetDataSource" ref="datasource1"/>  
+        <property name="targetDataSources">  
+            <map>  
+                <entry key="dataSource" value-ref="dataSource"/>  
+                <entry key="datasource1" value-ref="datasource1"/>  
+            </map>  
+        </property>  
+    </bean>  
+     	<!-- 配置SessionFactory -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="multipleDataSource"></property>
+		<!-- typeAliasesPackage 代表着哪些包需要取类的类别名， 如果有多个包，同时需要取类的类别名，格式为： package01;package02;package03…… -->
+		<property name="typeAliasesPackage" value="com.ppxia.billing.beans"></property>
+	</bean>
+	
+	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- basePackage 代表着哪些包需要扫描SQLMapper映射文件， 如果有多个包，格式为：package01;package02;package03…… -->
+		<property name="basePackage"	value="com.ppxia.billing.*mag.mapper"></property>
+
+		<property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
+	</bean>
+	
+	<!-- spring整合JPA -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="multipleDataSource" />
+		<!--指定JPA扫描的实体类所在的包 -->
+		<property name="packagesToScan" value="com.ppxia.billing.beans" />
+		<!-- 指定持久层提供者为Hibernate -->
+		<property name="persistence">
+			<bean class="org.hibernate.ejb.HibernatePersistence" />
+		</property> 
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<!-- 自动建表 -->
+				<property name="generateDdl" value="true" />
+				<property name="database" value="MYSQL" />
+				<property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+				<property name="showSql" value="true" />
+			</bean>
+		</property>
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+		</property>
+	</bean>
+
+	<!-- 慢SQL记录 -->
+	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+		<!-- 慢sql时间设置,即执行时间大于200毫秒的都是慢sql -->
+		<property name="slowSqlMillis" value="200" />
+		<property name="logSlowSql" value="true" />
+	</bean>
+
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
+		<property name="dataSourceLogEnabled" value="true" />
+		<property name="statementExecutableSqlLogEnable" value="true" />
+	</bean>
+
+	<!-- 开启WEB方法调用监控 -->
+	<bean id="druid-stat-interceptor"
+		class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
+	</bean>
+
+	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut"
+		scope="prototype">
+		<property name="patterns">
+			<list>
+				<value>com.ppxia.billing.*mag.service.*</value>
+				<value>com.ppxia.billing.*mag.dao.*</value>
+			</list>
+		</property>
+	</bean>
+	<aop:config>
+		<aop:advisor advice-ref="druid-stat-interceptor"
+			pointcut-ref="druid-stat-pointcut" />
+	</aop:config>
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!-- 开启spring的声明式事务管理 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" read-only="true" />
+
+			<tx:method name="save*" read-only="false" rollback-for="java.lang.Exception"
+				propagation="REQUIRED" />
+			<tx:method name="add*" read-only="false" rollback-for="java.lang.Exception"
+				propagation="REQUIRED" />
+
+			<tx:method name="update*" read-only="false" rollback-for="java.lang.Exception"
+				propagation="REQUIRED" />
+			<tx:method name="change*" read-only="false" rollback-for="java.lang.Exception"
+				propagation="REQUIRED" />
+
+			<tx:method name="delete*" read-only="false" rollback-for="java.lang.Exception"
+				propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="operation"
+			expression="execution(* com.ppxia.billing.*mag.service.*.impl.*ServiceImpl.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="operation" />
+	</aop:config>
+
+	<!-- 开启切面的动态代理支持 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+</beans>
