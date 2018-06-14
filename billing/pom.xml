@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>billing Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	<properties>
+	<properties> 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.12</junit.version>
 		<spring.version>4.3.14.RELEASE</spring.version>

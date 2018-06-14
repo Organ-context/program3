@@ -4,17 +4,22 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OptimisticLockType;
+import org.hibernate.annotations.OptimisticLocking;
 
+//登陆日志实体
+//t_login_log
+@Entity
+@Table(name = "t_login_log")
+@OptimisticLocking(type = OptimisticLockType.VERSION)
 public class LoginLogBean implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4278455941806662324L;
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column
@@ -36,65 +41,45 @@ public class LoginLogBean implements Serializable {
 	
 	@Column(name="login_operation",length=20)
 	private String LoginOperation;// 操作// login_operation varchar
-
-	public LoginLogBean(String loginManagerName, String loginManagerType, Date loginOperateTime, String ip,
-			String loginOperation) {
-		super();
-		LoginManagerName = loginManagerName;
-		LoginManagerType = loginManagerType;
-		LoginOperateTime = loginOperateTime;
-		this.ip = ip;
-		LoginOperation = loginOperation;
+	public LoginLogBean() {
+		// TODO Auto-generated constructor stub
 	}
-
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getLoginManagerName() {
 		return LoginManagerName;
 	}
-
 	public void setLoginManagerName(String loginManagerName) {
 		LoginManagerName = loginManagerName;
 	}
-
 	public String getLoginManagerType() {
 		return LoginManagerType;
 	}
-
 	public void setLoginManagerType(String loginManagerType) {
 		LoginManagerType = loginManagerType;
 	}
-
 	public Date getLoginOperateTime() {
 		return LoginOperateTime;
 	}
-
 	public void setLoginOperateTime(Date loginOperateTime) {
 		LoginOperateTime = loginOperateTime;
 	}
-
 	public String getIp() {
 		return ip;
 	}
-
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-
 	public String getLoginOperation() {
 		return LoginOperation;
 	}
-
 	public void setLoginOperation(String loginOperation) {
 		LoginOperation = loginOperation;
 	}
-
 	@Override
 	public String toString() {
 		return "LoginLogBean [id=" + id + ", LoginManagerName=" + LoginManagerName + ", LoginManagerType="
@@ -102,6 +87,4 @@ public class LoginLogBean implements Serializable {
 				+ LoginOperation + "]";
 	}
 	
-	
-
 }

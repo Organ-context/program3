@@ -1,13 +1,19 @@
 package com.ppxia.billing.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OptimisticLockType;
 import org.hibernate.annotations.OptimisticLocking;
@@ -21,8 +27,8 @@ public class TariffBean implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8559835059707967471L;
-
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@Column
 	@GenericGenerator(name="hibernate.id",strategy="identity")
@@ -37,12 +43,9 @@ public class TariffBean implements Serializable {
 	
 	@Column(name="per_cost")
 	private double perCost;//单位费用//per_cost  decimal
-
-	public TariffBean(String tariffName, int basicCost, double perCost) {
-		super();
-		this.tariffName = tariffName;
-		this.basicCost = basicCost;
-		this.perCost = perCost;
+	
+	public TariffBean() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {
@@ -82,6 +85,5 @@ public class TariffBean implements Serializable {
 		return "TariffBean [id=" + id + ", tariffName=" + tariffName + ", basicCost=" + basicCost + ", perCost="
 				+ perCost + "]";
 	}
-	
 	
 }

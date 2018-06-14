@@ -113,8 +113,5 @@ public class AccountingBean implements Serializable {
 		return "AccountingBean [id=" + id + ", payCondition=" + payCondition + ", payWay=" + payWay + ", monthCoast="
 				+ monthCoast + ", userBean=" + userBean + ", month=" + month + "]";
 	}
-    
-    
-	
 
 }
