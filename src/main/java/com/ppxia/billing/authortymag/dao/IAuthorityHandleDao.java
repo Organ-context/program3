@@ -1,11 +1,10 @@
 package com.ppxia.billing.authortymag.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
 import com.ppxia.billing.beans.AuthorityBean;
 
-public interface IAuthorityHandleDao {
-	//根据id删除
-	public void deleteAuthority(Long id );
-	
-	//添加
-	public void saveAuthority(AuthorityBean authory);
+public interface IAuthorityHandleDao extends JpaRepository<AuthorityBean, Long>,JpaSpecificationExecutor<AuthorityBean>{
+
 }
