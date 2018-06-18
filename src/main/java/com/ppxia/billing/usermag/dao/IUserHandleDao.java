@@ -1,14 +1,12 @@
 package com.ppxia.billing.usermag.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
+
 import com.ppxia.billing.beans.UserBean;
 
-public interface IUserHandleDao {
-	//修改
-	public void updateUser(UserBean user);
+@Repository
+public interface IUserHandleDao extends JpaRepository<UserBean, Long>,JpaSpecificationExecutor<UserBean>{
 	
-	//添加
-	public void saveUser(UserBean user);
-	
-	//删除
-	public void deleteUser(Long id);
 }

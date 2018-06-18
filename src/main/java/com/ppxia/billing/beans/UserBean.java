@@ -163,12 +163,28 @@ public class UserBean implements Serializable {
 		this.roleBean = roleBean;
 	}
 
+	public Long getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(Long telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
 		return "UserBean [id=" + id + ", userName=" + userName + ", userPassword=" + userPassword + ", gender=" + gender
 				+ ", userIdcard=" + userIdcard + ", userAccountingName=" + userAccountingName + ", userAccountingState="
 				+ userAccountingState + ", userAddress=" + userAddress + ", userPostnum=" + userPostnum + ", userQqnum="
-				+ userQqnum + ", roleBean=" + roleBean + "]";
+				+ userQqnum + ", roleBean=" + roleBean + ", telephone=" + telephone + ", email=" + email + "]";
 	}
-    
+	
 }
