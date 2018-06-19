@@ -1,15 +1,10 @@
 package com.ppxia.billing.rolemag.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
 import com.ppxia.billing.beans.RoleBean;
 
-public interface IRoleHandleDao {
+public interface IRoleHandleDao extends JpaRepository<RoleBean, Long>,JpaSpecificationExecutor<RoleBean>{
 	
-	//修改
-	public void updateRole(RoleBean role);
-	
-	//添加
-	public void saveRole(RoleBean role);
-	
-	//删除
-	public void deleteRole(Long id);
 }
