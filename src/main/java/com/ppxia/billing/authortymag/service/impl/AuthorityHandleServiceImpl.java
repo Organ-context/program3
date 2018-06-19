@@ -21,9 +21,9 @@ public class AuthorityHandleServiceImpl implements IAuthoryHandleService {
 	}
 
 	@Override
-	public void saveAuthority(AuthorityBean authory) {
+	public void saveAuthority(AuthorityBean authority) {
 		// TODO Auto-generated method stub
-		authorityHandleDaoImpl.saveAndFlush(authory);
+		authorityHandleDaoImpl.saveAndFlush(authority);
 	}
 
 }

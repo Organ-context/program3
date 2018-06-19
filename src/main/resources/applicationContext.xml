@@ -179,14 +179,7 @@
 	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- basePackage 代表着哪些包需要扫描SQLMapper映射文件， 如果有多个包，格式为：package01;package02;package03…… -->
 		<property name="basePackage"
-			value="com.yangsir.project.managermag.mapper;
-					com.yangsir.project.loginlogmag.mapper;
-					com.yangsir.project.accountingmag.mapper;
-					com.yangsir.project.costmag.mapper;
-					com.yangsir.project.operationlogmag.mapper;
-					com.yangsir.project.powermag.mapper;
-					com.yangsir.project.usermag.mapper;
-					com.yangsir.project.usersystemmag.mapper"></property>
+			value="com.ppxia.billing.*mag.mapper"></property>
 		<property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
 	</bean>
 
