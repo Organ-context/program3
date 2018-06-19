@@ -23,7 +23,7 @@ public interface AccountingMapper {
 
 	// 查询分页的满足条件的所有具体数据
 	
-	@SelectProvider(type=AccountingMapperSqlProvider.class,method="findByAll")
+	@SelectProvider(type=AccountingMapperSqlProvider.class,method="findAccountByAll")
 	public List<UserBean> findByAll(@Param("params")Map params);
 
 }
