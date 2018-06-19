@@ -47,7 +47,7 @@ public class AccountingMonthBean implements Serializable {
     private UserBean userBean;//private Long  fk_user_id;//账务账号外键//bigint
 	
     @Column(name="month")
-    private  Date month;//月份//month  date
+    private  String month;//月份//month  date
 	
     public AccountingMonthBean() {
 		// TODO Auto-generated constructor stub
@@ -93,11 +93,11 @@ public class AccountingMonthBean implements Serializable {
 		this.userBean = userBean;
 	}
 
-	public Date getMonth() {
+	public String getMonth() {
 		return month;
 	}
 
-	public void setMonth(Date month) {
+	public void setMonth(String month) {
 		this.month = month;
 	}
 
