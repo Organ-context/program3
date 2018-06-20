@@ -14,35 +14,35 @@ import org.hibernate.annotations.OptimisticLockType;
 import org.hibernate.annotations.OptimisticLocking;
 
 //登陆日志实体
-//t_login_log
 @Entity
-@Table(name = "t_login_log")
+@Table(name="t_login_log")
 @OptimisticLocking(type = OptimisticLockType.VERSION)
 public class LoginLogBean implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column
 	@GenericGenerator(name = "hibernate.id", strategy = "identity")
 	@GeneratedValue(generator = "hibernate.id")
-	private Long id;// id// id bigint
+	private Long id;//id
 	
 	@Column(name="login_manager_name",length=20)
-    private String LoginManagerName;// 管理员名称// login_manager_name varchar
+    private String LoginManagerName;//登录的管理者名称
 	
 	@Column(name="login_manager_type",length=20)
-	private String LoginManagerType;// 管理员类型// login_manager_type varchar
+	private String LoginManagerType;//管理员的类型
 	
 	@Column(name="login_operate_time")
-	private Date LoginOperateTime;// 操作时间// login_operate_time varchar
+	private Date LoginOperateTime;//登录时间
 	
 	@Column(name="ip",length=20)
-    private String ip;// IP// ip varchar
+    private String ip;//登录的ip
 	
 	@Column(name="login_operation",length=20)
-	private String LoginOperation;// 操作// login_operation varchar
+	private String LoginOperation;//登录的行为描述
 	public LoginLogBean() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	public Long getId() {
 		return id;

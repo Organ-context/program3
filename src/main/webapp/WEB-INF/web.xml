@@ -111,18 +111,6 @@
 			<param-value>123456</param-value>
 		</init-param>
 	</servlet>
-	<servlet>
-		<servlet-name>TestServlet</servlet-name>
-		<display-name>TestServlet</display-name>
-		<description></description>
-		<servlet-class>com.ppxia.billing.authortymag.controller.TestServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>www</servlet-name>
-		<display-name>www</display-name>
-		<description></description>
-		<servlet-class>com.ppxia.billing.authortymag.controller.www</servlet-class>
-	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>dispatcherServlet</servlet-name>
@@ -132,14 +120,6 @@
 	<servlet-mapping>
 		<servlet-name>DruidStatView</servlet-name>
 		<url-pattern>/druid/*</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>TestServlet</servlet-name>
-		<url-pattern>/testServlet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>www</servlet-name>
-		<url-pattern>/www</url-pattern>
 	</servlet-mapping>
 	
 	<!-- 设置欢迎界面为index.ftl -->

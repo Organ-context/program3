@@ -16,7 +16,7 @@ import org.hibernate.annotations.OptimisticLocking;/**
  * @author Liuxinyu
  *
  */
-//t_operate_log 
+
 @Entity
 @Table(name="t_operate_log")
 @OptimisticLocking(type=OptimisticLockType.VERSION)
@@ -28,24 +28,24 @@ public class OperateLogBean implements Serializable {
 	@Column
 	@GenericGenerator(name="hibernate.id",strategy="identity")
 	@GeneratedValue(generator="hibernate.id")
-	private  Long id;//id//id  bigint
+	private  Long id;//操作者的id
     
 	@Column(name="operate_manager_name",length=20)
-    private String OperateManagerName;//管理员名称//operate_manager_name varchar
+    private String OperateManagerName;//操作者的名称
   
 	@Column(name="operate_manager_type",length=20)
-    private String  OperateManagerType;//操作类型  //operate_manager_type varchar
+    private String  OperateManagerType;//操作者的类型
    
 	@Column(name="operate_time")
-    private  Date   OperateTime;//操作时间 //operate_time  date
+    private  Date   OperateTime;//操作时间
    
-	@Column(name="system_model",length=11)
-    private int   SystemModel;//系统模块 //system_model  int
+	@Column(name="system_model",length=20)
+    private String  SystemModel;//系统板块
    
 	@Column(name="operate_operation",length=20)
-    private  String OperateOperation;//操作 //operate_operation varchar
+    private  String OperateOperation;//操作行为
 	public OperateLogBean() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	public Long getId() {
 		return id;
@@ -71,10 +71,10 @@ public class OperateLogBean implements Serializable {
 	public void setOperateTime(Date operateTime) {
 		OperateTime = operateTime;
 	}
-	public int getSystemModel() {
+	public String getSystemModel() {
 		return SystemModel;
 	}
-	public void setSystemModel(int systemModel) {
+	public void setSystemModel(String systemModel) {
 		SystemModel = systemModel;
 	}
 	public String getOperateOperation() {
