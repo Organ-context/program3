@@ -8,5 +8,5 @@ import com.ppxia.billing.beans.RoleBean;
 public interface IRoleQueryDao {
 	public PagerBean findRoleByParams( PagerBean pager,Map params);
 	
-	public int findRoleByRoleName(String roleName);
+	public RoleBean findRoleByRoleName(String roleName);
 }

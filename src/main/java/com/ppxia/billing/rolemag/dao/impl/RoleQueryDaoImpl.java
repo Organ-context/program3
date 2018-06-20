@@ -24,7 +24,7 @@ public class RoleQueryDaoImpl implements IRoleQueryDao {
 	}
 
 	@Override
-	public int findRoleByRoleName(String roleName) {
+	public RoleBean findRoleByRoleName(String roleName) {
 		// TODO Auto-generated method stub
 		return roleMapper.findRoleIdByRoleName(roleName);
 	}

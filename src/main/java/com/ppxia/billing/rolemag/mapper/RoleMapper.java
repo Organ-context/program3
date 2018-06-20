@@ -27,6 +27,6 @@ public interface RoleMapper {
 	@SelectProvider(type=RoleMapperSqlProvider.class,method="queryTotalRoleByParams")
 	public int findTotalNumByParams(Map params);
 	
-	@Select("select id from t_role where role_name = {#roleName}")
-	public int findRoleIdByRoleName(String roleName);
+	@Select("select id as id,role_name as roleName, from t_role where role_name = {#roleName}")
+	public RoleBean findRoleIdByRoleName(String roleName);
 }
