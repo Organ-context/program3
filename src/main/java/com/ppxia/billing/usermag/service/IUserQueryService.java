@@ -3,6 +3,7 @@ package com.ppxia.billing.usermag.service;
 import java.util.Map;
 
 import com.ppxia.billing.beans.PagerBean;
+import com.ppxia.billing.beans.RoleBean;
 import com.ppxia.billing.beans.UserBean;
 
 public interface IUserQueryService {
@@ -18,4 +19,5 @@ public interface IUserQueryService {
 	 * @param id
 	 */
 	public UserBean getUser(long id);
+	
 }

@@ -23,7 +23,7 @@
 
 	<!-- 开启springmvc注解支持 -->
 	<!-- <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven> -->
-	<mvc:annotation-driven ></mvc:annotation-driven>
+	<mvc:annotation-driven></mvc:annotation-driven>
 
 	<!-- 定义静态资源包 -->
 	<mvc:resources location="/static/" mapping="/static/**"></mvc:resources>
@@ -65,14 +65,12 @@
 		</property>
 	</bean>
 
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="cache" value="true" />
 		<property name="suffix" value=".ftl" />
 		<property name="requestContextAttribute" value="request"/>
 		<property name="contentType" value="text/html;charset=UTF-8"></property>
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
 	</bean>
  
 	

@@ -7,7 +7,10 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.ppxia.billing.beans.PagerBean;
+import com.ppxia.billing.beans.RoleBean;
 import com.ppxia.billing.beans.UserBean;
+import com.ppxia.billing.rolemag.dao.IRoleQueryDao;
+import com.ppxia.billing.rolemag.dao.impl.RoleQueryDaoImpl;
 import com.ppxia.billing.usermag.dao.IUserQueryDao;
 import com.ppxia.billing.usermag.service.IUserQueryService;
 
@@ -16,7 +19,10 @@ import com.ppxia.billing.usermag.service.IUserQueryService;
 public class UserQueryServiceImpl implements IUserQueryService {
 
 	@Resource
-	public IUserQueryDao userQueryDaoImpl;
+	private IUserQueryDao userQueryDaoImpl;
+	
+	@Resource 
+	private IRoleQueryDao roleQueryDaoImpl;
 	
 	@Override
 	public PagerBean findUserByParams2Pager(Map params, PagerBean pager) {
@@ -35,5 +41,7 @@ public class UserQueryServiceImpl implements IUserQueryService {
 		// TODO Auto-generated method stub
 		return userQueryDaoImpl.getUser(id);
 	}
+
+
 
 }

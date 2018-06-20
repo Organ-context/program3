@@ -27,7 +27,6 @@ public interface UserMapper {
 	 * @param id
 	 *            根据id 查询 管理员 以及管理员的角色
 	 */
-	// 查询客户
 	@Results({ @Result(id = true, property = "id", column = "id", javaType = Long.class),
 			@Result(property = "userName", column = "user_name", javaType = String.class),
 			@Result(property = "userAccountingName", column = "user_accounting_name", javaType = String.class),
@@ -35,6 +34,12 @@ public interface UserMapper {
 	@Select("select * from t_user where id=#{id}")
 	public UserBean getManager(long id);
 
+	
+	/**
+	 * 根据id查角色信息
+	 * @param id
+	 * @return
+	 */
 	@ResultType(RoleBean.class)
 	@Select("select id as id , role_name  as name from t_role where id=#{id}")
 	public RoleBean getRoleById(long id);

@@ -12,8 +12,7 @@
 <script type="text/javascript" src="../../js/jQuery-2.2.2-min.js"></script>
 <script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="../../js/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../js/locale/easyui-lang-zh_CN.js"></script>
 <!-- <script type="text/javascript" src="../../plugins/jquery.validatebox.js"></script>
 <script type="text/javascript" src="../../plugins/validatebox.js"></script> -->
 <style>
@@ -75,18 +74,15 @@
 			<option value="accoutingMonthMag">账单查询管理员</option>
 			<option value="osMag">报表管理员</option>
 			<option value="logMag">日志管理员</option>
-		</select> <a href="#" class="easyui-linkbutton" iconCls="icon-search"
-			style="border: 6px">搜索</a>
+		</select> 
+		<a href="#" class="easyui-linkbutton" iconCls="icon-search" style="border: 6px">搜索</a>
 	</div>
 
 	<!--右下角功能按钮-->
 	<div style="margin: 20px 0;">
-		<a href="javascript:void(0)" class="easyui-linkbutton" id="update1"
-			iconCls="icon-reload">修改</a> <a href="javascript:void(0)"
-			class="easyui-linkbutton" onclick="$('#add').window('open')"
-			iconCls="icon-add">新增</a> <a href="javascript:void(0)" id="delete1"
-			class="easyui-linkbutton" iconCls="icon-remove"
-			href="javascript:void(0)" onclick="$('#deleteUser').window('close')">删除</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" id="update1" iconCls="icon-reload">修改</a> 
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#add').window('open')" iconCls="icon-add">新增</a> 
+		<a href="javascript:void(0)" id="delete1" class="easyui-linkbutton" iconCls="icon-remove" href="javascript:void(0)" onclick="$('#deleteUser').window('close')">删除</a>
 	</div>
 
 	<!--修改的弹窗-->
@@ -107,7 +103,7 @@
 					<div style="margin-left: 10px; width: 90px; display: inline-block">
 						<label for="oldPwd">请确认密码：</label>
 					</div>
-					<input id="oldPwd" name="newPwd"
+					<input id="oldPwd" name="oldPwd"
 						style="line-height: 20px; border: 1px solid #ccc"> </br> </br>
 					<div style="margin-left: 10px; width: 90px; display: inline-block">
 						<label for="oldPwd">联系方式：</label>
@@ -135,7 +131,7 @@
 	<!--新增的弹窗-->
 	<div id="add" class="easyui-window" title="新增"
 		data-options="iconCls:'icon-save'"
-		style="width: 330px; height: 360px; padding: 5px;" closed="true">
+		style="width: 330px; height: 450px; padding: 5px;" closed="true">
 		<div class="easyui-layout" data-options="fit:true">
 			<!--右侧树状图区域-->
 			<!--  <div data-options="region:'east',split:true" style="width:100px"></div> -->
@@ -144,10 +140,8 @@
 				<div style="margin-left: 10px; width: 90px; display: inline-block">
 					<label for="adminName">管理员名称：</label>
 				</div>
-				<span style="font-size: 18px;"><input id="adminName"
-					name="adminName" style="line-height: 20px; border: 1px solid #ccc"
-					class="easyui-validatebox"
-					data-options="required:true,validType:'unnormal'"></span> </br> </br>
+				<input id="adminName" name="adminName"
+					style="line-height: 20px; border: 1px solid #ccc"> </br> </br>
 				<div style="margin-left: 10px; width: 90px; display: inline-block">
 					<label for="adminAcc">管理员账号：</label>
 				</div>
@@ -167,7 +161,27 @@
 					style="line-height: 20px; border: 1px solid #ccc" type="password"
 					class="easyui-validatebox" required="required"
 					validType="equals['#adminPwd']"></span> </br> </br>
-
+				<div style="margin-left: 10px; width: 90px; display: inline-block">
+					<label for="gender">性别：</label>
+				</div>
+				<select id="gender" class="easyui-combobox" name="gender"
+					style="width: 150px;">
+					<option value="1">男</option>
+					<option value="0">女</option>
+				</select> </br> </br>
+	 			<div style="margin-left: 10px; width: 90px; display: inline-block">
+					<label for="role">角色：</label>
+				</div>
+				<select id="role" class="easyui-combobox" name="role" style="width: 150px;">
+					<option value="用户管理员">用户管理员</option>
+					<option value="资费管理员">资费管理员</option>
+					<option value="账务查询管理员">账务查询管理员</option>
+					<option value="账单查询管理员">账单查询管理员</option>
+					<option value="报表管理员">报表管理员</option>
+					<option value="日志管理员">日志管理员</option>
+				</select>
+				</br> 
+				</br> 
 				<div style="margin-left: 10px; width: 90px; display: inline-block">
 					<label for="adminTel">联系方式：</label>
 				</div>
@@ -192,136 +206,151 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		function getData() {
-			var rows = [];
-			for (var i = 1; i <= 20; i++) {
-				var amount = Math.floor(Math.random() * 1000);
-				var price = Math.floor(Math.random() * 1000);
-				rows.push({
-					id : i,
-					name : '用户' + i,
-					user : '用户' + i,
-					gender : '男',
-					tel : amount,
-					role : price,
-					email : amount * price
-				});
-			}
-			return rows;
-		}
+</body>
+<script type="text/javascript">
+function getData() {
+	var rows = [];
+	for (var i = 1; i <= 2; i++) {
+		var amount = Math.floor(Math.random() * 1000);
+		var price = Math.floor(Math.random() * 1000);
+		rows.push({
+			id : i,
+			name : '张三',
+			user : 'admin',
+			gender : '男',
+			tel : 10086,
+			role : '账务管理员',
+			email : '13@qq.com'
+		});
+	}
+	return rows;
+}
 
-		function pagerFilter(data) {
-			if (typeof data.length == 'number'
-					&& typeof data.splice == 'function') { // is array
-				data = {
-					total : data.length,
-					rows : data
-				}
-			}
-			var dg = $(this);
-			var opts = dg.datagrid('options');
-			var pager = dg.datagrid('getPager');
-			pager.pagination({
-				onSelectPage : function(pageNum, pageSize) {
-					opts.pageNumber = pageNum;
-					console.log(opts.pageNumber);
-					opts.pageSize = pageSize;
-					pager.pagination('refresh', {
-						pageNumber : pageNum,
-						pageSize : pageSize
-					});
-					dg.datagrid('loadData', data);
-				}
+function pagerFilter(data) {
+	if (typeof data.length == 'number'&& typeof data.splice == 'function') { // is array
+		data = {
+			total : data.length,
+			rows : data
+		}
+	}
+	var dg = $(this);
+	var opts = dg.datagrid('options');
+	var pager = dg.datagrid('getPager');
+	pager.pagination({
+		onSelectPage : function(pageNum, pageSize) {
+			opts.pageNumber = pageNum;
+			console.log(opts.pageNumber);
+			opts.pageSize = pageSize;
+			pager.pagination('refresh', {
+				pageNumber : pageNum,
+				pageSize : pageSize
 			});
-			if (!data.originalRows) {
-				data.originalRows = (data.rows);
-			}
-			var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
-			var end = start + parseInt(opts.pageSize);
-			data.rows = (data.originalRows.slice(start, end));
-			return data;
+			dg.datagrid('loadData', data);
 		}
+	});
+	if (!data.originalRows) {
+		data.originalRows = (data.rows);
+	}
+	var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+	var end = start + parseInt(opts.pageSize);
+	data.rows = (data.originalRows.slice(start, end));
+	return data;
+}
 
-		$(function() {
-			$('#dg').datagrid({
-				loadFilter : pagerFilter
-			}).datagrid('loadData', getData());
-		});
+$(function() {
+	$('#dg').datagrid({
+		loadFilter : pagerFilter
+	}).datagrid('loadData', getData());
+});
 
-		$("#update1").bind('click', function() {
-			var row = $('#dg').datagrid('getSelected');
-			if (row != null) {
-				$("#w").window('open')
-			} else {
-				$.messager.show({
-					title : '提示',
-					msg : '请选择需要修改的数据',
-					timeout : 5000,
-					showType : 'slide'
-				})
-			}
-		});
+$("#update1").bind('click', function() {
+	var row = $('#dg').datagrid('getSelected');
+	if (row != null) {
+		$("#w").window('open')
+	} else {
+		$.messager.show({
+			title : '提示',
+			msg : '请选择需要修改的数据',
+			timeout : 5000,
+			showType : 'slide'
+		})
+	}
+});
 
-		$("#delete1").bind('click', function() {
-			var row = $('#dg').datagrid('getSelected');
-			if (row != null) {
-				$.messager.show({
-					title : '提示',
-					msg : '删除成功',
-					timeout : 5000,
-					showType : 'slide'
-				})
-			} else {
-				$.messager.show({
-					title : '提示',
-					msg : '请选择需要删除的数据',
-					timeout : 5000,
-					showType : 'slide'
-				})
-			}
-		});
+$("#delete1").bind('click', function() {
+	var row = $('#dg').datagrid('getSelected');
+	if (row != null) {
+		$.messager.show({
+			title : '提示',
+			msg : '删除成功',
+			timeout : 5000,
+			showType : 'slide'
+		})
+	} else {
+		$.messager.show({
+			title : '提示',
+			msg : '请选择需要删除的数据',
+			timeout : 5000,
+			showType : 'slide'
+		})
+	}
+});
 
-		$('#sava1').bind('click', function() {
+$('#sava1').bind('click', function() {
+	$.messager.show({
+		title : '提示',
+		msg : '修改成功',
+		timeout : 5000,
+		showType : 'slide'
+	})
+});
+
+
+
+//添加
+$('#sava2').bind('click', function() {
+	var data = {
+		userName : $("#adminName").val(),
+		userAccountingName : $("#adminAcc").val(),
+		userPassword : $("#adminPwd").val(),
+		gender : $("#gender").val(),
+		roleName : $("#role").val(),
+		telephone : $("#adminTel").val(),
+		email : $("#adminEmail").val()
+	};
+	$.ajax({
+		type : "POST",
+		data : data,
+		url : "/program3/admin/add",
+		datatype:"json",
+		success : function(msg) {
+			console.log(9)
 			$.messager.show({
 				title : '提示',
-				msg : '修改成功',
+				msg : '添加成功',
 				timeout : 5000,
 				showType : 'slide'
 			})
-		});
+		}
+	});
+	$.messager.show({
+        title: '提示',
+        msg: '添加成功',
+        timeout: 5000,
+        showType: 'slide'
+    })
+	$('#add').window('close')
+	 	$("#adminName").val("")
+		$("#adminAcc").val("")
+		$("#adminPwd").val("")
+		$("#gender").val("")
+		$("#role").val("")
+		$("#adminTel").val("")
+		$("#adminEmail").val("")
+		$("oldPwd").val()
+});
 
-		$('#sava2').bind('click', function() {
-			var data = {
-				userName : $("#adminName").val(),
-				userAccountingName : $("#adminAcc").val(),
-				userPassword : $("#adminPwd").val(),
-				telephone : $("#adminTel").val(),
-				email : $("#adminEmail").val()
-			};
-			console.log(data)
-			$.ajax({
-				type : "POST",
-				data : data,
-				url : "/program3/admin/add",
-				success : function(msg) {
-					console.log(9)
-					$.messager.show({
-						title : '提示',
-						msg : '添加成功',
-						timeout : 5000,
-						showType : 'slide'
-					})
-				},
-				error:function(){
-					console.log(11111)
-				}
-			},"json");
-		});
-		$('#adminName').validatebox({
-			required : true,
-			validType : 'unnormal'
-		});
-	</script>
-</body>
+
+
+</script>
 </html>

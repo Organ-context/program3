@@ -16,62 +16,63 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OptimisticLockType;
 import org.hibernate.annotations.OptimisticLocking;
+
 //用户实体类
 //t_user
 @Entity
-@Table(name="t_user")
-@OptimisticLocking(type=OptimisticLockType.VERSION)
+@Table(name = "t_user")
+@OptimisticLocking(type = OptimisticLockType.VERSION)
 public class UserBean implements Serializable {
-    private static final long serialVersionUID = 1L;
-	//id  bigint
-    @Id
+	private static final long serialVersionUID = 1L;
+	// id bigint
+	@Id
 	@Column
-	@GenericGenerator(name="hibernate.id",strategy="identity")
-	@GeneratedValue(generator="hibernate.id")
-    private Long id;//用户id
-    //user_name  varchar
-	@Column(name="user_name",length=20)
+	@GenericGenerator(name = "hibernate.id", strategy = "identity")
+	@GeneratedValue(generator = "hibernate.id")
+	private Long id;// 用户id
+	// user_name varchar
+	@Column(name = "user_name", length = 20)
 
-	private String userName;//用户名
-	//user_password  varchar
-	@Column(name="user_password",length=20)
+	private String userName;// 用户名
+	// user_password varchar
+	@Column(name = "user_password", length = 20)
 
-    private String userPassword;//用户密码
-	//gender  int
-    private int gender;//性别
-	//user_idcard varchar
-	@Column(name="user_idcard",length=20)
+	private String userPassword;// 用户密码
+	// gender int
+	private int gender;// 性别
+	// user_idcard varchar
+	@Column(name = "user_idcard", length = 20)
 
-    private String userIdcard;//身份证号码
-	//user_accounting_name  varchar
-	@Column(name="user_accounting_name",length=20)
-    private String userAccountingName;//账务账号
-	
-	//user_accounting_state  int
-	@Column(name="user_accounting_state",length=11)
-    private int userAccountingState;//账务账号状态
-	//user_address varchar
-    @Column(name="user_address",length=20)
-    private String userAddress;//通讯地址
-	//user_postnum  int
-    @Column(name="user_postnum",length=11)
-    private int userPostnum;//邮编
-	//user_qqnum  bigint
-    @Column(name="user_qqnum")
-    private Long userQqnum;//QQ号码
-	
-    @ManyToOne(fetch = FetchType.LAZY)
+	private String userIdcard;// 身份证号码
+	// user_accounting_name varchar
+	@Column(name = "user_accounting_name", length = 20)
+	private String userAccountingName;// 账务账号
+
+	// user_accounting_state int
+	@Column(name = "user_accounting_state", length = 11)
+	private int userAccountingState;// 账务账号状态
+	// user_address varchar
+	@Column(name = "user_address", length = 20)
+	private String userAddress;// 通讯地址
+	// user_postnum int
+	@Column(name = "user_postnum", length = 11)
+	private int userPostnum;// 邮编
+	// user_qqnum bigint
+	@Column(name = "user_qqnum")
+	private Long userQqnum;// QQ号码
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@Cascade(value = { CascadeType.SAVE_UPDATE })
-	@JoinColumn(name="fk_role_id")
-    private RoleBean roleBean;//角色实体对象
-	
-    @Column(name="user_telephone")
-    private Long telephone;//用户的电话号码
-    
-    @Column(name="user_email")
-    private String email;//用户的邮箱
-    
-    public UserBean() {
+	@JoinColumn(name = "fk_role_id")
+	private RoleBean roleBean;// 角色实体对象
+
+	@Column(name = "user_telephone")
+	private Long telephone;// 用户的电话号码
+
+	@Column(name = "user_email")
+	private String email;// 用户的邮箱
+
+	public UserBean() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -186,5 +187,5 @@ public class UserBean implements Serializable {
 				+ userAccountingState + ", userAddress=" + userAddress + ", userPostnum=" + userPostnum + ", userQqnum="
 				+ userQqnum + ", roleBean=" + roleBean + ", telephone=" + telephone + ", email=" + email + "]";
 	}
-	
+
 }
