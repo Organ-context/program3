@@ -14,8 +14,6 @@ import com.ppxia.billing.beans.UserBean;
 
 public interface AccountingMapper {
 	
-	
-	
 	// 查询所有账务满足条件的总条数
 	@ResultType(UserBean.class)
 	@SelectProvider(type=AccountingMapperSqlProvider.class,method="findByParams")
@@ -23,7 +21,11 @@ public interface AccountingMapper {
 
 	// 查询分页的满足条件的所有具体数据
 	@Results({
-		@Result()
+		@Result(id = true, property = "id", column = "id", javaType = Long.class),
+		@Result(property = "userName", column = "user_name", javaType = String.class),
+		@Result(property = "userAccountingName", column = "user_accounting_name", javaType = String.class),
+		@Result(property = "userAccountingState", column = "user_accounting_state", javaType = String.class),
+		@Result(property = "userAddress", column = "user_address", javaType = String.class)
 	})
 	@SelectProvider(type=AccountingMapperSqlProvider.class,method="findAccountByAll")
 	public List<UserBean> findByAll(@Param("params")Map params);

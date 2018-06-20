@@ -45,8 +45,8 @@ public class UserBean implements Serializable {
     private String userIdcard;//身份证号码
 	//user_accounting_name  varchar
 	@Column(name="user_accounting_name",length=20)
-
     private String userAccountingName;//账务账号
+	
 	//user_accounting_state  int
 	@Column(name="user_accounting_state",length=11)
     private int userAccountingState;//账务账号状态
