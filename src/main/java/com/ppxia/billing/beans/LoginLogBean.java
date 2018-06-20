@@ -41,8 +41,9 @@ public class LoginLogBean implements Serializable {
 	
 	@Column(name="login_operation",length=20)
 	private String LoginOperation;//登录的行为描述
+	
 	public LoginLogBean() {
-		
+		super();
 	}
 	public Long getId() {
 		return id;
