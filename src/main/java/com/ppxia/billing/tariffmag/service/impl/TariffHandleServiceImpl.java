@@ -1,5 +1,7 @@
 package com.ppxia.billing.tariffmag.service.impl;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.ppxia.billing.beans.TariffBean;
@@ -10,6 +12,7 @@ import com.ppxia.billing.tariffmag.service.ITariffHandleService;
 @Service
 public class TariffHandleServiceImpl implements ITariffHandleService {
 	
+	@Resource
 	private ITariffHandleDao tariffHandleDaoImpl;
 	/**
 	 * 修改资费

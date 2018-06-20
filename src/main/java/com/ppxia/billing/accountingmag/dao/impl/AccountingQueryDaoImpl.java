@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ppxia.billing.accountingmag.dao.IAccountingQueryDao;
 import com.ppxia.billing.accountingmag.mapper.AccountingMapper;
+import com.ppxia.billing.beans.PagerBean;
 import com.ppxia.billing.beans.UserBean;
 @Repository
 public class AccountingQueryDaoImpl implements IAccountingQueryDao {
@@ -22,9 +23,12 @@ public class AccountingQueryDaoImpl implements IAccountingQueryDao {
 	}
 
 	@Override
-	public List<UserBean> findByParams(Map map) {
+	public PagerBean findByParams(Map map) {
 		// TODO Auto-generated method stub
-		return accountingMapper.findByAll(map);
+		PagerBean pager = (PagerBean) map.get("pager");
+		pager.setDatas(accountingMapper.findByAll(map));
+		pager.setTotalRows(accountingMapper.findByParams(map));
+		return pager;
 	}
 
 }

@@ -11,6 +11,8 @@ import com.ppxia.billing.beans.PagerBean;
 import com.ppxia.billing.beans.TariffBean;
 import com.ppxia.billing.tariffmag.dao.ITariffQueryDao;
 import com.ppxia.billing.tariffmag.service.ITariffQueryService;
+
+@Service
 public class TariffQueryServiceImpl implements ITariffQueryService {
 	
 	@Resource

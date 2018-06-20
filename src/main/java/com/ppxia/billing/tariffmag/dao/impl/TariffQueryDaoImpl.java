@@ -14,6 +14,7 @@ import com.ppxia.billing.beans.UserBean;
 import com.ppxia.billing.tariffmag.dao.ITariffQueryDao;
 import com.ppxia.billing.tariffmag.mapper.TariffMapper;
 
+@Repository
 public class TariffQueryDaoImpl implements ITariffQueryDao {
 	
 	@Resource

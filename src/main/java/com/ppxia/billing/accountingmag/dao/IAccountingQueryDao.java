@@ -3,6 +3,7 @@ package com.ppxia.billing.accountingmag.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.ppxia.billing.beans.PagerBean;
 import com.ppxia.billing.beans.UserBean;
 
 
@@ -12,7 +13,7 @@ public interface IAccountingQueryDao {
 	public int findAccountByAll(Map map);
 	
 	//查询分页的满足条件的所有具体数据
-	public List<UserBean> findByParams(Map map);
+	public PagerBean findByParams(Map map);
 	
 	
 	

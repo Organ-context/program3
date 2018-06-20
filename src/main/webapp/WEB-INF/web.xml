@@ -33,10 +33,10 @@
 	</filter>
 
 	<!-- 配置DELETE表单内容过滤器：将DELETE流传输的数据，转移到消息体中去 -->
-	<filter>
+	<!-- <filter>
 		<filter-name>httpDeleteFormContentFilter</filter-name>
-		<filter-class>com.yangsir.project.filters.HttpDeleteFormContentFilter</filter-class>
-	</filter>
+		<filter-class>com.ppxia.billing.filters.HttpDeleteFormContentFilter</filter-class>
+	</filter> -->
 	
 	<!-- 配置Form表单支持PUT,DELETE提交方式的过滤器 -->
 	<filter>
@@ -44,10 +44,10 @@
 		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
 	</filter>
 	
-	<filter-mapping>
+	<!-- <filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<servlet-name>dispatcherServlet</servlet-name>
-	</filter-mapping>
+	</filter-mapping> -->
 
 	<filter-mapping>
 		<filter-name>openEntityManagerInViewFilter</filter-name>
@@ -59,15 +59,15 @@
 		<servlet-name>dispatcherServlet</servlet-name>
 	</filter-mapping>
 	
-	<filter-mapping>
+	<!-- <filter-mapping>
 		<filter-name>httpPutFormContentFilter</filter-name>
 		<servlet-name>dispatcherServlet</servlet-name>
-	</filter-mapping>
+	</filter-mapping> -->
 
-	<filter-mapping>
+	<!-- <filter-mapping>
 		<filter-name>httpDeleteFormContentFilter</filter-name>
 		<servlet-name>dispatcherServlet</servlet-name>
-	</filter-mapping>
+	</filter-mapping> -->
 	 
 
 	<!-- 监听器启动spring容器 -->
@@ -111,6 +111,18 @@
 			<param-value>123456</param-value>
 		</init-param>
 	</servlet>
+	<servlet>
+		<servlet-name>TestServlet</servlet-name>
+		<display-name>TestServlet</display-name>
+		<description></description>
+		<servlet-class>com.ppxia.billing.authortymag.controller.TestServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>www</servlet-name>
+		<display-name>www</display-name>
+		<description></description>
+		<servlet-class>com.ppxia.billing.authortymag.controller.www</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>dispatcherServlet</servlet-name>
@@ -121,7 +133,18 @@
 		<servlet-name>DruidStatView</servlet-name>
 		<url-pattern>/druid/*</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TestServlet</servlet-name>
+		<url-pattern>/testServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>www</servlet-name>
+		<url-pattern>/www</url-pattern>
+	</servlet-mapping>
 	
-	
+	<!-- 设置欢迎界面为index.ftl -->
+	<welcome-file-list>
+		<welcome-file>index.ftl</welcome-file>
+	</welcome-file-list>
 	
 </web-app>

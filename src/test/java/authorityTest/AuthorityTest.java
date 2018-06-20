@@ -40,6 +40,6 @@ public class AuthorityTest {
 //		authorityHandleServiceImpl.saveAuthority(authority);
 		
 		//删除
-		authorityHandleServiceImpl.deleteAuthority(5l);
+//		authorityHandleServiceImpl.deleteAuthority(5l);
 	}
 }

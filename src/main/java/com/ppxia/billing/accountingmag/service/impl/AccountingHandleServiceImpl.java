@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.ppxia.billing.accountingmag.dao.IAccountingHandleDao;
+import com.ppxia.billing.accountingmag.dao.IAccountingBeanHandleDao;
 import com.ppxia.billing.accountingmag.service.IAccountingHandleService;
 import com.ppxia.billing.beans.UserBean;
 
@@ -14,13 +14,13 @@ import com.ppxia.billing.beans.UserBean;
 public class AccountingHandleServiceImpl implements IAccountingHandleService {
 
 	@Resource
-	private IAccountingHandleDao accountingHandleDaoImpl;
+	private IAccountingBeanHandleDao accountingHandleDaoImpl;
 	
 	
 	//单个添加
 	@Override
 	public void saveAndFlushAccounting(UserBean accounting) {
-		accountingHandleDaoImpl.save(accounting);
+		accountingHandleDaoImpl.saveAndFlush(accounting);
 	}
 	
 	//批量添加

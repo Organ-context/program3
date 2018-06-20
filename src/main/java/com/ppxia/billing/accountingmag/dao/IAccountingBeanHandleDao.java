@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.ppxia.billing.beans.UserBean;
 
-public interface IAccountingHandleDao extends JpaRepository<UserBean, Long>,JpaSpecificationExecutor<UserBean>{
+public interface IAccountingBeanHandleDao extends JpaRepository<UserBean, Long>,JpaSpecificationExecutor<UserBean>{
 
 
 }

@@ -5,7 +5,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.ppxia.billing.beans.PagerBean;
-@Service
+
 public interface IAccountingQueryService {
 
 	

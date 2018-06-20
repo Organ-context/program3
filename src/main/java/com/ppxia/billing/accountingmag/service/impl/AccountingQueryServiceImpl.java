@@ -18,11 +18,11 @@ public class AccountingQueryServiceImpl implements IAccountingQueryService{
 	public PagerBean findAccountingByParams( Map params) {
 		PagerBean pager = new PagerBean();
 		
-		pager.setDatas(accountingQueryDaoImpl.findByParams(params));
+//		pager.setDatas(accountingQueryDaoImpl.findByParams(params));
 		
 		pager.setTotalRows(accountingQueryDaoImpl.findAccountByAll(params));
 		
-		return pager;
+		return accountingQueryDaoImpl.findByParams(params);
 	}
 
 }

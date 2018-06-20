@@ -145,7 +145,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>ssj</finalName>
+		<finalName>billing</finalName>
 		<pluginManagement>
 			<plugins>
 				<!-- maven-compiler-plugin 主要用于规范JDK编译的版本 -->
