@@ -7,6 +7,7 @@ import java.util.Set;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.mapping.FetchType;
 
@@ -25,4 +26,7 @@ public interface RoleMapper {
 	
 	@SelectProvider(type=RoleMapperSqlProvider.class,method="queryTotalRoleByParams")
 	public int findTotalNumByParams(Map params);
+	
+	@Select("select id from t_role where role_name = {#roleName}")
+	public int findRoleIdByRoleName(String roleName);
 }

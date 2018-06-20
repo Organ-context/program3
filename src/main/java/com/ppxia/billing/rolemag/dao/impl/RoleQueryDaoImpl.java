@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 
 import com.ppxia.billing.beans.PagerBean;
+import com.ppxia.billing.beans.RoleBean;
 import com.ppxia.billing.rolemag.dao.IRoleQueryDao;
 import com.ppxia.billing.rolemag.mapper.RoleMapper;
 
@@ -20,6 +21,12 @@ public class RoleQueryDaoImpl implements IRoleQueryDao {
 	public PagerBean findRoleByParams(PagerBean pager, Map params) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int findRoleByRoleName(String roleName) {
+		// TODO Auto-generated method stub
+		return roleMapper.findRoleIdByRoleName(roleName);
 	}
 
 }
