@@ -291,7 +291,7 @@ var _menus = {
             "menuid": "211",
             "menuname": "管理员管理系统",
             "icon": "icon-nav",
-            "url": "html/adminmag/admin.html"
+            "url": "static/html/adminmag/admin.jsp"
         }, {
             "menuid": "213",
             "menuname": "财务查询系统",
