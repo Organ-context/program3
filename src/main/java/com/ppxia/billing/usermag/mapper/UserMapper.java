@@ -27,13 +27,12 @@ public interface UserMapper {
 	 * @param id
 	 *            根据id 查询 管理员 以及管理员的角色
 	 */
+	
 	@Results({ @Result(id = true, property = "id", column = "id", javaType = Long.class),
 			@Result(property = "userName", column = "user_name", javaType = String.class),
-			@Result(property = "email", column = "user_email", javaType = String.class),
-			@Result(property = "telephone", column = "user_telephone", javaType = Long.class),
 			@Result(property = "userAccountingName", column = "user_accounting_name", javaType = String.class),
-			@Result(property = "roleBean.roleName", column = "roleName", javaType = String.class) })
-	@Select("select u.*,r.role_name as roleName from t_user u,t_role r where u.fk_role_id=r.id and id=#{id}")
+			@Result(property = "roleBean", column = "fk_role_id", javaType = RoleBean.class, one = @One(fetchType = FetchType.LAZY, select = "com.ppxia.billing.usermag.mapper.UserMapper.getRoleById")) })
+	@Select("select * from t_user where id=#{id}")
 	public UserBean getManager(long id);
 
 	
@@ -43,7 +42,7 @@ public interface UserMapper {
 	 * @return
 	 */
 	@ResultType(RoleBean.class)
-	@Select("select id as id , role_name  as name from t_role where id=#{id}")
+	@Select("select id as id , role_name  as roleName , role_type as roleType from t_role where id=#{id}")
 	public RoleBean getRoleById(long id);
 
 	/**

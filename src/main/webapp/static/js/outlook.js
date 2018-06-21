@@ -10,7 +10,7 @@
         Clearnav();
         addNav(d);
         InitLeftMenu();
-    });
+    }); 
 
     // 导航菜单绑定初始化
     $("#wnav").accordion({
