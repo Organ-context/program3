@@ -52,7 +52,7 @@
 	<!-- 配置freemaker试图解析器 -->
 	<bean id="freemarkerConfig"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-		<property name="templateLoaderPath" value="/static/" />
+		<property name="templateLoaderPath" value="/" />
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="freemarkerSettings">
 			<props>
