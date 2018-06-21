@@ -126,7 +126,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 
 
 	<!--新增的弹窗-->
 	<div id="add" class="easyui-window" title="新增"
