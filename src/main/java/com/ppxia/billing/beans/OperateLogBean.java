@@ -45,7 +45,7 @@ public class OperateLogBean implements Serializable {
 	@Column(name="operate_operation",length=20)
     private  String OperateOperation;//操作行为
 	public OperateLogBean() {
-		
+		super();
 	}
 	public Long getId() {
 		return id;

@@ -17,11 +17,14 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OptimisticLockType;
 import org.hibernate.annotations.OptimisticLocking;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 //用户实体类
 //t_user
 @Entity
 @Table(name = "t_user")
 @OptimisticLocking(type = OptimisticLockType.VERSION)
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class UserBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	// id bigint

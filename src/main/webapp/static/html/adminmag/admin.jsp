@@ -30,7 +30,7 @@
 	<!--<div style="margin:20px 0;"></div>-->
 
 	<!--表格部分-->
-	<table id="dg" title="用户管理" style="width: 714px; height: 458px"
+	<table id="dg" title="用户管理" style="width: 764px; height: 458px"
 		toolbar="#tb"
 		data-options="
 				rownumbers:true,
@@ -40,42 +40,27 @@
 				pagination:true,
 				pageSize:10">
 		<thead>
-			<tr>
-				<th data-options="field:'itemid'" hidden="ture" field="id"></th>
-				<th data-options="field:'itemid',width:100,align:'center'"
-					field="name">姓名</th>
-				<th data-options="field:'productid',width:100,align:'center'"
-					field="user">用户</th>
-				<th data-options="field:'listprice',width:80,align:'center'"
-					field="gender">性别</th>
-				<th data-options="field:'unitcost',width:150,align:'center'"
-					field="tel">联系方式</th>
-				<th data-options="field:'attr1',width:100,align:'center'"
-					field="role">角色</th>
-				<th data-options="field:'status',width:150,align:'center'"
-					field="email">邮箱</th>
-			</tr>
 		</thead>
 		<tbody>
 		</tbody>
 	</table>
 	<!--搜索-->
 	<div id="tb" style="padding: 3px;">
-		<span>真实姓名：</span> <input id="realname"
-			style="line-height: 26px; border: 1px solid #ccc"> <span>用户名：</span>
-		<input id="productid"
-			style="line-height: 26px; border: 1px solid #ccc"> <span>角色：</span>
-		<select id="cc" class="easyui-combobox" name="dept"
-			style="width: 150px;">
+		<span>真实姓名：</span> 
+		<input id="realname" name="realname" style="line-height: 26px; border: 1px solid #ccc"> 
+		<span>用户名：</span>
+		<input id="username" name="username" style="line-height: 26px; border: 1px solid #ccc"> 
+		<span>角色：</span> 
+		<select id="role" name="role" class="easyui-combobox" style="width: 150px;">
 			<option value="">全部管理员</option>
-			<option value="userMag">用户管理员</option>
-			<option value="tariffMag">资费管理员</option>
-			<option value="accoutingMag">账务查询管理员</option>
-			<option value="accoutingMonthMag">账单查询管理员</option>
-			<option value="osMag">报表管理员</option>
-			<option value="logMag">日志管理员</option>
+			<option value="用户管理员">用户管理员</option>
+			<option value="资费管理员">资费管理员</option>
+			<option value="账务查询管理员">账务查询管理员</option>
+			<option value="账单查询管理员">账单查询管理员</option>
+			<option value="报表管理员">报表管理员</option>
+			<option value="日志管理员">日志管理员</option>
 		</select> 
-		<a href="#" class="easyui-linkbutton" iconCls="icon-search" style="border: 6px">搜索</a>
+		<a  href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" style="border: 6px" onclick="submitForm()">搜索</a>
 	</div>
 
 	<!--右下角功能按钮-->
@@ -172,8 +157,8 @@
 	 			<div style="margin-left: 10px; width: 90px; display: inline-block">
 					<label for="role">角色：</label>
 				</div>
-				<select id="role" class="easyui-combobox" name="role" style="width: 150px;">
-					<option value="用户管理员">用户管理员</option>
+				<select id="role1" class="easyui-combobox" name="role" style="width: 150px;">
+					<option value="用户管理员" selected>用户管理员</option>
 					<option value="资费管理员">资费管理员</option>
 					<option value="账务查询管理员">账务查询管理员</option>
 					<option value="账单查询管理员">账单查询管理员</option>
@@ -208,60 +193,51 @@
 	</div>
 </body>
 <script type="text/javascript">
-function getData() {
-	var rows = [];
-	for (var i = 1; i <= 2; i++) {
-		var amount = Math.floor(Math.random() * 1000);
-		var price = Math.floor(Math.random() * 1000);
-		rows.push({
-			id : i,
-			name : '张三',
-			user : 'admin',
-			gender : '男',
-			tel : 10086,
-			role : '账务管理员',
-			email : '13@qq.com'
-		});
+//分页
+function queryParams(){
+	var data = {
+			realname : $('#realname').val(),
+			username : $('#username').val(),
+			role : $('#role').val()
 	}
-	return rows;
-}
-
-function pagerFilter(data) {
-	if (typeof data.length == 'number'&& typeof data.splice == 'function') { // is array
-		data = {
-			total : data.length,
-			rows : data
-		}
-	}
-	var dg = $(this);
-	var opts = dg.datagrid('options');
-	var pager = dg.datagrid('getPager');
-	pager.pagination({
-		onSelectPage : function(pageNum, pageSize) {
-			opts.pageNumber = pageNum;
-			console.log(opts.pageNumber);
-			opts.pageSize = pageSize;
-			pager.pagination('refresh', {
-				pageNumber : pageNum,
-				pageSize : pageSize
-			});
-			dg.datagrid('loadData', data);
-		}
-	});
-	if (!data.originalRows) {
-		data.originalRows = (data.rows);
-	}
-	var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
-	var end = start + parseInt(opts.pageSize);
-	data.rows = (data.originalRows.slice(start, end));
 	return data;
 }
 
-$(function() {
+//搜索
+function submitForm(){
+	getData();
+	$('#realname').val(''),
+	$('#username').val(''),
+	$('#role').val('')
+}
+
+$(function(){
+	getData();
+})
+
+function getData(){
 	$('#dg').datagrid({
-		loadFilter : pagerFilter
-	}).datagrid('loadData', getData());
-});
+		url : '/program3/admin/getAdminPager',
+		queryParams : queryParams(),
+		columns:[[
+			{field:'userName',title:'姓名',width:100},
+			{field:'userAccountingName',title:'用户',width:100},
+			{field:'gender',title:'性别',width:80,formatter:function(value,row,index){
+				if(value==1){
+					return '男'
+				}else{
+					return '女'
+				}
+			}},
+			{field:'telephone',title:'联系方式',width:150},
+			{field:'roleBean',title:'角色',width:150,formatter:function(value){
+					return value.roleName
+			}},
+			{field:'email',title:'邮箱',width:150},
+	    ]]
+	})
+}
+
 
 $("#update1").bind('click', function() {
 	var row = $('#dg').datagrid('getSelected');
@@ -314,10 +290,11 @@ $('#sava2').bind('click', function() {
 		userAccountingName : $("#adminAcc").val(),
 		userPassword : $("#adminPwd").val(),
 		gender : $("#gender").val(),
-		roleName : $("#role").val(),
+		roleName : $("#role1").val(),
 		telephone : $("#adminTel").val(),
 		email : $("#adminEmail").val()
 	};
+	console.log(data)
 	$.ajax({
 		type : "POST",
 		data : data,
@@ -333,6 +310,7 @@ $('#sava2').bind('click', function() {
 			})
 		}
 	});
+	getData();
 	$.messager.show({
         title: '提示',
         msg: '添加成功',
@@ -343,6 +321,7 @@ $('#sava2').bind('click', function() {
 	 	$("#adminName").val("")
 		$("#adminAcc").val("")
 		$("#adminPwd").val("")
+		$("#adminPwdSure").val("")
 		$("#gender").val("")
 		$("#role").val("")
 		$("#adminTel").val("")

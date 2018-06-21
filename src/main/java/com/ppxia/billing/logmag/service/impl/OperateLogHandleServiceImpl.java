@@ -4,19 +4,21 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import com.ppxia.billing.beans.OperateLogBean;
-import com.ppxia.billing.logmag.dao.IOperationlogHandleDao;
+import com.ppxia.billing.logmag.dao.IOperateLogHandleDao;
 import com.ppxia.billing.logmag.service.IOperatelogHandleService;
 
 @Service
-public class OperationlogHandleServiceImpl implements IOperatelogHandleService{
+public class OperateLogHandleServiceImpl implements IOperatelogHandleService{
 	@Resource
-	private IOperationlogHandleDao operationlogHandleDaoImpl;
-   
+	private IOperateLogHandleDao OperateLogHandleDao;
+
 	@Override
 	public void addOperateLogBean(OperateLogBean operationLog) {
-		// TODO Auto-generated method stub
-		operationlogHandleDaoImpl.save(operationLog);
+		
+		OperateLogHandleDao.save(operationLog);
 	}
+   
+
 
 
 

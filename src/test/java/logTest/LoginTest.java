@@ -15,6 +15,7 @@ import com.ppxia.billing.beans.OperateLogBean;
 import com.ppxia.billing.beans.PagerBean;
 import com.ppxia.billing.logmag.service.ILoginlogHandleService;
 import com.ppxia.billing.logmag.service.ILoginlogQueryService;
+import com.ppxia.billing.logmag.service.IOperateLogQueryService;
 import com.ppxia.billing.logmag.service.IOperatelogHandleService;
 
 
@@ -30,16 +31,32 @@ public class LoginTest {
 	
 	@Resource
 	private ILoginlogQueryService loginlogQueryServiceImpl;
+	@Resource
+	private IOperateLogQueryService OperateLogQueryServiceImpl;
+	@Test
+	public void testQueryOperateLog() {
+		Map<String, Object> map = new HashMap<>();
+		map.put("OperateManagerName", "张");
+		map.put("startingtime", null);
+		map.put("endtime", null);
+		map.put("index", 1);
+		map.put("rows", 10);
+		System.out.println("123456789");
+		PagerBean pager = new PagerBean();
+		pager.setIndex(1);
+		pager.setRows(10);
+		System.out.println(OperateLogQueryServiceImpl.findPagerByOperateLogBean(pager, map));
+	}
 	
 	@Test
 	public void testQueryLoginlog() {
 		Map<String, Object> map = new HashMap<>();
-		map.put("LoginManagerName", "22");
-		map.put("startTime", null);
-		map.put("endTime", null);
+		map.put("LoginManagerName", "dfghj");
+		map.put("startingtime", null);
+		map.put("endtime", null);
 		map.put("index", 1);
 		map.put("rows", 10);
-		
+		System.out.println("123456789");
 		PagerBean pager = new PagerBean();
 		pager.setIndex(1);
 		pager.setRows(10);
@@ -59,7 +76,7 @@ public class LoginTest {
 	@Test
 	public void testAddOperationlog() {
 		OperateLogBean operation = new OperateLogBean();
-		operation.setOperateManagerName("gssg");
+		operation.setOperateManagerName("hhaha");
 		operatelogHandleServiceImpl.addOperateLogBean(operation);
 	}
 }

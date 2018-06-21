@@ -11,33 +11,33 @@ public class UserMapperSqlProvider {
 		Map<String, Object> params = (Map<String, Object>) map.get("params");
 		StringBuilder sb = new StringBuilder(
 				"select count(*) from t_user as u left join t_role as r on u.fk_role_id= r.id where 1=1 ");
-		if (params.get("userName") != null && StringUtils.hasLength(((String) params.get("userName")).trim())) {
-			sb.append("and u.user_name like concat('" + params.get("userName") + "','%') ");
+		if (params.get("realname") != null && StringUtils.hasLength(((String) params.get("realname")).trim())) {
+			sb.append("and u.user_name like concat('" + params.get("realname") + "','%') ");
 		}
-		if (params.get("userAccountingName") != null) {
-			sb.append("and u.user_accounting_name like concat('" + params.get("userAccountingName") + "','%') ");
+		if (params.get("username") != null) {
+			sb.append("and u.user_accounting_name like concat('" + params.get("username") + "','%') ");
 		}
-		if ((int)params.get("roleBean") != 0) {
-			sb.append("and r.role_type =" + params.get("roleBean") + " ");
+		if (params.get("role") != null && StringUtils.hasLength(((String) params.get("role")).trim())) {
+			sb.append("and r.role_name ='" + params.get("role") + "' ");
 		}
 
 		return sb.toString();
 
 	}
 
+	
 	public String findManagerByParams(Map map) {
-
 		Map<String, Object> params = (Map<String, Object>) map.get("params");
 		StringBuilder sb = new StringBuilder(
-				"select * from t_user as u left join t_role as r on u.fk_role_id= r.id where 1=1 ");
-		if (params.get("userName") != null && StringUtils.hasLength(((String) params.get("userName")).trim())) {
-			sb.append("and u.user_name like concat('" + params.get("userName") + "','%') ");
+				"select u.*,r.role_name as roleName from t_user as u left join t_role as r on u.fk_role_id= r.id where 1=1 ");
+		if (params.get("realname") != null && StringUtils.hasLength(((String) params.get("realname")).trim())) {
+			sb.append("and u.user_name like concat('" + params.get("realname") + "','%') ");
 		}
-		if (params.get("userAccountingName") != null) {
-			sb.append("and u.user_accounting_name like concat('" + params.get("userAccountingName") + "','%') ");
+		if (params.get("username") != null) {
+			sb.append("and u.user_accounting_name like concat('" + params.get("username") + "','%') ");
 		}
-		if ((int)params.get("roleBean") != 0) {
-			sb.append("and r.role_type =" + params.get("roleBean") + " ");
+		if (params.get("role") != null && StringUtils.hasLength(((String) params.get("role")).trim())) {
+			sb.append("and r.role_name ='" + params.get("role") + " '");
 		}
 		sb.append("limit " + params.get("index") + "," + params.get("rows"));
 

@@ -4,7 +4,7 @@ import java.util.Map;
 
 import com.ppxia.billing.beans.PagerBean;
 
-public interface IOperationlogQueryService {
+public interface IOperateLogQueryService {
 
 
 	/**
@@ -17,5 +17,5 @@ public interface IOperationlogQueryService {
 	 * 
 	 * @param map
 	 */
-	public PagerBean findPagerByLoginlogBean(PagerBean pager,Map map);
+	public PagerBean findPagerByOperateLogBean(PagerBean pager,Map map);
 }

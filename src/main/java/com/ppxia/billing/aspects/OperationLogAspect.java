@@ -11,18 +11,17 @@ import org.springframework.stereotype.Component;
 
 import com.ppxia.billing.annotation.operlog;
 import com.ppxia.billing.beans.OperateLogBean;
-import com.ppxia.billing.logmag.dao.IOperationlogHandleDao;
+import com.ppxia.billing.logmag.dao.IOperateLogHandleDao;
+
 @Component
 @Aspect
 public class OperationLogAspect {
 	@Resource
-	private IOperationlogHandleDao iOperationlogDaohandle;
-
-//	@Pointcut(value="execution(* com.project.telecom.logmag.dao*.impl.*DaoImpl.*(..))")
-//	public void pointcut() {}
+	private IOperateLogHandleDao OperateLogHandleDao;
+   
 	@Pointcut(value="@annotation(com.ppxia.billing.annotation.operlog)")
 	public void annotation() {}
-	
+
 	@Before(value="annotation() && @annotation(operlog) ")
 	public void beforeAdvice(JoinPoint jp,operlog operlog) { 		
         OperateLogBean  bean = new OperateLogBean();
@@ -55,7 +54,7 @@ public class OperationLogAspect {
 		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		bean.setOperateTime(date);
-		iOperationlogDaohandle.save(bean);
+		OperateLogHandleDao.save(bean);
 		
 	
 	}

@@ -8,7 +8,7 @@ import com.ppxia.billing.beans.OperateLogBean;
 
 
 //操作日志的持久层
-public interface IOperationlogHandleDao extends JpaRepository<OperateLogBean, Long>,JpaSpecificationExecutor<OperateLogBean>{
+public interface IOperateLogHandleDao extends JpaRepository<OperateLogBean, Long>,JpaSpecificationExecutor<OperateLogBean>{
 
-
+	
 }
