@@ -122,6 +122,11 @@
 		<url-pattern>/druid/*</url-pattern>
 	</servlet-mapping>
 	
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.ftl</url-pattern>
+	</servlet-mapping>
+	
 	<!-- 设置欢迎界面为index.ftl -->
 	<welcome-file-list>
 		<welcome-file>index.ftl</welcome-file>
