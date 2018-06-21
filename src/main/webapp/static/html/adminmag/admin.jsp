@@ -321,7 +321,7 @@ $('#sava2').bind('click', function() {
 	$.ajax({
 		type : "POST",
 		data : data,
-		url : "/program3/admin/add",
+		url : "/billing/admin/add",
 		datatype:"json",
 		success : function(msg) {
 			console.log(9)
