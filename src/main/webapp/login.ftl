@@ -4,38 +4,95 @@
 <base href="${request.contextPath}">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript"
-	src="static/js/jquery-3.3.1.min.js?version=20180522" charset="utf-8"></script>
-<script type="text/javascript" src="static/js/index.page.js"
-	charset="utf-8"></script>
+<link href="static/js/themes/icon.css" rel="stylesheet" type="text/css" />
+<link href="static/js/themes/default/easyui1.css" rel="stylesheet"
+	type="text/css" />
+
+<script type="text/javascript" src="static/js/jquery-1.4.2.min.js"></script>
+
+<script type="text/javascript" src="static/js/jquery.easyui.min-1.2.0.js"></script>
+
+<script src="static/js/Cookie.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$(function() {
+		$("#loginWindow").window({
+			title : '登陆',
+			width : 290,
+			height : 180,
+			modal : true,
+			shadow : false,
+			closable : false,
+			maximizable : false,
+			minimizable : false,
+			collapsible : false,
+			resizable : false
+		});
+		//登录
+		$("#btnLogin").click(function() {
+			var username = document.getElementById("username").value;
+			var password = document.getElementById("password").value;
+
+			loginSys(username, password);
+		});
+	});
+
+	//登陆操作方法
+	function loginSys(username, password) {
+		window.location = "index.html";
+		$.ajax({
+			type : "POST",
+			dataType : "json",
+			//cache:true,
+			url : "Service/EasyUiService.ashx?Method=Login",
+			data : {
+				username : username,
+				password : password
+			},
+			success : function(json) {
+				if (json.Flag[0].Status == 1) {
+					window.location.href = "Index.aspx";
+				} else {
+					$.messager.alert('错误', '账号或密码错误!', 'error');
+				}
+			},
+			error : function() {
+				$.messager.alert('错误', '获取账号信息失败...请联系管理员!', 'error');
+			}
+		});
+	}
+</script>
+
 </head>
 <body>
-	<button id="btn01">新增用户</button>
-	<button id="btn02">查询用户</button>
-	<button id="btn03">修改用户</button>
-	<button id="btn04">删除用户</button>
-	<button id="btn05">按照条件查询用户</button>
-	<button id="btn06">按照条件完成分页查询</button>
-
-	<p>
-	<form action="customersform/111" method="post">
-		<input type="hidden" name="_method" value="put" /> <input
-			type="hidden" name="version" value="0" /> 用户名：<input type="text"
-			name="customerName" /> <br /> 登录名：<input type="text"
-			name="loginName" /> <br /> 出生日期：<input type="date" name="birthday" />
-		<br /> <input type="submit" value="修改" />
-
-	</form>
-
-	<p>下面是Freemarker页面测试
-	<p>
-	<form action="customersform/hello" method="post">
-		<input name="name" type="text" /> <br /> <input type="submit"
-			value="提交" />
-	</form>
-	<p>
-	<p>
-	<a href="page/jump?viewName=usermag/userlist">跳转到userlist.ftl页面中</a>
-	
+	<div id="loginWindow" class="easyui-window" title="登陆"
+		iconcls="icon-login"
+		style="width: 300px; height: 180px; padding: 5px; background: #fafafa;">
+		<div border="false"
+			style="padding-left: 30px; background: #fff; border: 1px solid #ccc;">
+			<form>
+				<table>
+					<tr>
+						<td>账号：</td>
+						<td><input id="username" class="easyui-validatebox"
+							required="true" validtype="length[1,10]" style="width: 150px;" />
+						</td>
+					</tr>
+					<tr>
+						<td>密码：</td>
+						<td><input type="password" id="password"
+							style="width: 150px;" class="easyui-validatebox" required="true"
+							validtype="length[3,10]" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="toolbar" style="text-align: center; margin-top: 20px;">
+			<a href="#" class="easyui-linkbutton" iconcls="icon-no" id="aboutSys"
+				style="margin-right: 10px;"> 取消</a> <a href="#"
+				class="easyui-linkbutton" iconcls="icon-ok" id="btnLogin"
+				style="margin-left: 10px;"> 登陆</a>
+		</div>
+	</div>
 </body>
 </html>
