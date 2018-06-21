@@ -129,7 +129,7 @@
 					style="line-height: 20px; border: 1px solid #ccc"> </br> </br>
 				<div style="margin-left: 10px; width: 90px; display: inline-block">
 					<label for="adminAcc">管理员账号：</label>
-				</div>
+				</div> 
 				<input id="adminAcc" name="adminAcc"
 					style="line-height: 20px; border: 1px solid #ccc"> </br> </br>
 				<div style="margin-left: 10px; width: 90px; display: inline-block">
