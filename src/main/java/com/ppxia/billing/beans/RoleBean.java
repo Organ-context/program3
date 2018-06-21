@@ -19,10 +19,13 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OptimisticLockType;
 import org.hibernate.annotations.OptimisticLocking;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 //t_role   角色实体类
 @Entity
 @Table(name="t_role")
 @OptimisticLocking(type=OptimisticLockType.VERSION)
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class RoleBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

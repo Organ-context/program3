@@ -29,9 +29,11 @@ public interface UserMapper {
 	 */
 	@Results({ @Result(id = true, property = "id", column = "id", javaType = Long.class),
 			@Result(property = "userName", column = "user_name", javaType = String.class),
+			@Result(property = "email", column = "user_email", javaType = String.class),
+			@Result(property = "telephone", column = "user_telephone", javaType = Long.class),
 			@Result(property = "userAccountingName", column = "user_accounting_name", javaType = String.class),
-			@Result(property = "roleBean", column = "fk_role_id", javaType = RoleBean.class, one = @One(fetchType = FetchType.LAZY, select = "getRoleById")) })
-	@Select("select * from t_user where id=#{id}")
+			@Result(property = "roleBean.roleName", column = "roleName", javaType = String.class) })
+	@Select("select u.*,r.role_name as roleName from t_user u,t_role r where u.fk_role_id=r.id and id=#{id}")
 	public UserBean getManager(long id);
 
 	
@@ -65,7 +67,10 @@ public interface UserMapper {
 	@Results({ @Result(id = true, property = "id", column = "id", javaType = Long.class),
 			@Result(property = "userName", column = "user_name", javaType = String.class),
 			@Result(property = "userAccountingName", column = "user_accounting_name", javaType = String.class),
-			@Result(property = "roleBean", column = "fk_role_id", javaType = RoleBean.class, one = @One(fetchType = FetchType.LAZY, select = "getRoleById")) })
+			@Result(property = "email", column = "user_email", javaType = String.class),
+			@Result(property = "telephone", column = "user_telephone", javaType = Long.class),
+//			@Result(property = "roleBean", column = "fk_role_id", javaType = RoleBean.class, one = @One(fetchType = FetchType.LAZY, select = "getRoleById")) })
+			@Result(property = "roleBean.roleName", column = "roleName", javaType = String.class) })
 	@SelectProvider(type = UserMapperSqlProvider.class, method = "findManagerByParams")
 	public List<UserBean> findManagerByParams(@Param("params") Map params);
 

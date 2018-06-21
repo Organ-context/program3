@@ -1,5 +1,6 @@
 package com.ppxia.billing.usermag.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -15,6 +16,7 @@ import com.ppxia.billing.beans.UserBean;
 import com.ppxia.billing.rolemag.dao.IRoleQueryDao;
 import com.ppxia.billing.usermag.service.IUserHandleService;
 import com.ppxia.billing.usermag.service.IUserQueryService;
+import com.ppxia.billing.viewobj.DataGrid;
 
 /**
  * @author Administrator
@@ -61,9 +63,18 @@ public class UserController {
 	 * 分页
 	 */
 	@ResponseBody
-	@RequestMapping(value="/find",method= {RequestMethod.POST},produces= {"application/json;charset=utf-8"})
-	public PagerBean findManger() {
-		return null;
+	@RequestMapping(value="/getAdminPager",method= {RequestMethod.POST},produces= {"application/json;charset=utf-8"})
+	public DataGrid findUserByParams2Pager(PagerBean pager,String realname,String username,String role) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("realname", realname);
+		params.put("username", username);
+		params.put("role", role);
+		System.out.println(params);
+		userQueryServiceImpl.findUserByParams2Pager(params, pager);
+		DataGrid dataGrid = new DataGrid((long) pager.getTotalRows(),pager.getDatas());
+		System.out.println(dataGrid);
+		return dataGrid;
+		
 	}
 	
 	

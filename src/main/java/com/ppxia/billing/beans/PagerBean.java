@@ -3,11 +3,14 @@ package com.ppxia.billing.beans;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * 分页对象
  * @author Administrator
  *
  */
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class PagerBean implements Serializable{
 
 	private int page;//当前页码（easyui提供）

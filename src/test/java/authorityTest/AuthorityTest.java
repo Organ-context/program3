@@ -34,10 +34,10 @@ public class AuthorityTest {
 	
 	@Test
 	public void handleAuthorityTest() {
-//		AuthorityBean authority = new AuthorityBean();
-//		authority.setAuthorityName("发发发");
-//		authority.setAuthorityNum(104);
-//		authorityHandleServiceImpl.saveAuthority(authority);
+		AuthorityBean authority = new AuthorityBean();
+		authority.setAuthorityName("发发发");
+		authority.setAuthorityNum(104);
+		authorityHandleServiceImpl.saveAuthority(authority);
 		
 		//删除
 //		authorityHandleServiceImpl.deleteAuthority(5l);
