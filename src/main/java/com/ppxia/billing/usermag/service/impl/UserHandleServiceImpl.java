@@ -42,13 +42,10 @@ public class UserHandleServiceImpl implements IUserHandleService{
 	 * 修改
 	 */
 	@Override
-	public void updateManatger(Long id,String userPassword,Long telephone,String email) {
+	public void updateManatger(UserBean user) {
 		// TODO Auto-generated method stub
-		UserBean user = userQueryDaoImpl.getUser(id);
-		user.setUserPassword(userPassword);
-		user.setTelephone(telephone);
-		user.setEmail(email);
-		userHandleDao.saveAndFlush(user);
+		System.out.println("修改新数据"+user);
+		//userHandleDao.saveAndFlush(user);
 	}
 
 }

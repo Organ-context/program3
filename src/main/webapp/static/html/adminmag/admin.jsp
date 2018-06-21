@@ -12,7 +12,8 @@
 <script type="text/javascript" src="../../js/jQuery-2.2.2-min.js"></script>
 <script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../js/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript"
+	src="../../js/locale/easyui-lang-zh_CN.js"></script>
 <!-- <script type="text/javascript" src="../../plugins/jquery.validatebox.js"></script>
 <script type="text/javascript" src="../../plugins/validatebox.js"></script> -->
 <style>
@@ -46,12 +47,12 @@
 	</table>
 	<!--搜索-->
 	<div id="tb" style="padding: 3px;">
-		<span>真实姓名：</span> 
-		<input id="realname" name="realname" style="line-height: 26px; border: 1px solid #ccc"> 
-		<span>用户名：</span>
-		<input id="username" name="username" style="line-height: 26px; border: 1px solid #ccc"> 
-		<span>角色：</span> 
-		<select id="role" name="role" class="easyui-combobox" style="width: 150px;">
+		<span>真实姓名：</span> <input id="realname" name="realname"
+			style="line-height: 26px; border: 1px solid #ccc"> <span>用户名：</span>
+		<input id="username" name="username"
+			style="line-height: 26px; border: 1px solid #ccc"> <span>角色：</span>
+		<select id="role" name="role" class="easyui-combobox"
+			style="width: 150px;">
 			<option value="">全部管理员</option>
 			<option value="用户管理员">用户管理员</option>
 			<option value="资费管理员">资费管理员</option>
@@ -59,47 +60,58 @@
 			<option value="账单查询管理员">账单查询管理员</option>
 			<option value="报表管理员">报表管理员</option>
 			<option value="日志管理员">日志管理员</option>
-		</select> 
-		<a  href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" style="border: 6px" onclick="submitForm()">搜索</a>
+		</select> <a href="javascript:void(0)" class="easyui-linkbutton"
+			iconCls="icon-search" style="border: 6px" onclick="submitForm()">搜索</a>
 	</div>
 
 	<!--右下角功能按钮-->
 	<div style="margin: 20px 0;">
-		<a href="javascript:void(0)" class="easyui-linkbutton" id="update1" iconCls="icon-reload">修改</a> 
-		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#add').window('open')" iconCls="icon-add">新增</a> 
-		<a href="javascript:void(0)" id="delete1" class="easyui-linkbutton" iconCls="icon-remove" href="javascript:void(0)" onclick="$('#deleteUser').window('close')">删除</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" id="update1"
+			iconCls="icon-reload">修改</a> <a href="javascript:void(0)"
+			class="easyui-linkbutton" onclick="$('#add').window('open')"
+			iconCls="icon-add">新增</a> <a href="javascript:void(0)" id="delete1"
+			class="easyui-linkbutton" iconCls="icon-remove"
+			href="javascript:void(0)" onclick="$('#deleteUser').window('close')">删除</a>
 	</div>
 
 	<!--修改的弹窗-->
+<form action="/program3/admin/updateAdmin" >
 	<div id="o">
-		<div id="w" class="easyui-window" title="修改"
-			data-options="iconCls:'icon-save'"
+		<div id="w" class="easyui-window" title="修改" data-options="iconCls:'icon-save'"
 			style="width: 330px; height: 300px; padding: 5px;" closed="true">
 			<div class="easyui-layout" data-options="fit:true">
 				<!--右侧树状图区域-->
 				<!--  <div data-options="region:'east',split:true" style="width:100px"></div> -->
-				<div data-options="region:'center'"
-					style="padding: 10px; display: none">
+				<div data-options="region:'center'" style="padding: 10px; display: none">
 					<div style="margin-left: 10px; width: 90px; display: inline-block">
-						<label for="newPwd">请输入新密码：</label>
+						<label for="newPwd1">请输入新密码：</label>
 					</div>
-					<input id="newPwd" name="newPwd"
-						style="line-height: 20px; border: 1px solid #ccc"> </br> </br>
+					<input id="newPwd1" name="newPwd1" type="text" style="line-height: 20px; border: 1px solid #ccc"> </br> </br>
 					<div style="margin-left: 10px; width: 90px; display: inline-block">
-						<label for="oldPwd">请确认密码：</label>
+						<label for="oldPwd1">请确认密码：</label>
 					</div>
-					<input id="oldPwd" name="oldPwd"
-						style="line-height: 20px; border: 1px solid #ccc"> </br> </br>
+					<input id="oldPwd1" name="oldPwd1" style="line-height: 20px; border: 1px solid #ccc"> </br> </br>
 					<div style="margin-left: 10px; width: 90px; display: inline-block">
-						<label for="oldPwd">联系方式：</label>
+						<label for="tel1">联系方式：</label>
 					</div>
-					<input id="tel" name="tel"
-						style="line-height: 20px; border: 1px solid #ccc"> </br> </br>
+					<input id="tel1" name="tel1" style="line-height: 20px; border: 1px solid #ccc"> </br> </br>
 					<div style="margin-left: 10px; width: 90px; display: inline-block">
-						<label for="email">邮箱：</label>
+						<label for="email1">邮箱：</label>
 					</div>
-					<input id="email" name="email"
-						style="line-height: 20px; border: 1px solid #ccc">
+					<input id="email1" name="email1" style="line-height: 20px; border: 1px solid #ccc"> <br>
+					<br>
+					<div style="margin-left: 10px; width: 90px; display: inline-block">
+						<span>角色：</span>
+					</div>
+					<select id="role2" name="role2" class="easyui-combobox"
+						style="width: 150px;">
+						<option value="用户管理员">用户管理员</option>
+						<option value="资费管理员">资费管理员</option>
+						<option value="账务查询管理员">账务查询管理员</option>
+						<option value="账单查询管理员">账单查询管理员</option>
+						<option value="报表管理员">报表管理员</option>
+						<option value="日志管理员">日志管理员</option>
+					</select>
 				</div>
 				<div data-options="region:'south',border:false"
 					style="text-align: right; padding: 5px 0 0;">
@@ -111,7 +123,8 @@
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
+</form>
 
 	<!--新增的弹窗-->
 	<div id="add" class="easyui-window" title="新增"
@@ -129,7 +142,7 @@
 					style="line-height: 20px; border: 1px solid #ccc"> </br> </br>
 				<div style="margin-left: 10px; width: 90px; display: inline-block">
 					<label for="adminAcc">管理员账号：</label>
-				</div> 
+				</div>
 				<input id="adminAcc" name="adminAcc"
 					style="line-height: 20px; border: 1px solid #ccc"> </br> </br>
 				<div style="margin-left: 10px; width: 90px; display: inline-block">
@@ -154,19 +167,18 @@
 					<option value="1">男</option>
 					<option value="0">女</option>
 				</select> </br> </br>
-	 			<div style="margin-left: 10px; width: 90px; display: inline-block">
+				<div style="margin-left: 10px; width: 90px; display: inline-block">
 					<label for="role">角色：</label>
 				</div>
-				<select id="role1" class="easyui-combobox" name="role" style="width: 150px;">
+				<select id="role1" class="easyui-combobox" name="role"
+					style="width: 150px;">
 					<option value="用户管理员" selected>用户管理员</option>
 					<option value="资费管理员">资费管理员</option>
 					<option value="账务查询管理员">账务查询管理员</option>
 					<option value="账单查询管理员">账单查询管理员</option>
 					<option value="报表管理员">报表管理员</option>
 					<option value="日志管理员">日志管理员</option>
-				</select>
-				</br> 
-				</br> 
+				</select> </br> </br>
 				<div style="margin-left: 10px; width: 90px; display: inline-block">
 					<label for="adminTel">联系方式：</label>
 				</div>
@@ -238,7 +250,7 @@ function getData(){
 	})
 }
 
-
+// 修改按钮
 $("#update1").bind('click', function() {
 	var row = $('#dg').datagrid('getSelected');
 	if (row != null) {
@@ -266,7 +278,6 @@ $("#delete1").bind('click', function() {
 			showType : 'slide'
 		});
 	} else {
-		//var jsonArray = $.toJSON(datas);
 		$.ajax({
 			type : "DELETE",
 			url : "/program3/admin/deleteAdmin?id="+datas.id,
@@ -291,16 +302,42 @@ $("#delete1").bind('click', function() {
 	
 });
 
-$('#sava1').bind('click', function() {
-	$.messager.show({
-		title : '提示',
-		msg : '修改成功',
-		timeout : 5000,
-		showType : 'slide'
-	})
+
+// 修改数据保存
+	$('#sava1').bind('click', function() {
+	var datas = $('#dg').datagrid('getSelected');
+	if(!datas){
+		$.messager.show({
+			title:'提示',
+			msg:'请选择需要修改的数据！',
+			timeout:5000,
+			showType:'slide'
+		});
+	}else{
+		var data = {
+				userPassword : $("#newPwd1").val(),
+				telephone : $("#tel1").val(),
+				email : $("#email1").val(),
+				roleName : $("#role2").val(),
+		}
+		console.log($("newPwd1"))
+		console.log(data)
+		$.ajax({
+			type : "PUT",
+			data : data,
+			url : "/program3/admin/updateAdmin?id="+datas.id,
+			datatype:"json",
+			success : function(msg) {
+				$.messager.show({
+					title : '提示',
+					msg : '修改成功',
+					timeout : 5000,
+					showType : 'slide'
+				})
+			}
+		});
+	}
 });
-
-
 
 //添加
 $('#sava2').bind('click', function() {
@@ -317,10 +354,9 @@ $('#sava2').bind('click', function() {
 	$.ajax({
 		type : "POST",
 		data : data,
-		url : "/billing/admin/add",
+		url : "/program3/admin/add",
 		datatype:"json",
 		success : function(msg) {
-			console.log(9)
 			$.messager.show({
 				title : '提示',
 				msg : '添加成功',

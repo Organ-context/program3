@@ -81,7 +81,39 @@ public class UserController {
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value="/updateAdmin",method= {RequestMethod.PUT},produces= {"application/json;charset=utf-8"})
+	public String updateAdmin(Long id,String userPassword,Long telephone,String email,String roleName) {
+		UserBean user = userQueryServiceImpl.getUser(id);
+		UserBean user1 = new UserBean();
+		user1.setId(user1.getId());
+		user1.setUserName(user.getUserName());
 	
+		user1.setGender(user.getGender());
+		user1.setUserAccountingName(user.getUserAccountingName());
+		user1.setRoleBean(user.getRoleBean());
+	//	user1.setTelephone(user.getTelephone());
+	//	user1.setEmail(user.getEmail());
+    //	user1.setUserPassword(user.getUserPassword());
+		if (userPassword!=null) {
+			user1.setUserPassword(userPassword);
+		}else {
+			user1.setUserPassword(user.getUserPassword());
+		}
+		if (telephone!=null) {
+			user1.setTelephone(telephone);
+		}else {
+			user1.setTelephone(user.getTelephone());
+		}
+		if (email!=null) {
+			user1.setEmail(email);
+		}else {
+			user1.setEmail(user.getEmail());
+		}
+		userHandleServiceImpl.updateManatger(user1);
+		
+		return "";
+	}
 	
 	
 	

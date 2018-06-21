@@ -20,5 +20,5 @@ public interface IUserHandleService {
 		 * 修改
 		 * @param user
 		 */
-		public void updateManatger(Long id,String userPassword,Long telephone,String email);
+		public void updateManatger(UserBean user);
 }
