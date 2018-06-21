@@ -31,4 +31,9 @@ public interface RoleMapper {
 	@ResultType(RoleBean.class)
 	@Select("select id as id,role_name as roleName from t_role where role_name = #{roleName}")
 	public RoleBean findRoleIdByRoleName(String roleName);
+	
+	@ResultType(RoleBean.class)
+	@Select("select id as id,role_name as roleName from t_role where id = #{id}")
+	public RoleBean findRoleIdById(Long id);
+	
 }

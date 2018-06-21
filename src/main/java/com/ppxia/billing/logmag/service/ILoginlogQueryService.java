@@ -9,7 +9,7 @@ import com.ppxia.billing.beans.PagerBean;
 
 
 
-public interface ILoginlogServicequery {
+public interface ILoginlogQueryService {
 
 
 	/**

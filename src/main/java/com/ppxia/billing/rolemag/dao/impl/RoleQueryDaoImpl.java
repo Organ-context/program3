@@ -20,6 +20,7 @@ public class RoleQueryDaoImpl implements IRoleQueryDao {
 	@Override
 	public PagerBean findRoleByParams(PagerBean pager, Map params) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

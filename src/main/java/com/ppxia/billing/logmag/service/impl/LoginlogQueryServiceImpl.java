@@ -8,29 +8,30 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.ppxia.billing.beans.PagerBean;
-import com.ppxia.billing.logmag.dao.IOperationlogQueryDao;
-import com.ppxia.billing.logmag.service.IOperationlogQueryService;
+import com.ppxia.billing.logmag.dao.ILoginlogQueryDao;
+import com.ppxia.billing.logmag.service.ILoginlogQueryService;
 
 
 @Service
-public class OperationlogServicequeryImpl implements IOperationlogQueryService{
+public class LoginlogQueryServiceImpl implements ILoginlogQueryService{
 	@Resource
-	private IOperationlogQueryDao operationlogDaoqueryImpl;
+	private ILoginlogQueryDao loginlogQueryDaoImpl;
 
 	@Override
 	public int findAllByNum(Map map) {
-	
-		return operationlogDaoqueryImpl.findAllByNum(map);
+		// TODO Auto-generated method stub
+		return loginlogQueryDaoImpl.findAllByNum(map);
 	}
 
 	@Override
 	public PagerBean findPagerByLoginlogBean(PagerBean pager, Map map) {
-		int totalRows = operationlogDaoqueryImpl.findAllByNum(map);
-		List<?> datas = operationlogDaoqueryImpl.findPagerByOperationBean(map);
+		
+		int totalRows = loginlogQueryDaoImpl.findAllByNum(map);
+		List<?> datas = loginlogQueryDaoImpl.findPagerByLoginlogBean(map);
 		pager.setTotalRows(totalRows);
 		pager.setDatas(datas);
 		return pager;
+	
 	}
-
 
 }
