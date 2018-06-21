@@ -345,12 +345,12 @@ var _menus = {
                 "menuid": "120",
                 "menuname": "登陆日志",
                 "icon": "icon-nav",
-                "url": "javascript:void(0)"
+                "url": "static/html/logmag/loginlog.jsp"
             },{
                 "menuid": "120",
                 "menuname": "前台日志",
                 "icon": "icon-nav",
-                "url": "javascript:void(0)"
+                "url": "static/html/logmag/operationlog.jsp"
             }]
         },{
             "menuid": "219",

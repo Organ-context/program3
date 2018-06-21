@@ -54,7 +54,7 @@
 				<div class="menu-sep"></div>
 			</div>
 		</span> <span style="padding-left: 10px; font-size: 16px; float: left;">
-			<img src="images/blocks.gif" width="20" height="20" align="absmiddle" />项目一组
+			<img src="static/images/blocks.gif" width="20" height="20" align="absmiddle" />项目一组
 		</span>
 
 
