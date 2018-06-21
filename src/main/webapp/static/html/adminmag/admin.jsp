@@ -253,23 +253,42 @@ $("#update1").bind('click', function() {
 	}
 });
 
+//删除
 $("#delete1").bind('click', function() {
-	var row = $('#dg').datagrid('getSelected');
-	if (row != null) {
-		$.messager.show({
-			title : '提示',
-			msg : '删除成功',
-			timeout : 5000,
-			showType : 'slide'
-		})
-	} else {
+	var datas = $('#dg').datagrid('getSelected');
+	var data = {id:datas.id};
+	var lenth = datas.length;
+	if (lenth == 0) {
 		$.messager.show({
 			title : '提示',
 			msg : '请选择需要删除的数据',
 			timeout : 5000,
 			showType : 'slide'
-		})
+		});
+	} else {
+		//var jsonArray = $.toJSON(datas);
+		$.ajax({
+			type : "DELETE",
+			url : "/program3/admin/deleteAdmin?id="+datas.id,
+			contentType : "application/json;charset=utf-8",
+			success : function(msg) {
+				$.messager.show({
+					title : '提示',
+					msg : '删除成功',
+					timeout : 5000,
+					showType : 'slide'
+				});
+			}
+		});
+		getData();
+		$.messager.show({
+	        title: '提示',
+	        msg: '删除成功',
+	        timeout: 5000,
+	        showType: 'slide'
+	    })
 	}
+	
 });
 
 $('#sava1').bind('click', function() {
@@ -326,10 +345,8 @@ $('#sava2').bind('click', function() {
 		$("#role").val("")
 		$("#adminTel").val("")
 		$("#adminEmail").val("")
-		$("oldPwd").val()
+		$("oldPwd").val("")
+		$('#dg').datagrid('reload')
 });
-
-
-
 </script>
 </html>

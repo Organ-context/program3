@@ -42,8 +42,6 @@ public class UserController {
 	@RequestMapping(value="/add",method= {RequestMethod.POST},produces= {"application/json;charset=utf-8"})
 	public String Addmanager(UserBean user,String userName,String userAccountingName,String userPassword,Integer gender,String roleName,Long telephone,String email) {
 		RoleBean roleBean = roleQueryDaoImpl.findRoleByRoleName(roleName);
-//		user.setRoleBean(roleBean);
-//		userHandleServiceImpl.saveManager(user);
 		user.setUserName(userName);
 		user.setUserAccountingName(userAccountingName);
 		user.setUserPassword(userPassword);
@@ -51,7 +49,6 @@ public class UserController {
 		user.setRoleBean(roleBean);
 		user.setTelephone(telephone);
 		user.setEmail(email);
-		System.out.println(user);
 		userHandleServiceImpl.saveManager(user);
 		return "";
 	}
@@ -72,9 +69,15 @@ public class UserController {
 		System.out.println(params);
 		userQueryServiceImpl.findUserByParams2Pager(params, pager);
 		DataGrid dataGrid = new DataGrid((long) pager.getTotalRows(),pager.getDatas());
-		System.out.println(dataGrid);
-		return dataGrid;
-		
+		return dataGrid;	
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/deleteAdmin",method= {RequestMethod.DELETE},produces= {"application/json;charset=utf-8"})
+	public String deleteAdmin(UserBean user) {
+		userHandleServiceImpl.deleteManager(user);
+		return "";
 	}
 	
 	
