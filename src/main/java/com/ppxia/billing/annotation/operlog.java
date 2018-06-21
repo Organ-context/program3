@@ -9,8 +9,8 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface operlog {
-	
+//注解
+public @interface operlog {	
 	    //操作模块
 		String module() default ""; 
 		//操作类型

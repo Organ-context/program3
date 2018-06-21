@@ -11,13 +11,13 @@ import com.ppxia.billing.beans.OperateLogBean;
 
 
 //操作日志的持久层
-public interface IOperationlogQueryDao {
+public interface IOperateLogQueryDao {
    /**
 	 * 根据参数查询登录日志集合
 	 * @param params 页面参数
 	 * @return 返回分页的管理员集合
 	 */
-    public List<OperateLogBean> findPagerByOperationBean(Map params);
+    public List<OperateLogBean> findPagerByOperateLogBean(Map params);
     /**
      * 根据参数查询登录日志的总数
      * @param params  页面参数
