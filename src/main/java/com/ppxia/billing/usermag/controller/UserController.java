@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -66,13 +67,16 @@ public class UserController {
 		params.put("realname", realname);
 		params.put("username", username);
 		params.put("role", role);
-		System.out.println(params);
 		userQueryServiceImpl.findUserByParams2Pager(params, pager);
 		DataGrid dataGrid = new DataGrid((long) pager.getTotalRows(),pager.getDatas());
 		return dataGrid;	
 	}
 	
-	
+	/**
+	 * 删除
+	 * @param user 要删除的对象
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="/deleteAdmin",method= {RequestMethod.DELETE},produces= {"application/json;charset=utf-8"})
 	public String deleteAdmin(UserBean user) {
@@ -80,22 +84,28 @@ public class UserController {
 		return "";
 	}
 	
-	
+	/**
+	 * 修改,将原有数据赋值到新的对象中，再将传入的要修改的参数赋值到新对象
+	 * @param id 传入的id
+	 * @param userPassword 要修改的密码
+	 * @param telephone 要修改的手机号码
+	 * @param email 要修改的邮箱地址
+	 * @param roleName 要修改的角色
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="/updateAdmin",method= {RequestMethod.PUT},produces= {"application/json;charset=utf-8"})
 	public String updateAdmin(Long id,String userPassword,Long telephone,String email,String roleName) {
 		UserBean user = userQueryServiceImpl.getUser(id);
 		UserBean user1 = new UserBean();
-		user1.setId(user1.getId());
+		RoleBean newRole =  user.getRoleBean();
+		user1.setId(user.getId());
 		user1.setUserName(user.getUserName());
 	
 		user1.setGender(user.getGender());
 		user1.setUserAccountingName(user.getUserAccountingName());
-		user1.setRoleBean(user.getRoleBean());
-	//	user1.setTelephone(user.getTelephone());
-	//	user1.setEmail(user.getEmail());
-    //	user1.setUserPassword(user.getUserPassword());
-		if (userPassword!=null) {
+		
+		if (userPassword!=null && StringUtils.hasLength(userPassword.trim())) {
 			user1.setUserPassword(userPassword);
 		}else {
 			user1.setUserPassword(user.getUserPassword());
@@ -105,14 +115,39 @@ public class UserController {
 		}else {
 			user1.setTelephone(user.getTelephone());
 		}
-		if (email!=null) {
+		if (email!=null && StringUtils.hasLength(email.trim())) {
 			user1.setEmail(email);
 		}else {
 			user1.setEmail(user.getEmail());
 		}
+		if (roleName!=null ) {
+			switch (roleName) {
+			case "1":
+				roleName="用户管理员";
+				break;
+			case "2":
+				roleName="资费管理员";
+				break;
+			case "3":
+				roleName="账务查询管理员";
+				break;
+			case "4":
+				roleName="账单查询管理员";
+				break;
+			case "5":
+				roleName="报表管理员";
+				break;
+			case "6":
+				roleName="日志管理员";
+				break;
+			}
+			newRole=roleQueryDaoImpl.findRoleByRoleName(roleName);
+			user1.setRoleBean(newRole);
+		}else {
+			user1.setRoleBean(user.getRoleBean());
+		}
 		userHandleServiceImpl.updateManatger(user1);
-		
-		return "";
+		return null;
 	}
 	
 	

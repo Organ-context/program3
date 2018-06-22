@@ -105,21 +105,18 @@
 					</div>
 					<select id="role2" name="role2" class="easyui-combobox"
 						style="width: 150px;">
-						<option value="用户管理员">用户管理员</option>
-						<option value="资费管理员">资费管理员</option>
-						<option value="账务查询管理员">账务查询管理员</option>
-						<option value="账单查询管理员">账单查询管理员</option>
-						<option value="报表管理员">报表管理员</option>
-						<option value="日志管理员">日志管理员</option>
+						<option value="1">用户管理员</option>
+						<option value="2">资费管理员</option>
+						<option value="3">账务查询管理员</option>
+						<option value="4">账单查询管理员</option>
+						<option value="5">报表管理员</option>
+						<option value="6">日志管理员</option>
 					</select>
 				</div>
 				<div data-options="region:'south',border:false"
 					style="text-align: right; padding: 5px 0 0;">
-					<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
-						href="javascript:void(0)" onclick="$('#w').window('close')"
-						id="sava1">保存</a> <a href="javascript:void(0)"
-						class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
-						onclick="$('#w').window('close')">取消</a>
+					<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="$('#w').window('close')" id="sava1">保存</a> 
+					<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="$('#w').window('close')">取消</a>
 				</div>
 			</div>
 		</div>
@@ -315,17 +312,18 @@ $("#delete1").bind('click', function() {
 		});
 	}else{
 		var data = {
+				id : datas.id,
 				userPassword : $("#newPwd1").val(),
 				telephone : $("#tel1").val(),
 				email : $("#email1").val(),
-				roleName : $("#role2").val(),
+				roleName : $("#role2").val()
+				
 		}
-		console.log($("newPwd1"))
-		console.log(data)
+		console.log(data.roleName)
 		$.ajax({
 			type : "PUT",
 			data : data,
-			url : "/program3/admin/updateAdmin?id="+datas.id,
+			url : "/program3/admin/updateAdmin?id="+datas.id+"&userPassword="+data.userPassword+"&telephone="+data.telephone+"&roleName="+data.roleName+"&email="+data.email+"",
 			datatype:"json",
 			success : function(msg) {
 				$.messager.show({
@@ -336,6 +334,12 @@ $("#delete1").bind('click', function() {
 				})
 			}
 		});
+		getData();
+		$("#newPwd1").val('')
+		$("#adminPwdSure").val('')
+		$("#tel1").val('')
+		$("#email1").val('')
+		$("#role2").val('')
 	}
 });
 

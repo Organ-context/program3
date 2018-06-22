@@ -44,8 +44,7 @@ public class UserHandleServiceImpl implements IUserHandleService{
 	@Override
 	public void updateManatger(UserBean user) {
 		// TODO Auto-generated method stub
-		System.out.println("修改新数据"+user);
-		//userHandleDao.saveAndFlush(user);
+		userHandleDao.saveAndFlush(user);
 	}
 
 }
