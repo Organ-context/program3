@@ -17,9 +17,9 @@
 <script type="text/javascript" src="/billing/static/js/bootstrap.min.js"></script>
 <script type="text/javascript"
 	src="/billing/static/js/locale/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="/billing/static/js/jquery.json-2.4.js"></script>
-	
+
 </head>
 <script>
 	
@@ -56,16 +56,15 @@
 			class="easyui-linkbutton" iconCls="icon-search" style="border: 6px"
 			onclick="submitForm()">搜索</a>
 	</div>
-	
-	
+
+
 	<!-- 弹出来的窗口 -->
 	<div id="win" class="easyui-window" title="月账单信息"
-		style="width: 778px; height: 500px;top:10px"
+		style="width: 778px; height: 500px; top: 10px"
 		data-options="iconCls:'icon-save',modal:true">
 		<!--表格部分-->
-	<table id="dg2" style="width: 760px; height: 460px"
-		toolbar="#tb2"
-		data-options="
+		<table id="dg2" style="width: 760px; height: 460px" toolbar="#tb2"
+			data-options="
 				rownumbers:true,
 				pageList:[10],
 				singleSelect:true,
@@ -73,18 +72,17 @@
 				pagination:true,
 				pageSize:10,
 				method:'get'">
-	</table>
+		</table>
 	</div>
-	
-	
-		<!-- 弹出来的第二层窗口 -->
+
+
+	<!-- 弹出来的第二层窗口 -->
 	<div id="win2" class="easyui-window" title="日账单信息"
-		style="width: 778px; height: 500px;top:5px"
+		style="width: 778px; height: 500px; top: 5px"
 		data-options="iconCls:'icon-save',modal:true">
 		<!--表格部分-->
-	<table id="dg3" style="width: 760px; height: 460px"
-	toolbar="#tb3"
-		data-options="
+		<table id="dg3" style="width: 760px; height: 460px" toolbar="#tb3"
+			data-options="
 				rownumbers:true,
 				pageList:[10],
 				singleSelect:true,
@@ -92,16 +90,15 @@
 				pagination:true,
 				pageSize:10,
 				method:'get'">
-	</table>
+		</table>
 	</div>
 	<!--搜索-->
 	<div id="tb3" style="padding: 3px;">
-	<strong style="left:10px">OS账号:</strong>
-	<strong id="strong1"></strong>
-	<strong style="margin-left: 100px">服务器信息:</strong>
-	<strong id="strong2"></strong>		
+		<strong style="left: 10px">OS账号:</strong> <strong id="strong1"></strong>
+		<strong style="margin-left: 100px">服务器信息:</strong> <strong
+			id="strong2"></strong>
 	</div>
-	
+
 </body>
 <script type="text/javascript">
 	//最底层分页
@@ -191,51 +188,50 @@
 			}, ] ]
 		})
 	}
-	
-	
+
 	// 窗口初始化关闭
 	$(function() {
 		$('#win').window('close')
 		$('#win2').window('close')
 	})
-	
-	var top1="";
+
+	var top1 = "";
 	//窗口自启动然后刷新数据
 	$(function() {
 		$('#dg').datagrid({
 			onDblClickRow : function(rowIndex, rowData) {
-				
+
 				$('#win').window('open')
 				getData2(rowData);
-				top1=rowData
+				top1 = rowData
 			}
 		});
 		$('#dg2').datagrid({
 			onDblClickRow : function(rowIndex, rowData) {
-				
+
 				$('#win2').window('open')
-				getData3(top1,rowData);
+				getData3(top1, rowData);
 				console.log(rowData)
 				$("#strong1").html(rowData.osBean.osAccount)
 				$("#strong2").html(rowData.ip)
 			}
 		});
 	});
-	
+
 	//第二层分页
 	function getData2(rowData) {
 		$('#dg2').datagrid({
 			url : '/billing/osmagcontroller/findosmonthpage',
 			queryParams : {
-				accountingName:rowData.userBean.userAccountingName,
-					Month:rowData.month
+				accountingName : rowData.userBean.userAccountingName,
+				Month : rowData.month
 			},
 			columns : [ [ {
 				field : 'OsAccount',
 				title : 'OS账号',
 				width : 130,
 				align : 'center',
-				formatter : function(value, row,rec) {
+				formatter : function(value, row, rec) {
 					return row.osBean.osAccount
 				}
 			}, {
@@ -243,7 +239,7 @@
 				title : '服务器信息',
 				width : 155,
 				align : 'center',
-				formatter : function(value,row,rec) {
+				formatter : function(value, row, rec) {
 					return row.ip
 				}
 			}, {
@@ -274,35 +270,38 @@
 		})
 	}
 	
-	
+	Date.prototype.toLocaleString = function() {
+        return this.getFullYear() + "年" + (this.getMonth() + 1) + "月" + this.getDate() + "日 " + this.getHours() + "点" + this.getMinutes() + "分" + this.getSeconds() + "秒";
+  };
+
 	//第三层分页
-	function getData3(top,rowData) {
+	function getData3(top, rowData) {
 		$('#dg3').datagrid({
 			url : '/billing/osmagcontroller/findosdaypage',
 			queryParams : {
-				accountingName:top.userBean.userAccountingName,
-				serverip:rowData.ip,
-				osaccount:rowData.osBean.osAccount,
-				time :top.month
+				accountingName : top.userBean.userAccountingName,
+				serverip : rowData.ip,
+				osaccount : rowData.osBean.osAccount,
+				time : top.month
 			},
 			columns : [ [ {
 				field : 'loginTime',
 				title : '登入时间',
 				width : 190,
 				align : 'center',
-				formatter:function(row){
-			 var newTime = new Date(row)
-			 return newTime.toLocaleString()
+				formatter : function(row) {
+					var newTime = new Date(row)
+					return newTime.toLocaleString()
 				}
 			}, {
 				field : 'outTime',
 				title : '登出时间',
 				width : 190,
 				align : 'center',
-				formatter:function(row){
-					 var newTime = new Date(row)
-					 return newTime.toLocaleString()
-						}
+				formatter : function(row) {
+					var newTime = new Date(row)
+					return newTime.toLocaleString()
+				}
 			}, {
 				field : 'totalTime',
 				title : '使用时长(单位:秒)',
