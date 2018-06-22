@@ -25,7 +25,8 @@ public class LoginlogQueryServiceImpl implements ILoginlogQueryService{
 
 	@Override
 	public PagerBean findPagerByLoginlogBean(PagerBean pager, Map map) {
-		
+		map.put("index", pager.getIndex());
+		map.put("rows", pager.getRows());
 		int totalRows = loginlogQueryDaoImpl.findAllByNum(map);
 		List<?> datas = loginlogQueryDaoImpl.findPagerByLoginlogBean(map);
 		pager.setTotalRows(totalRows);

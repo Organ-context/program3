@@ -31,19 +31,19 @@ public class OperateLogBean implements Serializable {
 	private  Long id;//操作者的id
     
 	@Column(name="operate_manager_name",length=20)
-    private String OperateManagerName;//操作者的名称
+    private String operateManagerName;//操作者的名称
   
 	@Column(name="operate_manager_type",length=20)
-    private String  OperateManagerType;//操作者的类型
+    private String  operateManagerType;//操作者的类型
    
 	@Column(name="operate_time")
-    private  Date   OperateTime;//操作时间
+    private  Date   operateTime;//操作时间
    
 	@Column(name="system_model",length=20)
-    private String  SystemModel;//系统板块
+    private String  systemModel;//系统板块
    
 	@Column(name="operate_operation",length=20)
-    private  String OperateOperation;//操作行为
+    private  String operateOperation;//操作行为
 	public OperateLogBean() {
 		super();
 	}
@@ -54,40 +54,43 @@ public class OperateLogBean implements Serializable {
 		this.id = id;
 	}
 	public String getOperateManagerName() {
-		return OperateManagerName;
+		return operateManagerName;
 	}
 	public void setOperateManagerName(String operateManagerName) {
-		OperateManagerName = operateManagerName;
+		this.operateManagerName = operateManagerName;
 	}
 	public String getOperateManagerType() {
-		return OperateManagerType;
+		return operateManagerType;
 	}
 	public void setOperateManagerType(String operateManagerType) {
-		OperateManagerType = operateManagerType;
+		this.operateManagerType = operateManagerType;
 	}
 	public Date getOperateTime() {
-		return OperateTime;
+		return operateTime;
 	}
 	public void setOperateTime(Date operateTime) {
-		OperateTime = operateTime;
+		this.operateTime = operateTime;
 	}
 	public String getSystemModel() {
-		return SystemModel;
+		return systemModel;
 	}
 	public void setSystemModel(String systemModel) {
-		SystemModel = systemModel;
+		this.systemModel = systemModel;
 	}
 	public String getOperateOperation() {
-		return OperateOperation;
+		return operateOperation;
 	}
 	public void setOperateOperation(String operateOperation) {
-		OperateOperation = operateOperation;
+		this.operateOperation = operateOperation;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	@Override
 	public String toString() {
-		return "OperateLogBean [id=" + id + ", OperateManagerName=" + OperateManagerName + ", OperateManagerType="
-				+ OperateManagerType + ", OperateTime=" + OperateTime + ", SystemModel=" + SystemModel
-				+ ", OperateOperation=" + OperateOperation + "]";
+		return "OperateLogBean [id=" + id + ", operateManagerName=" + operateManagerName + ", operateManagerType="
+				+ operateManagerType + ", operateTime=" + operateTime + ", systemModel=" + systemModel
+				+ ", operateOperation=" + operateOperation + "]";
 	}
 	
 }

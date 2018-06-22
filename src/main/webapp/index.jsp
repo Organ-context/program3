@@ -41,7 +41,7 @@
 </noscript-->
 
 	<div region="north" split="true" border="false"
-		style="overflow: hidden; height: 40px; background: url(images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%; line-height: 30px; color: #fff; font-family: Verdana, 微软雅黑, 黑体">
+		style="overflow: hidden; height: 40px; background: url(static/images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%; line-height: 30px; color: #fff; font-family: Verdana, 微软雅黑, 黑体">
 		<div></div>
 		<span style="float: right; padding-right: 20px;" class="head">
 			欢迎您！&nbsp; <!--<a href="#" id="updatePwd">修改密码</a>--> <!--<a href="#" id="loginOut">安全退出</a>-->

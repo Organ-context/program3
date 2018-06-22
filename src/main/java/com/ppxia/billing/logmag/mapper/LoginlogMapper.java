@@ -25,11 +25,11 @@ public interface LoginlogMapper {
 	 */
 	@Results({
 		@Result(id=true,property="id",column="id",javaType=Long.class),
-		@Result(property="LoginManagerName",column="login_manager_name",javaType=String.class),
-		@Result(property="login_manager_type",column="LoginManagerType",javaType=String.class),
-		@Result(property="LoginOperateTime",column="login_operate_time",javaType=Date.class),
+		@Result(property="loginManagerName",column="login_manager_name",javaType=String.class),
+		@Result(property="loginManagerType",column="login_manager_type",javaType=String.class),
+		@Result(property="loginOperateTime",column="login_operate_time",javaType=java.util.Date.class),
 		@Result(property="ip",column="ip",javaType=String.class),
-		@Result(property="LoginOperation",column="login_operation",javaType=String.class)
+		@Result(property="loginOperation",column="login_operation",javaType=String.class)
 	})
 	@SelectProvider(type=LoginlogMapperSqlProvider.class,method="findPagerByLoginlogBean")
 	public List<LoginLogBean> findPagerByLoginlogBean(@Param("map")Map map);

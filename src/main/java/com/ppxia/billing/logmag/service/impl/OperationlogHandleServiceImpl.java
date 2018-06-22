@@ -5,10 +5,10 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import com.ppxia.billing.beans.OperateLogBean;
 import com.ppxia.billing.logmag.dao.IOperateLogHandleDao;
-import com.ppxia.billing.logmag.service.IOperatelogHandleService;
+import com.ppxia.billing.logmag.service.IOperationlogHandleService;
 
 @Service
-public class OperateLogHandleServiceImpl implements IOperatelogHandleService{
+public class OperationlogHandleServiceImpl implements IOperationlogHandleService{
 	@Resource
 	private IOperateLogHandleDao OperateLogHandleDao;
 

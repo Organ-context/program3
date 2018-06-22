@@ -15,8 +15,8 @@ import com.ppxia.billing.beans.OperateLogBean;
 import com.ppxia.billing.beans.PagerBean;
 import com.ppxia.billing.logmag.service.ILoginlogHandleService;
 import com.ppxia.billing.logmag.service.ILoginlogQueryService;
-import com.ppxia.billing.logmag.service.IOperateLogQueryService;
-import com.ppxia.billing.logmag.service.IOperatelogHandleService;
+import com.ppxia.billing.logmag.service.IOperationlogHandleService;
+import com.ppxia.billing.logmag.service.IOperationlogQueryService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,39 +27,38 @@ public class LoginTest {
 	private ILoginlogHandleService loginlogHandleServiceImpl;
 	
 	@Resource
-	private IOperatelogHandleService operatelogHandleServiceImpl;
+	private IOperationlogHandleService operatelogHandleServiceImpl;
 	
 	@Resource
 	private ILoginlogQueryService loginlogQueryServiceImpl;
 	@Resource
-	private IOperateLogQueryService OperateLogQueryServiceImpl;
+	private IOperationlogQueryService OperateLogQueryServiceImpl;
 	@Test
 	public void testQueryOperateLog() {
 		Map<String, Object> map = new HashMap<>();
-		map.put("OperateManagerName", "张");
+		map.put("operateManagerName", "");
 		map.put("startingtime", null);
 		map.put("endtime", null);
 		map.put("index", 1);
 		map.put("rows", 10);
-		System.out.println("123456789");
 		PagerBean pager = new PagerBean();
 		pager.setIndex(1);
 		pager.setRows(10);
-		System.out.println(OperateLogQueryServiceImpl.findPagerByOperateLogBean(pager, map));
+		System.out.println(OperateLogQueryServiceImpl.findPagerByOperateLogBean(pager, map).getDatas());
 	}
 	
 	@Test
 	public void testQueryLoginlog() {
 		Map<String, Object> map = new HashMap<>();
-		map.put("LoginManagerName", "dfghj");
-		map.put("startingtime", null);
-		map.put("endtime", null);
+		map.put("loginManagerName", "");
+		map.put("startingtime", "2018-06-22");
+		map.put("endtime", "2018-06-23");
 		map.put("index", 1);
 		map.put("rows", 10);
 		System.out.println("123456789");
-		PagerBean pager = new PagerBean();
-		pager.setIndex(1);
-		pager.setRows(10);
+		PagerBean pager = new PagerBean(1,10);
+		map.put("index", pager.getIndex());
+		map.put("page", pager.getPage());
 		System.out.println(loginlogQueryServiceImpl.findPagerByLoginlogBean(pager, map));;
 	}
 	
@@ -67,8 +66,6 @@ public class LoginTest {
 	@Test
 	public void testAddLog() {
 		LoginLogBean log = new LoginLogBean();
-		log.setLoginManagerName("ss822");
-		log.setLoginManagerType("发发发");
 		System.out.println(log);
 		loginlogHandleServiceImpl.addLoginLogBean(log);
 	}
