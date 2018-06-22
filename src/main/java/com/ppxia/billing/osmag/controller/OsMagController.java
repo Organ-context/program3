@@ -1,5 +1,6 @@
 package com.ppxia.billing.osmag.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,12 +23,12 @@ public class OsMagController {
 
 	@RequestMapping(value = "/findosdaypage", method = { RequestMethod.GET }, produces = {
 			"application/json;charset=utf-8" })
-	public DataGrid findOsDayByMapToPager(PagerBean pager, String userName, String accountName, String idcard,
-			String time) {
+	public DataGrid findOsDayByMapToPager(PagerBean pager, String accountingName, String osaccount, String serverip,
+			String time) throws UnsupportedEncodingException {
 		Map params = new HashMap<>();
-		params.put("userName", userName);
-		params.put("accountName", accountName);
-		params.put("idcard", idcard);
+		params.put("accountingName", new String(accountingName .getBytes("iso8859-1"),"utf-8"));
+		params.put("osaccount", new String(osaccount .getBytes("iso8859-1"),"utf-8"));
+		params.put("serverip", new String(serverip .getBytes("iso8859-1"),"utf-8"));
 		params.put("time", time);
 
 		params.put("index", pager.getIndex());
@@ -37,25 +38,23 @@ public class OsMagController {
 
 		DataGrid dataGrid = new DataGrid((long) pager.getTotalRows(), pager.getDatas());
 
+		System.out.println(dataGrid);
 		return dataGrid;
 	}
 
 	@RequestMapping(value = "/findosmonthpage", method = { RequestMethod.GET }, produces = {
 			"application/json;charset=utf-8" })
-	public DataGrid findOsMonthByMapToPager(PagerBean pager, String userName, String accountName, String idcard,
-			String time) {
+	public DataGrid findOsMonthByMapToPager(PagerBean pager, String accountingName, String Month) throws UnsupportedEncodingException {
 		Map params = new HashMap<>();
-		params.put("userName", userName);
-		params.put("accountName", accountName);
-		params.put("idcard", idcard);
-		params.put("time", time);
+		params.put("accountingName",new String(accountingName .getBytes("iso8859-1"),"utf-8") );
+		params.put("Month", Month);
 
 		params.put("index", pager.getIndex());
 		params.put("page", pager.getPage());
 		osQueryServiceImpl.findOsMonthBeansByAccountingAndMonth(pager, params);
 
 		DataGrid dataGrid = new DataGrid((long) pager.getTotalRows(), pager.getDatas());
-
+		System.out.println(dataGrid);
 		return dataGrid;
 	}
 }

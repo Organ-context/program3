@@ -356,7 +356,7 @@ var _menus = {
             "menuid": "219",
             "menuname": "账单查询系统",
             "icon": "icon-nav",
-            "url": "static/html/osmag/accMonth.jsp"}]
+            "url": "static/html/osmag/accMonth.ftl"}]
 }],
                 };
                 //设置登录窗口
