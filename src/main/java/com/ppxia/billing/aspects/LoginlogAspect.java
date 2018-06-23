@@ -36,7 +36,7 @@ public class LoginlogAspect {
 		LoginLogBean log = new LoginLogBean();
 		log.setLoginManagerName(user.getUserName());
 		loginlogHandleServiceimpl.addLoginLogBean(log);
-		System.out.println("---------------------------------------");
+		
 	}
 	
 	
