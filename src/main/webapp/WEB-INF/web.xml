@@ -18,14 +18,14 @@
 		<param-name>log4jRefreshInterval</param-name>
 		<param-value>60000</param-value>
 	</context-param>
-	
+
 	<!-- 配置延迟加载过滤器 -->
 	<filter>
 		<filter-name>openEntityManagerInViewFilter</filter-name>
 		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
 	</filter>
-	
-	
+
+
 	<!-- 配置PUT表单内容过滤器：将PUT流传输的数据，转移到消息体中去 -->
 	<filter>
 		<filter-name>httpPutFormContentFilter</filter-name>
@@ -37,38 +37,51 @@
 		<filter-name>httpDeleteFormContentFilter</filter-name>
 		<filter-class>com.ppxia.billing.filter.HttpDeleteFormContentFilter</filter-class>
 	</filter>
-	
+
 	<!-- 配置Form表单支持PUT,DELETE提交方式的过滤器 -->
 	<filter>
 		<filter-name>hiddenHttpMethodFilter</filter-name>
 		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
 	</filter>
 	
-	<!-- <filter-mapping>
-		<filter-name>encodingFilter</filter-name>
-		<servlet-name>dispatcherServlet</servlet-name>
-	</filter-mapping> -->
+	
+	<!-- 配置shiro过滤器 
+    		代理类会自动的到IOC容器(applicationContex.xml)中找在filter-name中值对应的bean的对象
+    	-->
+	<filter>
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- <filter-mapping> <filter-name>encodingFilter</filter-name> <servlet-name>dispatcherServlet</servlet-name> 
+		</filter-mapping> -->
 
 	<filter-mapping>
 		<filter-name>openEntityManagerInViewFilter</filter-name>
 		<servlet-name>dispatcherServlet</servlet-name>
 	</filter-mapping>
-	
+
 	<filter-mapping>
 		<filter-name>hiddenHttpMethodFilter</filter-name>
 		<servlet-name>dispatcherServlet</servlet-name>
 	</filter-mapping>
-	
-	<!-- <filter-mapping>
-		<filter-name>httpPutFormContentFilter</filter-name>
-		<servlet-name>dispatcherServlet</servlet-name>
-	</filter-mapping> -->
+
+	<!-- <filter-mapping> <filter-name>httpPutFormContentFilter</filter-name> 
+		<servlet-name>dispatcherServlet</servlet-name> </filter-mapping> -->
 
 	<filter-mapping>
 		<filter-name>httpDeleteFormContentFilter</filter-name>
 		<servlet-name>dispatcherServlet</servlet-name>
 	</filter-mapping>
-	 
+
 
 	<!-- 监听器启动spring容器 -->
 	<listener>
@@ -121,15 +134,15 @@
 		<servlet-name>DruidStatView</servlet-name>
 		<url-pattern>/druid/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.ftl</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- 设置欢迎界面为index.ftl -->
 	<welcome-file-list>
 		<welcome-file>index.ftl</welcome-file>
 	</welcome-file-list>
-	
+
 </web-app>
