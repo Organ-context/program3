@@ -20,4 +20,5 @@ public interface AuthorityMapper {
 	@ResultType(AuthorityBean.class)
 	@Select("select a.id as id,authority_name as authorityName from t_authority as a left join t_role_authority as ra on a.id = ra.fk_authority_id where ra.fk_role_id = #{id}")
 	public AuthorityBean findAuthorityById(Long id);
+	
 }

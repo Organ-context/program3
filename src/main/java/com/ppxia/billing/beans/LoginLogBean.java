@@ -28,64 +28,82 @@ public class LoginLogBean implements Serializable {
 	private Long id;//id
 	
 	@Column(name="login_manager_name",length=20)
-    private String LoginManagerName;//登录的管理者名称
+    private String loginManagerName;//登录的管理者名称
 	
 	@Column(name="login_manager_type",length=20)
-	private String LoginManagerType;//管理员的类型
+	private String loginManagerType;//管理员的类型
 	
 	@Column(name="login_operate_time")
-	private Date LoginOperateTime;//登录时间
+	private Date loginOperateTime;//登录时间
 	
 	@Column(name="ip",length=20)
     private String ip;//登录的ip
 	
 	@Column(name="login_operation",length=20)
-	private String LoginOperation;//登录的行为描述
+	private String loginOperation;//登录的行为描述
 	
 	public LoginLogBean() {
 		super();
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getLoginManagerName() {
-		return LoginManagerName;
+		return loginManagerName;
 	}
+
 	public void setLoginManagerName(String loginManagerName) {
-		LoginManagerName = loginManagerName;
+		this.loginManagerName = loginManagerName;
 	}
+
 	public String getLoginManagerType() {
-		return LoginManagerType;
+		return loginManagerType;
 	}
+
 	public void setLoginManagerType(String loginManagerType) {
-		LoginManagerType = loginManagerType;
+		this.loginManagerType = loginManagerType;
 	}
+
 	public Date getLoginOperateTime() {
-		return LoginOperateTime;
+		return loginOperateTime;
 	}
+
 	public void setLoginOperateTime(Date loginOperateTime) {
-		LoginOperateTime = loginOperateTime;
+		this.loginOperateTime = loginOperateTime;
 	}
+
 	public String getIp() {
 		return ip;
 	}
+
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
+
 	public String getLoginOperation() {
-		return LoginOperation;
+		return loginOperation;
 	}
+
 	public void setLoginOperation(String loginOperation) {
-		LoginOperation = loginOperation;
+		this.loginOperation = loginOperation;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
-		return "LoginLogBean [id=" + id + ", LoginManagerName=" + LoginManagerName + ", LoginManagerType="
-				+ LoginManagerType + ", LoginOperateTime=" + LoginOperateTime + ", ip=" + ip + ", LoginOperation="
-				+ LoginOperation + "]";
+		return "LoginLogBean [id=" + id + ", loginManagerName=" + loginManagerName + ", loginManagerType="
+				+ loginManagerType + ", loginOperateTime=" + loginOperateTime + ", ip=" + ip + ", loginOperation="
+				+ loginOperation + "]";
 	}
+	
 	
 }

@@ -4,7 +4,7 @@ import java.util.Map;
 
 import com.ppxia.billing.beans.PagerBean;
 
-public interface IOperateLogQueryService {
+public interface IOperationlogQueryService {
 
 
 	/**

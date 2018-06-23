@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 import com.ppxia.billing.beans.PagerBean;
 import com.ppxia.billing.logmag.dao.IOperateLogQueryDao;
 
-import com.ppxia.billing.logmag.service.IOperateLogQueryService;
+import com.ppxia.billing.logmag.service.IOperationlogQueryService;
 
 
 @Service
-public class OperateLogQueryServiceImpl implements IOperateLogQueryService{
+public class OperationlogQueryServiceImpl implements IOperationlogQueryService{
 
 	@Resource
 	private IOperateLogQueryDao OperateLogQueryDao;

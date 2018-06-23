@@ -52,7 +52,7 @@ public class OsMagController {
 		params.put("index", pager.getIndex());
 		params.put("page", pager.getPage());
 		osQueryServiceImpl.findOsMonthBeansByAccountingAndMonth(pager, params);
-
+		
 		DataGrid dataGrid = new DataGrid((long) pager.getTotalRows(), pager.getDatas());
 		System.out.println(dataGrid);
 		return dataGrid;

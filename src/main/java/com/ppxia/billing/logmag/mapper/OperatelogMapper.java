@@ -27,11 +27,11 @@ public interface OperatelogMapper {
 	 */
 	@Results({
 		@Result(id=true,property="id",column="id",javaType=Long.class),
-		@Result(property="OperateManagerName",column="operate_manager_name",javaType=String.class),
-		@Result(property="OperateManagerType",column="operate_manager_type",javaType=String.class),
-		@Result(property="OperateTime",column="operate_time",javaType=Date.class),
-		@Result(property="SystemModel",column="system_model",javaType=String.class),
-		@Result(property="OperateOperation",column="operate_operation",javaType=String.class)
+		@Result(property="operateManagerName",column="operate_manager_name",javaType=String.class),
+		@Result(property="operateManagerType",column="operate_manager_type",javaType=String.class),
+		@Result(property="operateTime",column="operate_time",javaType=java.util.Date.class),
+		@Result(property="systemModel",column="system_model",javaType=String.class),
+		@Result(property="operateOperation",column="operate_operation",javaType=String.class)
 	})
 	@SelectProvider(type=OperateLogMapperSqlProvider.class,method="findPagerByOperateLogBean")
 	public List<OperateLogBean> findPagerByOperateLogBean(@Param("map")Map map);

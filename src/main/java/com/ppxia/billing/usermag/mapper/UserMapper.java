@@ -75,5 +75,21 @@ public interface UserMapper {
 			@Result(property = "roleBean.roleName", column = "roleName", javaType = String.class) })
 	@SelectProvider(type = UserMapperSqlProvider.class, method = "findManagerByParams")
 	public List<UserBean> findManagerByParams(@Param("params") Map params);
-
+	
+	@ResultType(RoleBean.class)
+	@Select("select user_name,user_password from t_user where user_name=#{username}")
+	public UserBean findUserByName(@Param("username")String username);
+	
+	/**
+	 * 通过用户姓名查找用户角色
+	 * @param username
+	 * @return
+	 */
+	@Results({
+		@Result(id=true,property="id",column="id",javaType=Long.class),
+		@Result(id=true,property="roleName",column="role_name",javaType=String.class),
+		@Result(id=true,property="roleType",column="role_type",javaType=Integer.class)
+	})
+	@Select("select * from t_role r left join t_user u on r.id = u.fk_role_id where u.user_name = #{username}")
+	public RoleBean findRoleByUsername(@Param("username")String username);
 }

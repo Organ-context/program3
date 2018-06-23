@@ -70,17 +70,17 @@
 		style="width: 300px; height: 180px; padding: 5px; background: #fafafa;">
 		<div border="false"
 			style="padding-left: 30px; background: #fff; border: 1px solid #ccc;">
-			<form>
+			<action="/logonFirst" method="post">
 				<table>
 					<tr>
 						<td>账号：</td>
-						<td><input id="username" class="easyui-validatebox"
+						<td><input id="username" name="username" class="easyui-validatebox"
 							required="true" validtype="length[1,10]" style="width: 150px;" />
 						</td>
 					</tr>
 					<tr>
 						<td>密码：</td>
-						<td><input type="password" id="password"
+						<td><input type="password" id="password" name="password"
 							style="width: 150px;" class="easyui-validatebox" required="true"
 							validtype="length[3,10]" /></td>
 					</tr>

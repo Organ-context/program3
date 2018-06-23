@@ -22,8 +22,7 @@ public class TariffQueryDaoImpl implements ITariffQueryDao {
 	
 	//分页查询
 	@Override
-	public PagerBean findPagerByParams( Map map) {
-		PagerBean pager = new PagerBean();
+	public PagerBean findPagerByParams( Map map,PagerBean pager) {
 		int num=tariffMapper.findTariffByAll(map);
 		//将查询到的总条数存入pager的总条数属性中
 		pager.setTotalRows(num);
@@ -41,6 +40,11 @@ public class TariffQueryDaoImpl implements ITariffQueryDao {
 	@Override
 	public int findIdByName(String name) {
 		return tariffMapper.findIdByName(name);
+	}
+	@Override
+	public TariffBean findTariffById(Long id) {
+		// TODO Auto-generated method stub
+		return tariffMapper.findTariffById(id);
 	}
 
 }

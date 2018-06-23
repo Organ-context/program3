@@ -174,6 +174,63 @@
 			</array>
 		</property>
 	</bean>
+	
+	<!-- 配置shiro框架 -->
+		<!-- 安全管理器
+			1.缓存技术：cacheManager
+			2.获取数据库数据并处理数据
+		-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="sampleRealm" />
+    </bean> 
+    
+    
+    <!-- 項目自定义的Realm -->  
+    <bean id="sampleRealm" class="com.ppxia.billing.login.ShiroRealm"></bean>  
+
+    <!-- Shiro Filter -->  
+    <!-- 配置shiro过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  
+    
+    	<!-- 当前过滤器需要使用的安全管理器 -->
+        <property name="securityManager" ref="securityManager" />  
+       
+        <!-- 访问web程序的欢迎页面 -->
+        <property name="loginUrl" value="/login.ftl" />  
+        
+        <!-- 认证成功后返回的页面 -->
+        <property name="successUrl" value="/index.jsp" /> 
+        
+        <!-- 验证失败返回的页面 --> 
+        <property name="unauthorizedUrl" value="/login.ftl" />  
+        
+        <property name="filterChainDefinitions">  
+            <value>  
+            	<!-- 匿名可访问的web资源 anon-->
+                /login.ftl = anon 
+                /logonFirst = anon
+                <!--验证成功后可访问的资源 authc-->
+                /logout = logout
+                /**=role[admin]
+                /** = authc  
+            </value>  
+        </property>  
+    </bean>  
+    
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->  
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />  
+
+    <!-- AOP式方法级权限检查 --> 
+    <!-- 开启shiro注解 --> 
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"  
+        depends-on="lifecycleBeanPostProcessor">  
+        <property name="proxyTargetClass" value="true" />  
+    </bean>  
+
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">  
+        <property name="securityManager" ref="securityManager" />  
+    </bean>  
+    
 
 	<!-- 第5步 配置MapperScanner -->
 	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">

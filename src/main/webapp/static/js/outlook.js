@@ -341,7 +341,7 @@ var _menus = {
             "menuid": "216",
             "menuname": "资费管理系统",
             "icon": "icon-nav",
-            "url": "#"
+            "url": "static/html/tariffmag/tariffFirst.ftl"
         },{
             "menuid": "217",
             "menuname": "用户管理系统",
