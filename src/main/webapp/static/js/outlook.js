@@ -294,9 +294,19 @@ var _menus = {
             "url": "static/html/adminmag/admin.jsp"
         }, {
             "menuid": "213",
-            "menuname": "财务查询系统",
+            "menuname": "账务查询系统",
             "icon": "icon-nav",
-            "url": "#"
+            "menus": [{
+                "menuid": "2131",
+                "menuname": "账务查询(年查询)",
+                "icon": "icon-nav",
+                "url": "static/html/osaccountingmag/osaccountingyear.ftl"
+            },{
+                "menuid": "2131",
+                "menuname": "账务查询(月查询)",
+                "icon": "icon-nav",
+                "url": "static/html/osaccountingmag/osaccountingmonth.ftl"
+            }]
         },{
             "menuid": "120",
             "menuname": "权限管理系统",
