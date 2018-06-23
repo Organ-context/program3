@@ -26,6 +26,8 @@ public class OperationlogQueryServiceImpl implements IOperationlogQueryService{
 	
     @Override
 	public PagerBean findPagerByOperateLogBean(PagerBean pager, Map map) {
+    	map.put("index", pager.getIndex());
+		map.put("rows", pager.getRows());
 		int totalRows = OperateLogQueryDao.findAllByNum(map);
 		List<?> datas =OperateLogQueryDao.findPagerByOperateLogBean(map);
 		pager.setTotalRows(totalRows);
