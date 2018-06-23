@@ -19,12 +19,15 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OptimisticLockType;
 import org.hibernate.annotations.OptimisticLocking;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * OS 业务账号实体对象
  * @author Liuxinyu
  *
  */
-//t_os
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 @Entity
 @Table(name="t_os")
 @OptimisticLocking(type=OptimisticLockType.VERSION)
@@ -38,13 +41,17 @@ public class OsBean implements Serializable {
 	private Long id;//业务id
 	
 	@Column(name="os_account",length=20)
-    private String OsAccount;//业务账号名//os_account  varchar
+    private String osAccount;//业务账号名//os_account  varchar
+	
+	@Column(name="os_state",length=11)
+	private int osState;//业务账号状态
 	
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="fk_tariff_id")
     private TariffBean tariffBean;//资费实体对象//private Long fk_tariff_id;//资费方式外键
+	
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@Cascade(value= {CascadeType.SAVE_UPDATE})
@@ -69,11 +76,11 @@ public class OsBean implements Serializable {
 	}
 
 	public String getOsAccount() {
-		return OsAccount;
+		return osAccount;
 	}
 
 	public void setOsAccount(String osAccount) {
-		OsAccount = osAccount;
+		this.osAccount = osAccount;
 	}
 
 	public TariffBean getTariffBean() {
@@ -100,10 +107,18 @@ public class OsBean implements Serializable {
 		this.userBean = userBean;
 	}
 
+	public int getOsState() {
+		return osState;
+	}
+
+	public void setOsState(int osState) {
+		this.osState = osState;
+	}
+
 	@Override
 	public String toString() {
-		return "OsBean [id=" + id + ", OsAccount=" + OsAccount + ", tariffBean=" + tariffBean + ", serverBean="
-				+ serverBean + ", userBean=" + userBean + "]";
+		return "OsBean [id=" + id + ", osAccount=" + osAccount + ", osState=" + osState + ", tariffBean=" + tariffBean
+				+ ", serverBean=" + serverBean + ", userBean=" + userBean + "]";
 	}
 	
 }

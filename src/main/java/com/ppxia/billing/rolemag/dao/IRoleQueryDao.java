@@ -9,4 +9,6 @@ public interface IRoleQueryDao {
 	public PagerBean findRoleByParams( PagerBean pager,Map params);
 	
 	public RoleBean findRoleByRoleName(String roleName);
+	
+	public RoleBean findRoleByUserName(String userName);
 }

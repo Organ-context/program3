@@ -20,9 +20,9 @@ public class TariffQueryServiceImpl implements ITariffQueryService {
 	
 	//查询资费分页对象
 	@Override
-	public PagerBean findPagerByParams(Map map) {
+	public PagerBean findPagerByParams(Map map,PagerBean pager) {
 		// TODO Auto-generated method stub
-		return tariffQueryDaoImpl.findPagerByParams(map);
+		return tariffQueryDaoImpl.findPagerByParams(map,pager);
 	}
 
 	
@@ -39,6 +39,13 @@ public class TariffQueryServiceImpl implements ITariffQueryService {
 	public int findIdByName(String name) {
 		// TODO Auto-generated method stub
 		return tariffQueryDaoImpl.findIdByName(name);
+	}
+
+
+	@Override
+	public TariffBean findTariffById(Long id) {
+		// TODO Auto-generated method stub
+		return tariffQueryDaoImpl.findTariffById(id);
 	}
 
 }

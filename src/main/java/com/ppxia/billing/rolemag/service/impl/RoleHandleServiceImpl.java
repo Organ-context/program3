@@ -2,11 +2,13 @@ package com.ppxia.billing.rolemag.service.impl;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.ppxia.billing.beans.RoleBean;
 import com.ppxia.billing.rolemag.dao.IRoleHandleDao;
 import com.ppxia.billing.rolemag.service.IRoleHandleService;
 
-@Resource
+@Service
 public class RoleHandleServiceImpl implements IRoleHandleService {
 
 	@Resource

@@ -34,11 +34,10 @@ public class AccountingMonthAjaxController<E> {
 		
 		params.put("index", pager.getIndex());
 		params.put("page", pager.getPage());
-		System.out.println(params);
 		accountingMonthQueryServiceimpl.findAccountingMonthByParams(pager, params);
-				
+		System.out.println(pager.getDatas());
 		DataGrid dataGrid = new DataGrid((long) pager.getTotalRows(),pager.getDatas());
-	
+		System.out.println(dataGrid);
 		return dataGrid;
 	}
 }
