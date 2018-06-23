@@ -33,7 +33,7 @@ public class OsMonthBean implements Serializable {
 	private Long id;//id//id bigint
 	
 	@Column(name="month")
-    private Date month;//账单分份//month date
+    private String month;//账单分份//month date
   
 	@Column(name="total_time")
     private Long totalTime;//使用时长  //total_time  bigint
@@ -65,11 +65,11 @@ public class OsMonthBean implements Serializable {
 		this.id = id;
 	}
 
-	public Date getMonth() {
+	public String getMonth() {
 		return month;
 	}
 
-	public void setMonth(Date month) {
+	public void setMonth(String month) {
 		this.month = month;
 	}
 

@@ -32,7 +32,7 @@ public class OsYearBean implements Serializable {
 	private Long id;////id bigint
 	
 	@Column(name="year",length=20)
-    private Date Year;//账单年份//year date
+    private String Year;//账单年份//year date
    
 	@Column(name="year_total_time")
     private Long YearTotalTime;//使用时长 //year_total_time  bigint
@@ -42,7 +42,7 @@ public class OsYearBean implements Serializable {
 	@JoinColumn(name="fk_os_id")
     private OsBean osBean;//业务实体对象 //fk_os_id  bigint//private Long fk_os_id;//业务账号
 	
-	@Column(name="ip",length=20)
+	@Column(name="server_ip",length=20)
 	private String IP;////ip  varchar
 	public OsYearBean() {
 		// TODO Auto-generated constructor stub
@@ -53,10 +53,10 @@ public class OsYearBean implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getYear() {
+	public String getYear() {
 		return Year;
 	}
-	public void setYear(Date year) {
+	public void setYear(String year) {
 		Year = year;
 	}
 	public Long getYearTotalTime() {
