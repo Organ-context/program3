@@ -50,7 +50,7 @@
 			</button>
 			<div id="mm1" style="width: 150px;">
 				<div iconCls="icon-undo">查看个人信息</div>
-				<div iconCls="icon-redo">注销</div>
+				<div> <a href="logout">注销</a></div>
 				<div class="menu-sep"></div>
 			</div>
 		</span> <span style="padding-left: 10px; font-size: 16px; float: left;">

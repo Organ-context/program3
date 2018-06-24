@@ -24,9 +24,9 @@ public class LoginAction {
 			try {
 				currentUser.login(token);
 			} catch (Exception e) {
-				return "/login";
+				return "login";
 			}
 		}
-		return "/index";
+		return "index";
 	}
 }

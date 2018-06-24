@@ -37,12 +37,12 @@ public interface IUserQueryDao {
 	 * @param username
 	 * @return
 	 */
-	public UserBean findUserByName(@Param("username")String username);
+	public UserBean findUserByName(String username);
 	
 	/**
 	 * 通过用户姓名查找用户角色
 	 * @param username
 	 * @return
 	 */
-	public RoleBean findRoleByUsername(@Param("username")String username);
+	public RoleBean findRoleByUsername(String username);
 }

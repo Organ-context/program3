@@ -76,8 +76,15 @@ public interface UserMapper {
 	@SelectProvider(type = UserMapperSqlProvider.class, method = "findManagerByParams")
 	public List<UserBean> findManagerByParams(@Param("params") Map params);
 	
-	@ResultType(RoleBean.class)
-	@Select("select user_name,user_password from t_user where user_name=#{username}")
+	
+	
+	
+	@Results({
+		@Result(id=true,property="id",column="id",javaType=Long.class),
+		@Result(id=true,property="userName",column="user_name",javaType=String.class),
+		@Result(id=true,property="userPassword",column="user_password",javaType=String.class)
+	})
+	@Select("select id,user_name,user_password from t_user where user_name=#{username}")
 	public UserBean findUserByName(@Param("username")String username);
 	
 	/**

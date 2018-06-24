@@ -27,7 +27,7 @@ public interface IUserQueryService {
 	 * @param username
 	 * @return
 	 */
-	public UserBean findUserByName(@Param("username")String username);
+	public UserBean findUserByName(String username);
 	
 
 	/**
@@ -35,6 +35,6 @@ public interface IUserQueryService {
 	 * @param username
 	 * @return
 	 */
-	public RoleBean findRoleByUsername(@Param("username")String username);
+	public RoleBean findRoleByUsername(String username);
 	
 }
