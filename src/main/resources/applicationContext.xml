@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd
          http://www.springframework.org/schema/data/jpa
         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
- 
+  
 	<!-- 开启容器的自动扫描 -->
 	<context:component-scan base-package="com.ppxia.billing">
 		<!-- 表示spring的容器中不包含业务层controller的组件,以及切面的组件也不包含，交给其子容器 -->
@@ -182,8 +182,14 @@
 		-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="sampleRealm" />
+        <property name="cacheManager" ref="cacheManager" />
+        
     </bean> 
     
+    <!-- 缓存 -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+    	<property name="cacheManagerConfigFile" value="classpath:shiro-ehcache.xml"/> 
+    </bean>
     
     <!-- 項目自定义的Realm -->  
     <bean id="sampleRealm" class="com.ppxia.billing.login.ShiroRealm"></bean>  
@@ -206,13 +212,15 @@
         
         <property name="filterChainDefinitions">  
             <value>  
-            	<!-- 匿名可访问的web资源 anon-->
+            	<!-- 匿名可访问的web资源 anon
                 /login.ftl = anon 
                 /logonFirst = anon
-                <!--验证成功后可访问的资源 authc-->
+                -->
+                <!--验证成功后可访问的资源 authc
                 /logout = logout
                 /**=role[admin]
-                /** = authc  
+                /** = authc 
+                 -->
             </value>  
         </property>  
     </bean>  
