@@ -219,9 +219,7 @@
                 <!--验证成功后可访问的资源 authc -->
                 /logout = logout
                 /**=role[admin]
-                /static/html/logmas/**=role[logmag]
-                /static/html/osaccountingmag/**=role[osmag]
-                /static/html/triffmag/**=role[triffmag]
+                
                 /** = authc 
                 
             </value>  
