@@ -12,7 +12,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd">
-	<!-- 开启容器的自动扫描功能 -->
+	<!-- 开启容器的自动扫描功能 --> 
 	<context:component-scan base-package="com.ppxia.billing">
 		<!--扫描时不包含service与respository，这两个交给spring容器管理 -->
 		<context:exclude-filter type="annotation"
