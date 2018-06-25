@@ -15,14 +15,16 @@ public class AccountingQueryServiceImpl implements IAccountingQueryService{
 	@Resource
 	private IAccountingQueryDao accountingQueryDaoImpl;
 	@Override
-	public PagerBean findAccountingByParams( Map params) {
-		PagerBean pager = new PagerBean();
+	public PagerBean findAccountingByParams(PagerBean pager, Map params) {
 		
-//		pager.setDatas(accountingQueryDaoImpl.findByParams(params));
+		params.put("index", pager.getIndex());
+		params.put("limit", pager.getRows());
+		
+		pager.setDatas(accountingQueryDaoImpl.findByParams(params));
 		
 		pager.setTotalRows(accountingQueryDaoImpl.findAccountByAll(params));
 		
-		return accountingQueryDaoImpl.findByParams(params);
+		return pager;
 	}
 
 }

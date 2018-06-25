@@ -9,5 +9,5 @@ import com.ppxia.billing.beans.PagerBean;
 public interface IAccountingQueryService {
 
 	
-	public PagerBean findAccountingByParams(Map params);
+	public PagerBean findAccountingByParams(PagerBean pager, Map params);
 }

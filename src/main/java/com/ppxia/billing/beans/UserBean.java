@@ -34,20 +34,21 @@ public class UserBean implements Serializable {
 	@GeneratedValue(generator = "hibernate.id")
 	private Long id;// 用户id
 	// user_name varchar
+	
 	@Column(name = "user_name", length = 20)
-
 	private String userName;// 用户名
 	// user_password varchar
+	
 	@Column(name = "user_password", length = 20)
-
 	private String userPassword;// 用户密码
 	// gender int
 	private int gender;// 性别
 	// user_idcard varchar
+	
 	@Column(name = "user_idcard", length = 20)
-
 	private String userIdcard;// 身份证号码
 	// user_accounting_name varchar
+	
 	@Column(name = "user_accounting_name", length = 20)
 	private String userAccountingName;// 账务账号
 

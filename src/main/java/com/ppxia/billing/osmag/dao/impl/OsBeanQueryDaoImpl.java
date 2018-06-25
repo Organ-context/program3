@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
 
+import com.ppxia.billing.beans.OsBean;
 import com.ppxia.billing.beans.PagerBean;
 import com.ppxia.billing.beans.UserBean;
 import com.ppxia.billing.osmag.dao.IOsBeanQueryDao;
@@ -39,6 +40,12 @@ public class OsBeanQueryDaoImpl implements IOsBeanQueryDao{
 	public int findByAll(Map params) {
 		// TODO Auto-generated method stub
 		return osBeanMapper.findByAll(params);
+	}
+
+	@Override
+	public OsBean findOsBeanById(Long id) {
+		// TODO Auto-generated method stub
+		return osBeanMapper.findOsBeanById(id);
 	}
 
 	

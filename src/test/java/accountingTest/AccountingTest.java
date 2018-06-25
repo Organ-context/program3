@@ -33,16 +33,26 @@ public class AccountingTest {
 //		accounting.setUserAccountingState(0);
 //		accountingHandleServiceImpl.saveAndFlushAccounting(accounting);
 		
+		//查询测试
 		Map<String, Object> params = new HashMap<>();
 		
+		PagerBean pager = new PagerBean();
+		pager.setPage(1);
+		pager.setRows(3);
+		
 		String userName ="";
-		
 		String userAccountingName="";
-		params.put(userName, userName);
-		params.put(userAccountingName, userAccountingName);
-		PagerBean users = accountingQueryServiceImpl.findAccountingByParams(params);
-		
-		System.out.println(99999);
+		params.put("userName", userName);
+		params.put("userAccountingName", userAccountingName);
+		PagerBean users = accountingQueryServiceImpl.findAccountingByParams(pager, params);
 		System.out.println(users);
+		
+		//修改测试
+		UserBean user = new UserBean();
+		UserBean user1 = (UserBean) users.getDatas().get(0);
+		Long id = user1.getId();
+		user.setId(id);
+		user.setUserAccountingState(999);
+		accountingHandleServiceImpl.updateAccountingState(user);
 	}
 }

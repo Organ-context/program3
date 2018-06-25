@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.ppxia.billing.beans.OsBean;
 import com.ppxia.billing.beans.PagerBean;
 import com.ppxia.billing.beans.UserBean;
 import com.ppxia.billing.osmag.dao.IOsBeanQueryDao;
@@ -37,6 +38,12 @@ public class OsBeanQueryServiceImpl implements IOsBeanQueryService {
 		pager.setDatas(osBeanQueryDaoImpl.findOsByNameOrOsName(map));
 		pager.setTotalRows(osBeanQueryDaoImpl.findByAll(map));
 		return pager;
+	}
+
+	@Override
+	public OsBean findOsBeanById(Long id) {
+		// TODO Auto-generated method stub
+		return osBeanQueryDaoImpl.findOsBeanById(id);
 	}
 
 	

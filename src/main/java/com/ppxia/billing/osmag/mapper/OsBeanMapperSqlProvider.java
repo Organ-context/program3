@@ -4,7 +4,33 @@ import java.util.Map;
 
 import org.springframework.util.StringUtils;
 
+import com.ppxia.billing.beans.PagerBean;
+
 public class OsBeanMapperSqlProvider {
+	
+	
+	//通过ID查询业务账号
+	public String findOsBeanById(Map<String, Object> map) {
+		Map params = (Map) map.get("params");
+		StringBuilder sb = new StringBuilder(
+				"select o.id as oid,os_account,os_state,fk_tariff_id,fk_server_id,fk_user_id from t_tariff as t, t_user as u ,t_server as s ,t_os as o where (1=1) ");
+		// 获得条件“名字”
+		String userName = (String) map.get("userName");
+		if (StringUtils.hasLength(userName)) {
+			sb.append("and u.user_name like CONCAT('" + userName + "','%') ");
+		}
+
+		// 获得条件“账号”
+		String userAccountingName = (String) map.get("osAccount");
+		if (StringUtils.hasLength(userAccountingName)) {
+			sb.append("and os_account like CONCAT('" + userAccountingName + "','%') ");
+		}
+
+		sb.append("and u.id=o.fk_user_id and o.fk_tariff_id =t.id and o.fk_server_id = s.id");
+		return sb.toString();
+	}
+	
+	
 	//查询业务账号满足条件的具体数据
 	
 	//在osbean类中加OsState属性，数据库中加os_state字段

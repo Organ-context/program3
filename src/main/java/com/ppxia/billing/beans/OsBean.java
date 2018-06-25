@@ -41,14 +41,14 @@ public class OsBean implements Serializable {
 	private Long id;//业务id
 	
 	@Column(name="os_account",length=20)
-    private String osAccount;//业务账号名//os_account  varchar
+    private String OsAccount;//业务账号名//os_account  varchar
 	
 	@Column(name="os_state",length=11)
 	private int osState;//业务账号状态
 	
 	
-	@OneToOne(fetch=FetchType.LAZY)
-	@Cascade(CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name="fk_tariff_id")
     private TariffBean tariffBean;//资费实体对象//private Long fk_tariff_id;//资费方式外键
 	
@@ -59,7 +59,7 @@ public class OsBean implements Serializable {
 	private ServerBean serverBean;//服务器实体对象 //private Long fk_server_id;//服务器外键
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@Cascade(CascadeType.ALL)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name="fk_user_id")
 	private UserBean userBean;//用户实体对象//private Long fk_user_id;//用户外键
 	
@@ -76,11 +76,11 @@ public class OsBean implements Serializable {
 	}
 
 	public String getOsAccount() {
-		return osAccount;
+		return OsAccount;
 	}
 
 	public void setOsAccount(String osAccount) {
-		this.osAccount = osAccount;
+		this.OsAccount = osAccount;
 	}
 
 	public TariffBean getTariffBean() {
@@ -117,7 +117,7 @@ public class OsBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "OsBean [id=" + id + ", osAccount=" + osAccount + ", osState=" + osState + ", tariffBean=" + tariffBean
+		return "OsBean [id=" + id + ", osAccount=" + OsAccount + ", osState=" + osState + ", tariffBean=" + tariffBean
 				+ ", serverBean=" + serverBean + ", userBean=" + userBean + "]";
 	}
 	

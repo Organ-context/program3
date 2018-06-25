@@ -13,7 +13,7 @@ public interface IAccountingQueryDao {
 	public int findAccountByAll(Map map);
 	
 	//查询分页的满足条件的所有具体数据
-	public PagerBean findByParams(Map map);
+	public List<UserBean> findByParams(Map map);
 	
 	
 	

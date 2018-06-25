@@ -3,6 +3,7 @@ package com.ppxia.billing.osmag.service;
 import java.util.Date;
 import java.util.Map;
 
+import com.ppxia.billing.beans.OsBean;
 import com.ppxia.billing.beans.PagerBean;
 
 public interface IOsBeanQueryService {
@@ -14,4 +15,7 @@ public interface IOsBeanQueryService {
 		
 		//通过姓名或业务账号查询业务账号信息
 		public PagerBean findOsByNameOrOsName(Map map);
+		
+		//通过ID查询业务账号
+		public OsBean findOsBeanById(Long id);
 }

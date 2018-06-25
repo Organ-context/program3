@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.ppxia.billing.beans.OsBean;
 import com.ppxia.billing.beans.PagerBean;
 import com.ppxia.billing.beans.UserBean;
 
@@ -18,6 +19,10 @@ public interface IOsBeanQueryDao {
 	
 	//通过姓名或业务账号查询业务账号信息
 	public List<UserBean> findOsByNameOrOsName(Map params);
+	
 	public int findByAll(Map params);
+	
+	//通过ID查询业务账号
+	public OsBean findOsBeanById(Long id);
 	
 }

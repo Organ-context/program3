@@ -343,10 +343,20 @@ var _menus = {
             "icon": "icon-nav",
             "url": "static/html/tariffmag/tariffFirst.ftl"
         },{
-            "menuid": "217",
+            "menuid": "120",
             "menuname": "用户管理系统",
             "icon": "icon-nav",
-            "url": "#"
+            "menus": [{
+                "menuid": "120",
+                "menuname": "账务账号管理",
+                "icon": "icon-nav",
+                "url": "static/html/accountingmag/accounting.ftl"
+            },{
+                "menuid": "120",
+                "menuname": "业务账号管理",
+                "icon": "icon-nav",
+                "url": "static/html/accounting_osmag/osaccounting.ftl"
+            }]
         },{
             "menuid": "120",
             "menuname": "前台日志系统",
