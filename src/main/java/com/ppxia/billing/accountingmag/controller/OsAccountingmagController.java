@@ -32,7 +32,7 @@ public class OsAccountingmagController {
 	 * @param osAccount
 	 * @return
 	 */
-	@RequestMapping(value = "/deleteOsAccounting", method = { RequestMethod.POST }, produces = {
+	@RequestMapping(value = "/checkOsAccounting", method = { RequestMethod.POST }, produces = {
 			"application/json;charset=utf-8" })
 	public String checkOsAccount(String osAccount) {
 		
