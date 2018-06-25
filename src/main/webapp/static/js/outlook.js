@@ -323,20 +323,10 @@ var _menus = {
                 "url": "javascript:void(0)"
             }]
         },{
-                "menuid": "120",
+                "menuid": "11",
                 "menuname": "报表查询系统",
                 "icon": "icon-nav",
-                "menus": [{
-                    "menuid": "120",
-                    "menuname": "业务图形报表",
-                    "icon": "icon-nav",
-                    "url": "javascript:void(0)"
-                },{
-                    "menuid": "120",
-                    "menuname": "账单图形报表",
-                    "icon": "icon-nav",
-                    "url": "javascript:void(0)"
-                }]
+                "url": "static/html/accountingechartsmag/accountingcharts.ftl"
         },{
             "menuid": "216",
             "menuname": "资费管理系统",
