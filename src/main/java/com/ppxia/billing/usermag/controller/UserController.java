@@ -101,10 +101,8 @@ public class UserController {
 		RoleBean newRole =  user.getRoleBean();
 		user1.setId(user.getId());
 		user1.setUserName(user.getUserName());
-	
 		user1.setGender(user.getGender());
 		user1.setUserAccountingName(user.getUserAccountingName());
-		
 		if (userPassword!=null && StringUtils.hasLength(userPassword.trim())) {
 			user1.setUserPassword(userPassword);
 		}else {
@@ -121,26 +119,6 @@ public class UserController {
 			user1.setEmail(user.getEmail());
 		}
 		if (roleName!=null ) {
-			switch (roleName) {
-			case "1":
-				roleName="用户管理员";
-				break;
-			case "2":
-				roleName="资费管理员";
-				break;
-			case "3":
-				roleName="账务查询管理员";
-				break;
-			case "4":
-				roleName="账单查询管理员";
-				break;
-			case "5":
-				roleName="报表管理员";
-				break;
-			case "6":
-				roleName="日志管理员";
-				break;
-			}
 			newRole=roleQueryDaoImpl.findRoleByRoleName(roleName);
 			user1.setRoleBean(newRole);
 		}else {

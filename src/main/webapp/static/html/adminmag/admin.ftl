@@ -51,13 +51,12 @@
 			style="line-height: 26px; border: 1px solid #ccc"> <span>角色：</span>
 		<select id="role" name="role" class="easyui-combobox"
 			style="width: 150px;">
-			<option value="">全部管理员</option>
-			<option value="用户管理员">用户管理员</option>
-			<option value="资费管理员">资费管理员</option>
-			<option value="账务查询管理员">账务查询管理员</option>
-			<option value="账单查询管理员">账单查询管理员</option>
-			<option value="报表管理员">报表管理员</option>
-			<option value="日志管理员">日志管理员</option>
+			<option value="" selected>全部管理员</option>
+			<option value="user">用户管理员</option>
+			<option value="tariff">资费管理员</option>
+			<option value="accounting">账务查询管理员</option>
+			<option value="os">账单查询管理员</option>
+			<option value="log">日志管理员</option>
 		</select> <a href="javascript:void(0)" class="easyui-linkbutton"
 			iconCls="icon-search" style="border: 6px" onclick="submitForm()">搜索</a>
 	</div>
@@ -103,12 +102,11 @@
 					</div>
 					<select id="role2" name="role2" class="easyui-combobox"
 						style="width: 150px;">
-						<option value="1">用户管理员</option>
-						<option value="2">资费管理员</option>
-						<option value="3">账务查询管理员</option>
-						<option value="4">账单查询管理员</option>
-						<option value="5">报表管理员</option>
-						<option value="6">日志管理员</option>
+					<option value="user" selected>用户管理员</option>
+					<option value="tariff">资费管理员</option>
+					<option value="accounting">账务查询管理员</option>
+					<option value="os">账单查询管理员</option>
+					<option value="log">日志管理员</option>
 					</select>
 				</div>
 				<div data-options="region:'south',border:false"
@@ -167,12 +165,11 @@
 				</div>
 				<select id="role1" class="easyui-combobox" name="role"
 					style="width: 150px;">
-					<option value="用户管理员" selected>用户管理员</option>
-					<option value="资费管理员">资费管理员</option>
-					<option value="账务查询管理员">账务查询管理员</option>
-					<option value="账单查询管理员">账单查询管理员</option>
-					<option value="报表管理员">报表管理员</option>
-					<option value="日志管理员">日志管理员</option>
+					<option value="user" selected>用户管理员</option>
+					<option value="tariff">资费管理员</option>
+					<option value="accounting">账务查询管理员</option>
+					<option value="os">账单查询管理员</option>
+					<option value="log">日志管理员</option>
 				</select> </br> </br>
 				<div style="margin-left: 10px; width: 90px; display: inline-block">
 					<label for="adminTel">联系方式：</label>
@@ -224,7 +221,7 @@ $(function(){
 
 function getData(){
 	$('#dg').datagrid({
-		url : '/program3/admin/getAdminPager',
+		url : '/billing/admin/getAdminPager',
 		queryParams : queryParams(),
 		columns:[[
 			{field:'userName',title:'姓名',width:100},
@@ -238,7 +235,26 @@ function getData(){
 			}},
 			{field:'telephone',title:'联系方式',width:150},
 			{field:'roleBean',title:'角色',width:150,formatter:function(value){
-					return value.roleName
+				if(value!=null){
+					if(value.roleName=='user'){
+						return '用户管理员'
+					}
+					if(value.roleName=='tariff'){
+						return '资费管理员'
+					}
+					if(value.roleName=='os'){
+						return '业务管理员'
+					}
+					if(value.roleName=='accounting'){
+						return '账单管理员'
+					}
+					if(value.roleName=='log'){
+						return '日志管理员'
+					}
+					if(value.roleName=='superadmin'){
+						return '超级管理员'
+					}
+				}
 			}},
 			{field:'email',title:'邮箱',width:150},
 	    ]]
@@ -249,7 +265,16 @@ function getData(){
 $("#update1").bind('click', function() {
 	var row = $('#dg').datagrid('getSelected');
 	if (row != null) {
-		$("#w").window('open')
+		if(row.roleBean.roleName=='superadmin'){
+			$.messager.show({
+				title : '提示',
+				msg : '超级管理员不能操作！',
+				timeout : 5000,
+				showType : 'slide'
+			});
+		}else{
+			$("#w").window('open')
+		}
 	} else {
 		$.messager.show({
 			title : '提示',
@@ -265,34 +290,43 @@ $("#delete1").bind('click', function() {
 	var datas = $('#dg').datagrid('getSelected');
 	var data = {id:datas.id};
 	var lenth = datas.length;
-	if (lenth == 0) {
+	if(datas.roleBean.roleName=='superadmin'){
 		$.messager.show({
 			title : '提示',
-			msg : '请选择需要删除的数据',
+			msg : '超级管理员不能操作！',
 			timeout : 5000,
 			showType : 'slide'
 		});
-	} else {
-		$.ajax({
-			type : "DELETE",
-			url : "/program3/admin/deleteAdmin?id="+datas.id,
-			contentType : "application/json;charset=utf-8",
-			success : function(msg) {
-				$.messager.show({
-					title : '提示',
-					msg : '删除成功',
-					timeout : 5000,
-					showType : 'slide'
-				});
-			}
-		});
-		getData();
-		$.messager.show({
-	        title: '提示',
-	        msg: '删除成功',
-	        timeout: 5000,
-	        showType: 'slide'
-	    })
+	}else{
+		if (lenth == 0) {
+			$.messager.show({
+				title : '提示',
+				msg : '请选择需要删除的数据',
+				timeout : 5000,
+				showType : 'slide'
+			});
+		} else {
+			$.ajax({
+				type : "DELETE",
+				url : "/billing/admin/deleteAdmin?id="+datas.id,
+				contentType : "application/json;charset=utf-8",
+				success : function(msg) {
+					$.messager.show({
+						title : '提示',
+						msg : '删除成功',
+						timeout : 5000,
+						showType : 'slide'
+					});
+				}
+			});
+			getData();
+			$.messager.show({
+		        title: '提示',
+		        msg: '删除成功',
+		        timeout: 5000,
+		        showType: 'slide'
+		    })
+		}
 	}
 	
 });
@@ -321,7 +355,7 @@ $("#delete1").bind('click', function() {
 		$.ajax({
 			type : "PUT",
 			data : data,
-			url : "/program3/admin/updateAdmin?id="+datas.id+"&userPassword="+data.userPassword+"&telephone="+data.telephone+"&roleName="+data.roleName+"&email="+data.email+"",
+			url : "/billing/admin/updateAdmin?id="+datas.id+"&userPassword="+data.userPassword+"&telephone="+data.telephone+"&roleName="+data.roleName+"&email="+data.email+"",
 			datatype:"json",
 			success : function(msg) {
 				$.messager.show({
@@ -337,7 +371,6 @@ $("#delete1").bind('click', function() {
 		$("#adminPwdSure").val('')
 		$("#tel1").val('')
 		$("#email1").val('')
-		$("#role2").val('')
 	}
 });
 
@@ -356,7 +389,7 @@ $('#sava2').bind('click', function() {
 	$.ajax({
 		type : "POST",
 		data : data,
-		url : "/program3/admin/add",
+		url : "/billing/admin/add",
 		datatype:"json",
 		success : function(msg) {
 			$.messager.show({
@@ -379,8 +412,6 @@ $('#sava2').bind('click', function() {
 		$("#adminAcc").val("")
 		$("#adminPwd").val("")
 		$("#adminPwdSure").val("")
-		$("#gender").val("")
-		$("#role").val("")
 		$("#adminTel").val("")
 		$("#adminEmail").val("")
 		$("oldPwd").val("")

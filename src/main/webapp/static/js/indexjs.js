@@ -12,7 +12,7 @@ $(function () {
             	str='static/html/adminmag/admin2.ftl';
             }
             if(node.text=="管理员管理"){
-                str='static/html/adminmag/admin2.ftl';
+                str='static/html/adminmag/admin.ftl';
             }if(node.text=="年账务查询"){
                 str='static/html/osaccountingmag/osaccountingyear.ftl';
             }if(node.text=="月账务查询"){
