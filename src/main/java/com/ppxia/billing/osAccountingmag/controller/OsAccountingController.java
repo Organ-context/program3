@@ -51,6 +51,7 @@ public class OsAccountingController {
 		params.put("month", new String(month.getBytes("iso8859-1"), "utf-8"));
 		params.put("index", pager.getIndex());
 		params.put("page", pager.getPage());
+		System.out.println(params);
 		osaccountingQueryServiceImpl.findOsMonthAccountingByParams(pager, params);
 
 		DataGrid dataGrid = new DataGrid((long) pager.getTotalRows(), pager.getDatas());

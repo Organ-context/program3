@@ -155,7 +155,7 @@
 				align : 'center'
 			}, {
 				field : 'year',
-				title : '费用',
+				title : '年份',
 				align : 'center',
 				width : 180
 			}, ] ]
@@ -173,11 +173,13 @@
 	$(function() {
 		$('#dg').datagrid({
 			onDblClickRow : function(rowIndex, rowData) {
-				console.log(rowData)
 
 				$('#win').window('open')
-				getData2(rowData);
+				var ya=rowData.year
+				console.log(ya)
+				
 				top1 = rowData
+				getData2(rowData,top1.year);
 				$("#strong1").html(top1.osBean.osAccount)
 				$("#strong2").html(top1.ip)
 
@@ -196,17 +198,17 @@
 
 	//第二层搜索
 	function submitForm2() {
-		getData2(top1);
+		getData2(top1,$('#querymonth').val());
 	}
 
 	//第二层分页
-	function getData2(rowData) {
+	function getData2(rowData,years) {
 		$('#dg2').datagrid({
 			url : '/billing/osAccountingcontroller/findOsAccountingMonthPage',
 			queryParams : {
 				osAccount : rowData.osBean.osAccount,
 				IP : rowData.ip,
-				month : $('#querymonth').val()
+				month : years
 			},
 			columns : [ [ {
 				field : 'month',
