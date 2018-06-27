@@ -30,11 +30,5 @@ public interface IUserQueryService {
 	public UserBean findUserByName(String username);
 	
 
-	/**
-	 * 通过用户姓名查找用户角色
-	 * @param username
-	 * @return
-	 */
-	public RoleBean findRoleByUsername(String username);
 	
 }

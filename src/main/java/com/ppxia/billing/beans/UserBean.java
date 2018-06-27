@@ -69,6 +69,8 @@ public class UserBean implements Serializable {
 	@Cascade(value = { CascadeType.SAVE_UPDATE })
 	@JoinColumn(name = "fk_role_id")
 	private RoleBean roleBean;// 角色实体对象
+	
+
 
 	@Column(name = "user_telephone")
 	private Long telephone;// 用户的电话号码
@@ -160,6 +162,7 @@ public class UserBean implements Serializable {
 		this.userQqnum = userQqnum;
 	}
 
+
 	public RoleBean getRoleBean() {
 		return roleBean;
 	}
@@ -191,5 +194,7 @@ public class UserBean implements Serializable {
 				+ userAccountingState + ", userAddress=" + userAddress + ", userPostnum=" + userPostnum + ", userQqnum="
 				+ userQqnum + ", roleBean=" + roleBean + ", telephone=" + telephone + ", email=" + email + "]";
 	}
+
+
 
 }

@@ -13,10 +13,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.ppxia.billing.beans.LoginLogBean;
 import com.ppxia.billing.beans.OperateLogBean;
 import com.ppxia.billing.beans.PagerBean;
+import com.ppxia.billing.beans.UserBean;
 import com.ppxia.billing.logmag.service.ILoginlogHandleService;
 import com.ppxia.billing.logmag.service.ILoginlogQueryService;
 import com.ppxia.billing.logmag.service.IOperationlogHandleService;
 import com.ppxia.billing.logmag.service.IOperationlogQueryService;
+import com.ppxia.billing.rolemag.service.IRoleQueryService;
+import com.ppxia.billing.usermag.dao.IUserQueryDao;
+import com.ppxia.billing.usermag.service.IUserQueryService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -33,6 +37,19 @@ public class LoginTest {
 	private ILoginlogQueryService loginlogQueryServiceImpl;
 	@Resource
 	private IOperationlogQueryService OperateLogQueryServiceImpl;
+	@Resource
+	private IUserQueryDao userQueryDaoImpl;
+	
+	
+	@Resource
+	private IRoleQueryService roleQueryServiceImpl;
+	
+	@Test
+	public void uuuu() {
+		System.out.println(roleQueryServiceImpl.findRoleByUserName("111"));
+	}
+	
+	
 	@Test
 	public void testQueryOperateLog() {
 		Map<String, Object> map = new HashMap<>();
@@ -75,5 +92,13 @@ public class LoginTest {
 		OperateLogBean operation = new OperateLogBean();
 		operation.setOperateManagerName("hhaha");
 		operatelogHandleServiceImpl.addOperateLogBean(operation);
+	}
+	
+	@Test
+	public void testLog() {
+		
+		System.out.println("=========================================================================================");
+		UserBean user=userQueryDaoImpl.findUserByName("1");
+		System.out.println("..........................."+user);
 	}
 }

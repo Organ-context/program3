@@ -48,11 +48,6 @@ public class UserQueryServiceImpl implements IUserQueryService {
 		return userQueryDaoImpl.findUserByName(username);
 	}
 
-	@Override
-	public RoleBean findRoleByUsername(String username) {
-		// TODO Auto-generated method stub
-		return userQueryDaoImpl.findRoleByUsername(username);
-	}
 
 
 

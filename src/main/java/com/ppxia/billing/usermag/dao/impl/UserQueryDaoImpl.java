@@ -36,15 +36,11 @@ public class UserQueryDaoImpl implements IUserQueryDao{
 	}
 
 	@Override
-	public UserBean findUserByName(String username) {
+	public UserBean findUserByName(String userAccountingName) {
 		// TODO Auto-generated method stub       
-		return userMapper.findUserByName(username);
+		return userMapper.findUserByName(userAccountingName);
 	}
 
-	@Override
-	public RoleBean findRoleByUsername(String username) {
-		// TODO Auto-generated method stub
-		return userMapper.findRoleByUsername(username);
-	}
+
 
 }
