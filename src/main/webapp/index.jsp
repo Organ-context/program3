@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1">
@@ -11,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="static/js/themes/icon.css" />
 <script type="text/javascript" src="static/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="static/js/jquery.easyui.min-1.2.0.js"></script>
-<script type="text/javascript" src='static/js/outlook.js'></script>
+<script type="text/javascript" src="static/js/indexjs.js"></script>
 
 
 <style type="text/css">
@@ -70,20 +71,97 @@
 	</div>
 	<div region="west" hide="true" split="true" title="导航菜单"
 		style="width: 180px;" id="west">
-		<div id='wnav' class="easyui-accordion" fit="true" border="false">
+
 			<!--  导航内容 -->
-		</div>
+			
+			<div class="easyui-panel" style="width: 172px; height: 500px; border-bottom: none;">
+        <ul id="tt"  class="easyui-tree">
+				<shiro:hasAnyRoles name="superadmin,log,triff">
+				<li data-options="state:'closed'"><span>用户前台系统</span>
+	                <ul>
+	                    <li><span>个人信息</span></li>
+	                    <li><span>账单信息</span></li>
+	                </ul>
+	            </li>
+	            <li data-options="state:'closed'"><span>前台运营系统</span>
+	                <ul>
+	             </shiro:hasAnyRoles> 
+            		 		<shiro:hasAnyRoles name="superadmin,admin">
+	                    <li data-options="state:'closed'"><span>管理员管理系统</span>
+	                    	<ul>
+	                    		<li><span>管理员管理</span></li>
+	                    	</ul>
+	                    </li>
+	              </shiro:hasAnyRoles>  
+             				<shiro:hasAnyRoles name="superadmin,accounting"> 
+	                    <li data-options="state:'closed'"><span>账务查询系统</span>
+	                <ul>
+	                    <li><span>年账务查询</span></li>
+	                    <li><span>月账务查询</span></li>
+	                </ul>
+	            </li>
+				 </shiro:hasAnyRoles>   
+             				<shiro:hasAnyRoles name="superadmin,admin"> 
+	            <li data-options="state:'closed'"><span>权限管理系统</span>
+	                <ul>
+	                    <li><span>权限管理</span></li>
+	                    <li><span>角色管理</span></li>
+	                </ul>
+	            </li>
+				</shiro:hasAnyRoles>    
+             				<shiro:hasAnyRoles name="superadmin,tariff"> 
+		            <li data-options="state:'closed'"><span>资费管理系统</span>
+		                <ul>
+		                    <li><span>资费管理</span></li>
+		                </ul>
+		            </li>
+				</shiro:hasAnyRoles>  
+             				<shiro:hasAnyRoles name="superadmin,user">   
+		            <li data-options="state:'closed'"><span>用户管理系统</span>
+		                <ul>
+		                    <li><span>账务账号管理</span></li>
+		                    <li><span>业务账号管理</span></li>
+		                </ul>
+		            </li>
+				</shiro:hasAnyRoles>   
+             				<shiro:hasAnyRoles name="superadmin,log">  
+			            <li data-options="state:'closed'"><span>前台日志系统</span>
+			                <ul>
+			                    <li><span>登录日志</span></li>
+			                    <li><span>前台日志</span></li>
+			                </ul>
+			            </li>
+				</shiro:hasAnyRoles>  
+             				<shiro:hasAnyRoles name="superadmin,log"> 
+			            <li data-options="state:'closed'"><span>账单查询</span>
+			                <ul>
+			                    <li><span>账单查询系统</span></li>
+			                </ul>
+			            </li>
+	                     </shiro:hasAnyRoles>   
+	                </ul>
+	            </li>
+            
+	          
+        </ul>
+    </div>
+    
+			
 	</div>
 	<div id="mainPanle" region="center"
 		style="background: #eee; overflow-y: hidden">
 		<div id="tabs" class="easyui-tabs" fit="true" border="false">
 			<div title="欢迎使用" style="padding: 20px; overflow: hidden;" id="home">
-				<h1>欢迎您使用电信网上营业厅</h1>
+				
+    <div title="主页" id="wp">
+        <img alt="" src="static/images/dianxin.jpg" style="height:100%;width:100%;">
+
+</div>
 			</div>
 		</div>
 	</div>
 	<!--修改密码窗口-->
-	<div id="w" class="easyui-window" title="修改密码" collapsible="false"
+	<div id="w" class="easyui-window" title="修改密码" collapsible="false" closed="true"
 		minimizable="false" maximizable="false" icon="icon-save"
 		style="width: 300px; height: 150px; padding: 5px; background: #fafafa;">
 		<div class="easyui-layout" fit="true">

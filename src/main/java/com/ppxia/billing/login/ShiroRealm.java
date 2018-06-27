@@ -18,8 +18,10 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.stereotype.Controller;
 
+import com.ppxia.billing.beans.AuthorityBean;
 import com.ppxia.billing.beans.RoleBean;
 import com.ppxia.billing.beans.UserBean;
+import com.ppxia.billing.rolemag.service.IRoleQueryService;
 import com.ppxia.billing.usermag.service.IUserQueryService;
 //Realm 需要查询数据库，并且得到正确的数据
 //AuthorizingRealm 继承于AuthenticatingRealm，同时具有认证和授权的功能
@@ -34,7 +36,37 @@ public class ShiroRealm extends AuthorizingRealm {
 	
 	@Resource
 	private IUserQueryService userQueryServiceImpl;
+	@Resource
+	private IRoleQueryService roleQueryServiceImpl;
 	
+	/**
+	 * 为当前用户授权
+	 */
+	@Override
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		
+		//返回值：AuthorizationInfo，封装获取的用户对应的所有角色，SimpleAuthenticationInfo(Set<String>)
+		//参数：principals 登录的身份,即用户名
+		SimpleAuthorizationInfo info = null ;
+		String username = (String) principals.fromRealm(getName()).iterator().next();
+		RoleBean role = roleQueryServiceImpl.findRoleByUserName(username);
+		
+		if(role!=null) {
+			
+
+			Set<String> rol = new HashSet<String>();
+			rol.add(role.getRoleName());
+			 info = new SimpleAuthorizationInfo(rol);
+			System.out.println("********************"+info);
+			
+		}
+		return info;
+	}
+	
+	
+	/**
+	 * 验证当前用户
+	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		// TODO Auto-generated method stub
@@ -49,8 +81,9 @@ public class ShiroRealm extends AuthorizingRealm {
 		
 		//3.查询数据库，是否存在指定用户名和密码
 		bean=userQueryServiceImpl.findUserByName(username);
+		System.out.println(bean);
 		if(bean!=null) {
-			Object principal =bean.getUserName();
+			Object principal =bean.getUserAccountingName();
 			
 			Object credentials= bean.getUserPassword();
 			
@@ -58,39 +91,13 @@ public class ShiroRealm extends AuthorizingRealm {
 			//SimpleAuthenticationInfo：封装数据库查询的正确账号密码，shiro框架内部进行比对
 			//对比的操作是调用了doCredentialsMatch(token,info)
 			info=new SimpleAuthenticationInfo(principal, credentials, realmName);
-		}else {
-			//如果不存在就抛出异常
-			throw new AuthenticationException();
+			return info; 
 		}
+			//如果不存在就抛出异常
 		//4.如果查询到了，封装查询结果，返回给调用者
 		//5.如果没有查询到，抛出异常
-		
-		
-		return info;
-	}
-
-	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		// TODO Auto-generated method stub
-		
-		//返回值：AuthorizationInfo，封装获取的用户对应的所有角色，SimpleAuthenticationInfo(Set<String>)
-		//参数：principals 登录的身份,即用户名
-		
-		SimpleAuthorizationInfo info = null;
-		RoleBean role = new RoleBean();
-		String username = principals.toString();
-		role=userQueryServiceImpl.findRoleByUsername(username);
-		if(role !=null) {
-			Set<String> roles = new HashSet<String>();
-			roles.add(role.getRoleName());
-			info= new SimpleAuthorizationInfo(roles);
-		}else {
-			throw new AuthenticationException();
-		}
-		
-		return info;
+		return null; 	
 	}
 
 	
-
 }

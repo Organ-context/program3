@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html style="width: 100%;height:100%">
 <head>
 <base href="${request.contextPath}">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>电信计费系统</title>
 <link href="static/js/themes/icon.css" rel="stylesheet" type="text/css" />
 <link href="static/js/themes/default/easyui1.css" rel="stylesheet"
 	type="text/css" />
@@ -15,8 +15,16 @@
 <script src="static/js/Cookie.js" type="text/javascript"></script>
 
 </head>
-<body>
-	<div id="loginWindow" class="easyui-window" title="登陆"
+<style>
+	 .max img{
+            width: 100%;
+            height: 100%;
+        }
+</style>
+<body style="width: 100%;height:100%">
+	<div class="max">
+	<img src="static/images/dianxin.jpg" />
+		<div id="loginWindow" class="easyui-window" title="登陆"
 		iconcls="icon-login"
 		style="width: 300px; height: 180px; padding: 5px; background: #fafafa;">
 		<div border="false"
@@ -25,7 +33,7 @@
 				<table>
 					<tr>
 						<td>账号：</td>
-						<td><input id="username" name="username" class="easyui-validatebox"
+						<td><input id="userAccountingName" name="userAccountingName" class="easyui-validatebox"
 							required="true" validtype="length[1,10]" style="width: 150px;" />
 						</td>
 					</tr>
@@ -44,5 +52,6 @@
 			</form>
 		
 </div>
+	</div>
 </body>
 </html>

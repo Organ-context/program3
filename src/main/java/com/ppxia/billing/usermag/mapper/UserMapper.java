@@ -2,7 +2,9 @@ package com.ppxia.billing.usermag.mapper;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
@@ -81,22 +83,14 @@ public interface UserMapper {
 	
 	@Results({
 		@Result(id=true,property="id",column="id",javaType=Long.class),
-		@Result(id=true,property="userName",column="user_name",javaType=String.class),
-		@Result(id=true,property="userPassword",column="user_password",javaType=String.class)
-	})
-	@Select("select id,user_name,user_password from t_user where user_name=#{username}")
+		@Result(property="userName",column="user_name",javaType=String.class),
+		@Result(property="userPassword",column="user_password",javaType=String.class),
+		@Result(property="userAccountingName",column="user_accounting_name",javaType=String.class),
+		@Result(property = "roleBean", column = "fk_role_id", javaType = RoleBean.class, one = @One(fetchType = FetchType.LAZY, select = "getRoleById")) 
+		})
+
+	@Select("select * from t_user as u where user_accounting_name=#{username} ")
 	public UserBean findUserByName(@Param("username")String username);
 	
-	/**
-	 * 通过用户姓名查找用户角色
-	 * @param username
-	 * @return
-	 */
-	@Results({
-		@Result(id=true,property="id",column="id",javaType=Long.class),
-		@Result(id=true,property="roleName",column="role_name",javaType=String.class),
-		@Result(id=true,property="roleType",column="role_type",javaType=Integer.class)
-	})
-	@Select("select * from t_role r left join t_user u on r.id = u.fk_role_id where u.user_name = #{username}")
-	public RoleBean findRoleByUsername(@Param("username")String username);
+
 }
