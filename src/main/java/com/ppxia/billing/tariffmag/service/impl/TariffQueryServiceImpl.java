@@ -48,4 +48,10 @@ public class TariffQueryServiceImpl implements ITariffQueryService {
 		return tariffQueryDaoImpl.findTariffById(id);
 	}
 
+	@Override
+	public PagerBean findTariffByParams(Map map, PagerBean pager) {
+		// TODO Auto-generated method stub
+		return tariffQueryDaoImpl.findTariffByParams(map, pager);
+	}
+
 }

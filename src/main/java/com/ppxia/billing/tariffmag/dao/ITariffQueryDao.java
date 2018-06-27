@@ -18,4 +18,6 @@ public interface ITariffQueryDao {
 	public int findIdByName(String name);
 	
 	public TariffBean findTariffById(Long id);
+	
+	public PagerBean findTariffByParams(Map map, PagerBean pager);
 }

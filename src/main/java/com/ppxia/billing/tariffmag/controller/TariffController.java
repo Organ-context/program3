@@ -40,9 +40,60 @@ public class TariffController {
 
 	@Resource
 	private IOsBeanQueryService osBeanQueryServiceImpl;
+	
+	/**
+	 * 删除资费
+	 * @param nowTariffId
+	 * @return
+	 */
+	@RequestMapping(value = "/deleteTariff", method = { RequestMethod.DELETE }, produces = {
+		"application/json;charset=utf-8" })
+	public String deleteTariff(Long nowTariffId) {
+		tariffHandleServiceImpl.deleteTariff(nowTariffId);
+		return "";
+	}
+	
+	
+	/**
+	 * 修改选中的资费信息
+	 * 
+	 * @param nowOsId
+	 * @return
+	 */
+	@RequestMapping(value = "/updateTariffInfo", method = { RequestMethod.POST }, produces = {
+			"application/json;charset=utf-8" })
+	public String changeTariff(Long nowTariffId,String updateTariffName,int updateBasicCost,double updatePerCost) {
+		TariffBean newTariff = new TariffBean();
+		newTariff.setId(nowTariffId);
+		newTariff.setBasicCost(updateBasicCost);
+		newTariff.setPerCost(updatePerCost);
+		newTariff.setTariffName(updateTariffName);
+		tariffHandleServiceImpl.updateTariff(newTariff);
+		return "";
+	}
 
 	/**
-	 * 修改OS账号的状态
+	 * 获取资费的分页对象
+	 * @param pager
+	 * @param tariffName
+	 * @return
+	 */
+	@RequestMapping(value = "/getTariffs", method = { RequestMethod.GET }, produces = {
+			"application/json;charset=utf-8" })
+	public DataGrid findTariffByParams2Pager(PagerBean pager, String tariffName) {
+		Map<String, Object> params = new HashMap<>();
+		pager.setRows(10);
+		params.put("tariffName", tariffName);
+		params.put("pager", pager);
+		DataGrid dataGrid = null;
+		tariffQueryServiceImpl.findTariffByParams(params, pager);
+		dataGrid = new DataGrid((long) pager.getTotalRows(), pager.getDatas());
+		return dataGrid;
+	}
+
+	/**
+	 * 修改选中的业务账号的资费状态
+	 * 
 	 * @param nowOsId
 	 * @return
 	 */
@@ -54,9 +105,9 @@ public class TariffController {
 		newOsBean.setId(oldOsBean.getId());
 		newOsBean.setOsAccount(oldOsBean.getOsAccount());
 		newOsBean.setOsState(oldOsBean.getOsState());
-		if (oldOsBean.getOsState()==1) {
+		if (oldOsBean.getOsState() == 1) {
 			newOsBean.setOsState(0);
-		}else {
+		} else {
 			newOsBean.setOsState(1);
 		}
 		newOsBean.setServerBean(oldOsBean.getServerBean());
@@ -91,13 +142,18 @@ public class TariffController {
 	}
 
 	@RequestMapping(value = "/add", method = { RequestMethod.POST }, produces = { "application/json;charset=utf-8" })
-	public String addTariff(TariffBean tariff) {
-		tariffHandleServiceImpl.saveTariff(tariff);
+	public String addTariff(String newTariffName,String newBasicCost,String newPerCost) {
+		TariffBean newTariff = new TariffBean();
+//		newTariff.setBasicCost(updateBasicCost);
+//		newTariff.setPerCost(updatePerCost);
+		newTariff.setTariffName(newTariffName);
+		tariffHandleServiceImpl.saveTariff(newTariff);
 		return "";
 	}
 
 	/**
 	 * 获取全部资费对象
+	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/getAllTariff", method = { RequestMethod.GET }, produces = {
@@ -109,6 +165,7 @@ public class TariffController {
 
 	/**
 	 * 获得业务账号的资费分页对象
+	 * 
 	 * @param pager
 	 * @param userName
 	 * @param accountName
@@ -129,7 +186,7 @@ public class TariffController {
 	}
 
 	/**
-	 * 跳转到资费添加页面
+	 * 跳转到资费详情页面
 	 * 
 	 * @param viewName
 	 * @return 资费添加页面视图

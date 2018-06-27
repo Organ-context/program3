@@ -46,5 +46,14 @@ public class TariffQueryDaoImpl implements ITariffQueryDao {
 		// TODO Auto-generated method stub
 		return tariffMapper.findTariffById(id);
 	}
+	@Override
+	public PagerBean findTariffByParams(Map map, PagerBean pager) {
+		// TODO Auto-generated method stub
+		map.put("index", pager.getIndex());
+		pager.setDatas(tariffMapper.findTariffPage(map));
+		pager.setTotalRows(tariffMapper.findTotalTariffByAll(map));
+		
+		return pager;
+	}
 
 }

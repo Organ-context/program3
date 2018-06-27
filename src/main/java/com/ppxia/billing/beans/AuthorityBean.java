@@ -34,7 +34,7 @@ public class AuthorityBean implements Serializable {
    	private String authorityName;//权限名称//authority_name varchar
    	
 	@Column(name="authority_num",length=11)
-   	private int authorityNum;//权限编号//authority_num int
+   	private String authorityNum;//权限编号//authority_num int
 	@ManyToMany(fetch=FetchType.LAZY,mappedBy="authoritys")
 	@Cascade(value= {CascadeType.REFRESH})
 	private Set<RoleBean> roles;
@@ -55,10 +55,10 @@ public class AuthorityBean implements Serializable {
 	public void setAuthorityName(String authorityName) {
 		this.authorityName = authorityName;
 	}
-	public int getAuthorityNum() {
+	public String getAuthorityNum() {
 		return authorityNum;
 	}
-	public void setAuthorityNum(int authorityNum) {
+	public void setAuthorityNum(String authorityNum) {
 		this.authorityNum = authorityNum;
 	}
 	@Override

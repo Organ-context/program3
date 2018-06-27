@@ -46,4 +46,13 @@ public interface RoleMapper {
 	@Select("SELECT * FROM t_role r LEFT JOIN t_user u ON r.id = u.fk_role_id WHERE u.user_name = #{userName}")
 	public RoleBean findRoleByUserName(String userName);
 	
+
+	@Results({
+		@Result(id=true,property="id",column="id",javaType=Long.class),
+		@Result(property = "roleName", column = "role_name", javaType = String.class),
+		@Result(property = "roleType", column = "role_type", javaType = Integer.class),
+		@Result(property="authoritys",column="id",javaType=Set.class,many=@Many(fetchType=FetchType.LAZY,select="com.ppxia.billing.authortymag.mapper.AuthorityMapper.findAuthorityById"))
+	})
+	@Select("SELECT * FROM t_role r LEFT JOIN t_user u ON r.id = u.fk_role_id WHERE u.id = #{id}")
+	public RoleBean findRoleByRoleId(Long id);
 }

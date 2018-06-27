@@ -23,9 +23,27 @@ public class AuthorityQueryDaoImpl implements IAuthorityQueryDao {
 	}
 
 	@Override
-	public AuthorityBean findLastAuthorityBySuperAuthority(int authorityNum) {
+	public AuthorityBean findLastAuthorityBySuperAuthority(String authorityNum) {
 		// TODO Auto-generated method stub
 		return authorityMapper.findLastAuthorityBySuperAuthority(authorityNum);
+	}
+
+	@Override
+	public List<AuthorityBean> findAuthorityBySuperAuthorityContainSuperAuthority(String authorityNum) {
+		// TODO Auto-generated method stub
+		return authorityMapper.findAuthorityBySuperAuthorityContainSuperAuthority(authorityNum);
+	}
+
+	@Override
+	public List<AuthorityBean> findAllAuthority() {
+		// TODO Auto-generated method stub
+		return authorityMapper.findAllAuthority();
+	}
+
+	@Override
+	public AuthorityBean findAuthorityById(Long id) {
+		// TODO Auto-generated method stub
+		return authorityMapper.findAuthorityByAuthorityId(id);
 	}
 
 }

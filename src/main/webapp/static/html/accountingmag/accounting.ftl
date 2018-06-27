@@ -40,8 +40,17 @@
 		<input id="userAccountingName" style="line-height: 26px; width: 100px; border: 1px solid #ccc" placeholder="请输入账务账号"> 
 		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" style="border: 6px" onclick="submitForm()">搜索</a>
 		
-		<input id="accountings" type="file" iconCls="icon-add" name="fileAddress">
-		<button type="submit" id="saveButton">批量添加账务账号</button>
+		<form action="upload" enctype="multipart/form-data" method="post">
+        <table>
+            <tr>
+                <td>请选择文件:</td>
+                <td><input type="file" name="file"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="批量添加账务账号"></td>
+            </tr>
+        </table>
+   		</form>
 	</div>
 
 	<div style="margin: 20px 0;">

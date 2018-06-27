@@ -11,4 +11,11 @@ public interface IRoleQueryDao {
 	public RoleBean findRoleByRoleName(String roleName);
 	
 	public RoleBean findRoleByUserName(String userName);
+	
+	/**
+	 * 通过角色ID查询角色对象
+	 * @param id
+	 * @return
+	 */
+	public RoleBean findRoleByRoleId(Long id);
 }

@@ -20,6 +20,7 @@ public class RoleQueryDaoImpl implements IRoleQueryDao {
 	@Override
 	public PagerBean findRoleByParams(PagerBean pager, Map params) {
 		// TODO Auto-generated method stub
+		params.put("index", pager.getIndex());
 		pager.setDatas(roleMapper.findRoleByParams(params));
 		pager.setTotalRows(roleMapper.findTotalNumByParams(params));
 		return pager;
@@ -35,6 +36,12 @@ public class RoleQueryDaoImpl implements IRoleQueryDao {
 	public RoleBean findRoleByUserName(String userName) {
 		// TODO Auto-generated method stub
 		return roleMapper.findRoleByUserName(userName);
+	}
+
+	@Override
+	public RoleBean findRoleByRoleId(Long id) {
+		// TODO Auto-generated method stub
+		return roleMapper.findRoleByRoleId(id);
 	}
 
 }

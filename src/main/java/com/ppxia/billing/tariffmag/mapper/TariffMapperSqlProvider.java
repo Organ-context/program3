@@ -7,6 +7,27 @@ import org.springframework.util.StringUtils;
 import com.ppxia.billing.beans.PagerBean;
 
 public class TariffMapperSqlProvider {
+	
+	public String findTariffByMap(Map<String, Object> map) {
+		StringBuilder sb = new StringBuilder("select id, tariff_name as tariffName,basic_cost as basicCost,per_cost as perCost from t_tariff where 1=1 ");
+		String tariffName = (String) map.get("tariffName");
+		if (StringUtils.hasLength(tariffName)) {
+			sb.append("and tariff_name like CONCAT('" + tariffName + "','%') ");
+		}
+		int num1 = (int) map.get("index");
+		sb.append(" limit " + num1 + " ,10");
+		return sb.toString();
+	}
+	
+	public String findTotalTariffByMap(Map<String, Object> map) {
+		StringBuilder sb = new StringBuilder("select count(id) from t_tariff where 1=1 ");
+		String tariffName = (String) map.get("tariffName");
+		if (StringUtils.hasLength(tariffName)) {
+			sb.append("and tariff_name like CONCAT('" + tariffName + "','%') ");
+		}
+		return sb.toString();
+	}
+	
 	// 查询分页的具体数据
 	public String findTariffByParams(Map<String, Object> map) {
 		Map params = (Map) map.get("params");

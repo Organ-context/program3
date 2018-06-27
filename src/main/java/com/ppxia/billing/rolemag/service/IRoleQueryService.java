@@ -14,4 +14,11 @@ public interface IRoleQueryService {
 	 * @return 该用户名对应的角色对象
 	 */
 	public RoleBean findRoleByUserName(String userName);
+	
+	/**
+	 * 通过角色ID查询角色对象
+	 * @param id
+	 * @return
+	 */
+	public RoleBean findRoleByRoleId(Long id);
 }

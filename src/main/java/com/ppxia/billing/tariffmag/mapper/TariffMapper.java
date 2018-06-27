@@ -43,6 +43,12 @@ public interface TariffMapper {
 	@Select("select id, tariff_name as tariffName from t_tariff")
 	public List<TariffBean> findAllTariffName();
 	
+	@ResultType(TariffBean.class)
+	@SelectProvider(type=TariffMapperSqlProvider.class,method="findTariffByMap")
+	public List<TariffBean> findTariffPage(Map map);
+	
+	@SelectProvider(type=TariffMapperSqlProvider.class,method="findTotalTariffByMap")
+	public int findTotalTariffByAll(Map map);
 	
 	//通过资费名查询id
 	@Select("select id from t_tariff where tariff_name = #{name}")

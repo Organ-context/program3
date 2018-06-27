@@ -29,4 +29,10 @@ public class RoleQueryServiceImpl implements IRoleQueryService {
 		return roleQueryDaoImpl.findRoleByUserName(userName);
 	}
 
+	@Override
+	public RoleBean findRoleByRoleId(Long id) {
+		// TODO Auto-generated method stub
+		return roleQueryDaoImpl.findRoleByRoleId(id);
+	}
+
 }

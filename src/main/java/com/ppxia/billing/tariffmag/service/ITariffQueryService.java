@@ -19,4 +19,12 @@ public interface ITariffQueryService {
 	
 	//通过ID查询资费对象
 	public TariffBean findTariffById(Long id);
+	
+	/**
+	 * 查询资费分页对象
+	 * @param map
+	 * @param pager
+	 * @return
+	 */
+	public PagerBean findTariffByParams(Map map,PagerBean pager);
 }

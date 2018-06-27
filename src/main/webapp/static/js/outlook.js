@@ -273,7 +273,7 @@ function clockon() {
 
 var _menus = {
     basic: [{
-        "menuid": "10",
+    	"menuid": "10",
         "icon": "icon-sys",
         "menuname": "用户前台系统",
         "menus":
@@ -281,7 +281,13 @@ var _menus = {
                      "menuid": "111",
                      "menuname": "个人信息",
                      "icon": "icon-nav",
-                     "url": "#"
+                     "url": "static/html/prosceniummag/information.jsp"
+                 },
+                 {
+                     "menuid": "111",
+                     "menuname": "账单信息",
+                     "icon": "icon-nav",
+                     "url": "static/html/prosceniummag/userbill.jsp"
                  }]
     }, {
         "menuid": "20",
@@ -315,12 +321,12 @@ var _menus = {
                 "menuid": "120",
                 "menuname": "权限管理",
                 "icon": "icon-nav",
-                "url": "javascript:void(0)"
+                "url": "static/html/authoritymag/authority.ftl"
             },{
                 "menuid": "120",
                 "menuname": "角色管理",
                 "icon": "icon-nav",
-                "url": "javascript:void(0)"
+                "url": "static/html/authoritymag/role.ftl"
             }]
         },{
                 "menuid": "120",
