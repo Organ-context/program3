@@ -18,11 +18,13 @@ $(function () {
             }if(node.text=="月账务查询"){
                 str='static/html/osaccountingmag/osaccountingmonth.ftl';
             }if(node.text=="权限管理"){
-                str='static/html/adminmag/admin2.ftl';
+                str='static/html/authoritymag/authority.ftl';
             }if(node.text=="角色管理"){
-                str='static/html/adminmag/admin2.ftl';
-            }if(node.text=="资费管理"){
+                str='static/html/authoritymag/role.ftl';
+            }if(node.text=="业务资费管理"){
                 str='static/html/tariffmag/tariffFirst.ftl';
+            }if(node.text=="资费套餐管理"){
+                str='static/html/tariffmag/tariffSecond.ftl';
             }if(node.text=="账务账号管理"){
                 str='static/html/accountingmag/accounting.ftl';
             }if(node.text=="业务账号管理"){
@@ -33,6 +35,8 @@ $(function () {
                 str='static/html/logmag/operationlog.ftl';
             }if(node.text=="账单查询系统"){
                 str='static/html/osmag/accMonth.ftl';
+            }if(node.text=="账务账号报表"){
+            	str='static/html/accountingechartsmag/accountingcharts.ftl';
             }
             
             

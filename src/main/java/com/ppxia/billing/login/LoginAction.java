@@ -36,7 +36,7 @@ public class LoginAction {
 			return "redirect:/toLogin";
 		}
 		}catch (AuthenticationException e) {
-			return "redirect:/toLogin";
+			return "ereeo.ftl";
 		}
 		
 	}

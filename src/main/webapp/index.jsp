@@ -76,17 +76,18 @@
 			
 			<div class="easyui-panel" style="width: 172px; height: 500px; border-bottom: none;">
         <ul id="tt"  class="easyui-tree">
-				<shiro:hasAnyRoles name="superadmin,log,triff">
+			
 				<li data-options="state:'closed'"><span>用户前台系统</span>
 	                <ul>
 	                    <li><span>个人信息</span></li>
 	                    <li><span>账单信息</span></li>
 	                </ul>
 	            </li>
+	            	<shiro:hasAnyRoles name="superadmin,admin">
 	            <li data-options="state:'closed'"><span>前台运营系统</span>
 	                <ul>
-	             </shiro:hasAnyRoles> 
-            		 		<shiro:hasAnyRoles name="superadmin,admin">
+	       
+            		 	
 	                    <li data-options="state:'closed'"><span>管理员管理系统</span>
 	                    	<ul>
 	                    		<li><span>管理员管理</span></li>
@@ -108,11 +109,19 @@
 	                    <li><span>角色管理</span></li>
 	                </ul>
 	            </li>
-				</shiro:hasAnyRoles>    
+				</shiro:hasAnyRoles> 
+							<shiro:hasAnyRoles name="superadmin,accounting">
+				<li data-options="state:'closed'"><span>报表查询系统</span>
+	                <ul>
+	                    <li><span>账务账号报表</span></li>
+	                </ul>
+	            </li>
+				  </shiro:hasAnyRoles> 
              				<shiro:hasAnyRoles name="superadmin,tariff"> 
 		            <li data-options="state:'closed'"><span>资费管理系统</span>
 		                <ul>
-		                    <li><span>资费管理</span></li>
+		                    <li><span>业务资费管理</span></li>
+		                    <li><span>资费套餐管理</span></li>
 		                </ul>
 		            </li>
 				</shiro:hasAnyRoles>  
@@ -154,7 +163,7 @@
 			<div title="欢迎使用" style="padding: 20px; overflow: hidden;" id="home">
 				
     <div title="主页" id="wp">
-        <img alt="" src="static/images/dianxin.jpg" style="height:100%;width:100%;">
+        <img alt="" src="static/images/000.jpg" style="height:50%;width:100%;">
 
 </div>
 			</div>

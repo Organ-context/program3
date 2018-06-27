@@ -49,7 +49,7 @@
 					<button  type="button" class="easyui-linkbutton" iconcls="icon-no" id="aboutSys" style="margin-right:10px;">取消</button>
 					 <button type="submit" class="easyui-linkbutton" iconcls="icon-ok" id="" style="margin-left:10px;"> 登陆</button>
 				</div>
-			</form>
+	</form>
 		
 </div>
 	</div>
